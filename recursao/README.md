@@ -8,8 +8,8 @@ A sequência de Fibonacci é uma sequência de números inteiros, começando nor
 
 ```java
     public static int fibonacci(int n){
-        if(n==0) return 0; //Caso de Parada
-        if(n==1) return 1; // Caso de Recursão
+        if(n==0) return 0; // Caso de Parada
+        if(n==1) return 1; // Caso de Parada
 
         return fibonacci(n-1) + fibonacci(n-2); // Caso de Recursão. Recursão Binária
     }
@@ -21,8 +21,8 @@ O fatorial de um número natural n, representado por n!, é a multiplicação de
 
 ```java
     public static int fatorial(int n){
-        if(n==0) return 1; //Caso de Parada
-        if(n==1) return 1; // Caso de Recursão
+        if(n==0) return 1; // Caso de Parada
+        if(n==1) return 1; // Caso de Parada
 
         return n*fatorial(n-1); //Casos de Recursão. Recursão linear
     }
