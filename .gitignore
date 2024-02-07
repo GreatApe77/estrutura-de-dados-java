@@ -23,8 +23,11 @@
 hs_err_pid*
 replay_pid*
 
+#Diretórios target
 target
 
+#Diretórios bin 
 bin/
 
+#Configraçoes do VSCode
 .vscode/
