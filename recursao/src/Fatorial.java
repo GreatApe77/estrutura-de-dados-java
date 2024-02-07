@@ -8,6 +8,6 @@ public class Fatorial {
         if(n==0) return 1; //Caso de Parada
         if(n==1) return 1; // Caso de Recursão
 
-        return n*fatorial(n); //Casos de Recursão. Recursão linear
+        return n*fatorial(n-1); //Casos de Recursão. Recursão linear
     }
 }
