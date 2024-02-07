@@ -1,4 +1,4 @@
-## Recursão
+# Recursão
 
 Algoritmos abordados: Fibonacci e Fatorial
 
