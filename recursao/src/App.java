@@ -5,10 +5,10 @@ public class App {
         //Decrescente.decresente(5);
         //Crescente.crescente(0, 100);
         //System.out.println(Somatorio.somatorio(1));
-        int[] meuVetor = {1,2,3,4};
-        int resultado =SomatorioVetor.somatorioDoVetor(meuVetor, meuVetor.length);
-        System.out.println(resultado);
-/* 
+        //int[] meuVetor = {1,2,3,4};
+        //int resultado =SomatorioVetor.somatorioDoVetor(meuVetor, meuVetor.length);
+        //System.out.println(resultado);
+
         @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
         int opcao;
@@ -38,6 +38,6 @@ public class App {
                 main(args);
                 break;
         }
- */
+ 
     }
 }
