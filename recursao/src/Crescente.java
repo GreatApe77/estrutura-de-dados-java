@@ -1,9 +1,11 @@
 public class Crescente {
-    public static void crescente(int n, int limit) {
+    public static void crescente(int n) {
 
-        System.out.println(n);
-        if (n == limit)
+        if(n<=0){
+            System.out.println(n);
             return;
-        crescente(n + 1, limit);
+        }
+        crescente(n-1);
+        System.out.println(n);
     }
 }

@@ -2,14 +2,16 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        //Crescente.crescente(6);
         //Decrescente.decresente(5);
+        //int[] meuVetor = {1,2,3,4};
+        //System.out.println(SomatorioVetor.somatorioDoVetor(meuVetor));
         //Crescente.crescente(0, 100);
         //System.out.println(Somatorio.somatorio(1));
-        //int[] meuVetor = {1,2,3,4};
         //int resultado =SomatorioVetor.somatorioDoVetor(meuVetor, meuVetor.length);
         //System.out.println(resultado);
 
-        @SuppressWarnings("resource")
+/*         @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
         int opcao;
         System.out.println("Escolha uma opção:");
@@ -38,6 +40,6 @@ public class App {
                 main(args);
                 break;
         }
- 
+  */
     }
 }
