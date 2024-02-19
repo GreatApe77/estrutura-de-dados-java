@@ -1,3 +1,5 @@
+package com.example;
+
 public class Crescente {
     public static void crescente(int n) {
 

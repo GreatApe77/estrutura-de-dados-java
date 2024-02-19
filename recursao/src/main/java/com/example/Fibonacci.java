@@ -1,3 +1,5 @@
+package com.example;
+
 public class Fibonacci {
     /**
      * Método que calcula o n-ésimo termo da sequência de Fibonacci

@@ -1,3 +1,5 @@
+package com.example;
+
 public class Decrescente {
     public static void decresente(int n){
 

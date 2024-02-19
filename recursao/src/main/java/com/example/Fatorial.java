@@ -1,3 +1,5 @@
+package com.example;
+
 public class Fatorial {
     /**
      * Método que calcula o fatorial de um número

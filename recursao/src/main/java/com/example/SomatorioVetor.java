@@ -1,3 +1,4 @@
+package com.example;
 public class SomatorioVetor {
     
       public static int somatorioDoVetor(int[] vetor,int tamanho ){
