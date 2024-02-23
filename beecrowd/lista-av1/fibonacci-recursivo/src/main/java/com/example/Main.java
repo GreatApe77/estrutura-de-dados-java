@@ -25,7 +25,7 @@ class Fibonacci {
     }
 }
 
-public class App {
+public class Main {
 
     public static void printarFormatado(int entrada, int chamadas, int resultado) {
         System.out.println("fib(" + entrada + ") = " + chamadas + " calls = " + resultado);
@@ -34,10 +34,15 @@ public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Fibonacci fibonacci = new Fibonacci();
-        int n = scanner.nextInt();
-        int elemento = n-1;
-        int resultado = fibonacci.calcularFibonacci(elemento);
-        printarFormatado(elemento, fibonacci.getQuantidadeDeChamadas(), resultado);
+        int numeroCasosDeTeste = scanner.nextInt();
+        
+        for (int i = 0; i < numeroCasosDeTeste; i++) {
+            int x = scanner.nextInt();
+            int resultado = fibonacci.calcularFibonacci(x);
+            printarFormatado(x, fibonacci.getQuantidadeDeChamadas(), resultado);
+            fibonacci.resetarContador();
+            
+        }
         
         scanner.close();
 
