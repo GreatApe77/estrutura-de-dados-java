@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 class ColecaoPomekon {
@@ -17,17 +18,26 @@ class ColecaoPomekon {
         String[] semRepetidos = new String[getTotalDePomekonsDisponiveis()];
 
         int j = 0;
+        int i =0;
 
-        for (int i = 0; i < mochilaDePomekons.length - 1; i++) {
-            if (!mochilaDePomekons[i].equals(mochilaDePomekons[i + 1])){
-                semRepetidos[j] = mochilaDePomekons[i];
-                j++;
-            }
+        mochilaSemRepetidosComRecursao(semRepetidos, i, j);
+        return semRepetidos;
 
+    }
+
+    void mochilaSemRepetidosComRecursao(String[] semRepetidos,int i ,int j){
+
+        if(i==mochilaDePomekons.length-1){
+            semRepetidos[j] = mochilaDePomekons[mochilaDePomekons.length -1];
+            return;
+        }
+        
+        if( !mochilaDePomekons[i].equals(mochilaDePomekons[i+1])){
+            semRepetidos[j] = mochilaDePomekons[i];
+            j++;
         }
 
-        semRepetidos[j] = mochilaDePomekons[mochilaDePomekons.length - 1];
-        return semRepetidos;
+        mochilaSemRepetidosComRecursao(semRepetidos, i+1, j);
 
     }
 
@@ -57,7 +67,7 @@ public class Main {
     }
     public static void main(String[] args) throws IOException {
 
-        Scanner scanner = new Scanner(System.in);
+        /* Scanner scanner = new Scanner(System.in);
         int N = scanner.nextInt();
         String[] pokemonsCapturados = new String[N];
         for (int i = 0; i < pokemonsCapturados.length; i++) {
@@ -66,12 +76,15 @@ public class Main {
         }
         ColecaoPomekon colecaoPomekon = new ColecaoPomekon(pokemonsCapturados);
         int pokemonsRestantes = colecaoPomekon.getTotalNaoCapturados();
-        printarFormatado(pokemonsRestantes);
-        //String[] pomeoknsCapturados = new String[] { "Charmander", "Caterpie", "Pidgeot", "Rattata", "Zubat", "Zubat",
-        //        "Zubat" };
-        //ColecaoPomekon colecaoPomekon = new ColecaoPomekon(pomeoknsCapturados);
-        
-        //System.out.println(colecaoPomekon.getVariedadeDePomekonsColetados());
+        printarFormatado(pokemonsRestantes); */
+
+
+
+        /* String[] pomeoknsCapturados = new String[] { "Charmander", "Caterpie", "Pidgeot", "Rattata", "Zubat", "Zubat",
+                "Zubat" };
+        ColecaoPomekon colecaoPomekon = new ColecaoPomekon(pomeoknsCapturados);
+        System.out.println(Arrays.toString(colecaoPomekon.mochilaSemRepetidos()));
+        System.out.println(colecaoPomekon.getVariedadeDePomekonsColetados()); */
         /**
          * Escreva a sua solução aqui
          * Code your solution here
