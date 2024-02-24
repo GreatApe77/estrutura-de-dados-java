@@ -13,78 +13,105 @@ class ColecaoPomekon {
         return 151;
     }
 
-    String[] mochilaSemRepetidos() {
+    int capacidadeMaximaDaMochila() {
+        return 1000;
+    }
 
-        String[] semRepetidos = new String[getTotalDePomekonsDisponiveis()];
+    String[] getMochilaSemRepetidos() {
+
+        String[] semRepetidos = new String[capacidadeMaximaDaMochila()];
 
         int j = 0;
-        int i =0;
+        int i = 0;
 
-        mochilaSemRepetidosComRecursao(semRepetidos, i, j);
+        criarMochilaSemRepeticao(semRepetidos, i, j);
         return semRepetidos;
 
     }
 
-    void mochilaSemRepetidosComRecursao(String[] semRepetidos,int i ,int j){
+    private void criarMochilaSemRepeticao(String[] semRepetidos, int i, int j) {
 
-        if(i==mochilaDePomekons.length-1){
-            semRepetidos[j] = mochilaDePomekons[mochilaDePomekons.length -1];
+        if (i == mochilaDePomekons.length - 1) {
+            semRepetidos[j] = mochilaDePomekons[mochilaDePomekons.length - 1];
             return;
         }
-        
-        if( !mochilaDePomekons[i].equals(mochilaDePomekons[i+1])){
+
+        if (!mochilaDePomekons[i].equals(mochilaDePomekons[i + 1])) {
             semRepetidos[j] = mochilaDePomekons[i];
             j++;
         }
 
-        mochilaSemRepetidosComRecursao(semRepetidos, i+1, j);
+        criarMochilaSemRepeticao(semRepetidos, i + 1, j);
 
     }
 
-    int getVariedadeDePomekonsColetados(){
-        String[] listaNaoRepetidos = mochilaSemRepetidos();
-        
+    int getVariedadeDePomekonsColetados() {
+        String[] listaNaoRepetidos = getMochilaSemRepetidos();
+
         int variedade = 0;
 
         for (int i = 0; i < listaNaoRepetidos.length; i++) {
-            if(listaNaoRepetidos[i]!=null){
+            if (listaNaoRepetidos[i] != null) {
                 variedade++;
             }
         }
         return variedade;
-        
+
     }
-    
-    int getTotalNaoCapturados(){
+
+    int getTotalNaoCapturados() {
         return getTotalDePomekonsDisponiveis() - getVariedadeDePomekonsColetados();
     }
 
 }
 
 public class Main {
-    public static void printarFormatado(int quantidadePomekons){
-        System.out.println("Falta(m) "+quantidadePomekons+" pomekon(s).");
+    public static void printarFormatado(int quantidadePomekons) {
+        System.out.println("Falta(m) " + quantidadePomekons + " pomekon(s).");
     }
-    public static void main(String[] args) throws IOException {
 
-        /* Scanner scanner = new Scanner(System.in);
+    public static void entrarDadosRecursivos(int n, Scanner scanner, String[] pokemonsCapturados) {
+        if (n == pokemonsCapturados.length) {
+            return;
+        }
+
+        String pokemon = scanner.next();
+        pokemonsCapturados[n] = pokemon;
+        entrarDadosRecursivos(n + 1, scanner, pokemonsCapturados);
+    }
+
+    public static void main(String[] args) throws IOException {
+        /*
+         * Scanner scanner = new Scanner(System.in);
+         * int N = scanner.nextInt();
+         * String[] pokemonsCapturados = new String[N];
+         * entrarDadosRecursivos(0, scanner, pokemonsCapturados);
+         * 
+         * ColecaoPomekon colecao = new ColecaoPomekon(pokemonsCapturados);
+         * int pokemonsRestantes = colecao.getTotalNaoCapturados();
+         * printarFormatado(pokemonsRestantes);
+         */
+
+        Scanner scanner = new Scanner(System.in);
         int N = scanner.nextInt();
         String[] pokemonsCapturados = new String[N];
         for (int i = 0; i < pokemonsCapturados.length; i++) {
-            String pokemon = scanner.next();
-            pokemonsCapturados[i] = pokemon;
+            /* String pokemon = scanner.next();
+            pokemonsCapturados[i] = pokemon; */
+            pokemonsCapturados[i] = "a";
         }
         ColecaoPomekon colecaoPomekon = new ColecaoPomekon(pokemonsCapturados);
-        int pokemonsRestantes = colecaoPomekon.getTotalNaoCapturados();
-        printarFormatado(pokemonsRestantes); */
+        System.out.println(Arrays.toString(colecaoPomekon.getMochilaSemRepetidos()));
+        System.out.println(colecaoPomekon.getTotalNaoCapturados());
 
-
-
-        /* String[] pomeoknsCapturados = new String[] { "Charmander", "Caterpie", "Pidgeot", "Rattata", "Zubat", "Zubat",
-                "Zubat" };
-        ColecaoPomekon colecaoPomekon = new ColecaoPomekon(pomeoknsCapturados);
-        System.out.println(Arrays.toString(colecaoPomekon.mochilaSemRepetidos()));
-        System.out.println(colecaoPomekon.getVariedadeDePomekonsColetados()); */
+        /*
+         * String[] pomeoknsCapturados = new String[] { "Charmander", "Caterpie",
+         * "Pidgeot", "Rattata", "Zubat", "Zubat",
+         * "Zubat" };
+         * ColecaoPomekon colecaoPomekon = new ColecaoPomekon(pomeoknsCapturados);
+         * System.out.println(Arrays.toString(colecaoPomekon.mochilaSemRepetidos()));
+         * System.out.println(colecaoPomekon.getVariedadeDePomekonsColetados());
+         */
         /**
          * Escreva a sua solução aqui
          * Code your solution here
