@@ -8,7 +8,8 @@ public interface IVetor {
      */
     public boolean adicionarElementoNoFinal(int elemento)  ;
     public void adicionarElementoNoComeco(int elemento);
-    public void adicionarElementoEmPosicao(int posicao,int elemento);
+    public boolean adiciona(int posicao, int elemento);
+    public void setElementoEmPosicao(int posicao,int elemento);
     public void removerElemento(int posicao);
     public int buscarElementoEmPosicao(int posicao);
     /**

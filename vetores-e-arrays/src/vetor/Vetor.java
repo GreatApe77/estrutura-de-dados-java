@@ -18,13 +18,13 @@ public class Vetor implements IVetor {
         if (estaCheio())
             return false;
         int posicao = this.tamanho;
-        this.adicionarElementoEmPosicao(posicao, elemento);
+        this.setElementoEmPosicao(posicao, elemento);
         this.tamanho++;
         return true;
     }
 
     @Override
-    public void adicionarElementoEmPosicao(int posicao, int elemento) {
+    public void setElementoEmPosicao(int posicao, int elemento) {
         elementos[posicao] = elemento;
     }
 
@@ -43,24 +43,26 @@ public class Vetor implements IVetor {
 
     @Override
     public int indiceDoElemento(int elemento) {
-        //busca sequencial nao otimizada
-         for (int i = 0; i < this.tamanho; i++) {
-            if(this.elementos[i]==elemento){
+        // busca sequencial nao otimizada
+        for (int i = 0; i < this.tamanho; i++) {
+            if (this.elementos[i] == elemento) {
                 return i;
             }
-        } 
+        }
         return -1;
     }
+
     @Override
     public boolean contemElemento(int elemento) {
-        //busca sequencial nao otimizada 
+        // busca sequencial nao otimizada
         for (int i = 0; i < this.tamanho; i++) {
-            if(this.elementos[i]==elemento){
+            if (this.elementos[i] == elemento) {
                 return true;
             }
         }
         return false;
     }
+
     @Override
     public int tamanho() {
         // TODO Auto-generated method stub
@@ -85,8 +87,7 @@ public class Vetor implements IVetor {
 
     @Override
     public void adicionarElementoNoComeco(int elemento) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'adicionarElementoNoComeco'");
+        adiciona(0, elemento);
     }
 
     public int getTamanho() {
@@ -101,5 +102,18 @@ public class Vetor implements IVetor {
     @Override
     public boolean estaVazio() {
         return tamanho == 0;
+    }
+
+    @Override
+    public boolean adiciona(int posicao, int elemento) {
+        if (!(posicao >= 0 && posicao < this.tamanho))
+            throw new IllegalArgumentException("Posicao Invalida");
+
+        for (int i = this.tamanho-1; i>= posicao ; i--) {
+            this.elementos[i+1] = this.elementos[i];
+        }
+        this.elementos[posicao] = elemento;
+        this.tamanho++;
+        return true;
     }
 }
