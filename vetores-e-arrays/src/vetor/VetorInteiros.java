@@ -2,12 +2,12 @@ package vetor;
 
 
 
-public class Vetor  {
+public class VetorInteiros  {
     private int[] elementos;
     private int tamanho;
    
 
-    public Vetor(int capacidadeTotal) {
+    public VetorInteiros(int capacidadeTotal) {
         this.elementos = new int[capacidadeTotal];
         
         this.tamanho = 0;
