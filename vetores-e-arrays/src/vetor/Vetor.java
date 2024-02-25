@@ -1,47 +1,59 @@
 package vetor;
 
-import java.util.Arrays;
 
-public class Vetor implements IVetor {
+
+public class Vetor  {
     private int[] elementos;
     private int tamanho;
-    private int capacidadeTotal;
+   
 
     public Vetor(int capacidadeTotal) {
         this.elementos = new int[capacidadeTotal];
-        this.capacidadeTotal = capacidadeTotal;
+        
         this.tamanho = 0;
     }
-
-    @Override
+    private void aumentaCapacidade(){
+        if(estaCheio()){
+            int[] elementosNovos = new int[this.elementos.length*2];
+            for (int i = 0; i <this.tamanho; i++) {
+                elementosNovos[i] = this.elementos[i];
+            }
+            this.elementos = elementosNovos;
+        }
+    }
+    
     public boolean adicionarElementoNoFinal(int elemento) {
-        if (estaCheio())
-            return false;
+        aumentaCapacidade();
         int posicao = this.tamanho;
         this.setElementoEmPosicao(posicao, elemento);
         this.tamanho++;
         return true;
     }
 
-    @Override
-    public void setElementoEmPosicao(int posicao, int elemento) {
+    
+    private void setElementoEmPosicao(int posicao, int elemento) {
         elementos[posicao] = elemento;
     }
 
-    @Override
+    
     public void removerElemento(int posicao) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removerElemento'");
+        if (!(posicao >= 0 && posicao < this.tamanho))
+        throw new IllegalArgumentException("Posicao Invalida");
+
+        for (int i = posicao; i < this.tamanho-1; i++) {
+            this.elementos[i] = this.elementos[i+1];
+        }
+        this.tamanho--;
     }
 
-    @Override
+    
     public int buscarElementoEmPosicao(int posicao) {
         if (!(posicao >= 0 && posicao < this.tamanho))
             throw new IllegalArgumentException("Posicao Invalida");
         return this.elementos[posicao];
     }
 
-    @Override
+    
     public int indiceDoElemento(int elemento) {
         // busca sequencial nao otimizada
         for (int i = 0; i < this.tamanho; i++) {
@@ -52,7 +64,7 @@ public class Vetor implements IVetor {
         return -1;
     }
 
-    @Override
+    
     public boolean contemElemento(int elemento) {
         // busca sequencial nao otimizada
         for (int i = 0; i < this.tamanho; i++) {
@@ -63,13 +75,13 @@ public class Vetor implements IVetor {
         return false;
     }
 
-    @Override
+    
     public int tamanho() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'tamanho'");
     }
 
-    @Override
+    
     public String toString() {
         StringBuilder arrayString = new StringBuilder();
         arrayString.append("[");
@@ -85,7 +97,7 @@ public class Vetor implements IVetor {
         return arrayString.toString();
     }
 
-    @Override
+    
     public void adicionarElementoNoComeco(int elemento) {
         adiciona(0, elemento);
     }
@@ -94,21 +106,21 @@ public class Vetor implements IVetor {
         return tamanho;
     }
 
-    @Override
+    
     public boolean estaCheio() {
-        return tamanho == capacidadeTotal;
+        return tamanho == this.elementos.length;
     }
 
-    @Override
+    
     public boolean estaVazio() {
         return tamanho == 0;
     }
 
-    @Override
+    
     public boolean adiciona(int posicao, int elemento) {
         if (!(posicao >= 0 && posicao < this.tamanho))
             throw new IllegalArgumentException("Posicao Invalida");
-
+        this.aumentaCapacidade();
         for (int i = this.tamanho-1; i>= posicao ; i--) {
             this.elementos[i+1] = this.elementos[i];
         }
