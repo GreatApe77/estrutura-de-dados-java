@@ -36,16 +36,31 @@ public class Vetor implements IVetor {
 
     @Override
     public int buscarElementoEmPosicao(int posicao) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarElementoEmPosicao'");
+        if (!(posicao >= 0 && posicao < this.tamanho))
+            throw new IllegalArgumentException("Posicao Invalida");
+        return this.elementos[posicao];
     }
 
     @Override
-    public int indiceDoElemento(int indice) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'indiceDoElemento'");
+    public int indiceDoElemento(int elemento) {
+        //busca sequencial nao otimizada
+         for (int i = 0; i < this.tamanho; i++) {
+            if(this.elementos[i]==elemento){
+                return i;
+            }
+        } 
+        return -1;
     }
-
+    @Override
+    public boolean contemElemento(int elemento) {
+        //busca sequencial nao otimizada 
+        for (int i = 0; i < this.tamanho; i++) {
+            if(this.elementos[i]==elemento){
+                return true;
+            }
+        }
+        return false;
+    }
     @Override
     public int tamanho() {
         // TODO Auto-generated method stub

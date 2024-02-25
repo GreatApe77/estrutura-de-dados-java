@@ -11,7 +11,13 @@ public interface IVetor {
     public void adicionarElementoEmPosicao(int posicao,int elemento);
     public void removerElemento(int posicao);
     public int buscarElementoEmPosicao(int posicao);
-    public int indiceDoElemento(int indice);
+    /**
+     * Retorna o indice do elemento buscado
+     * @param elemento elemento a ser buscado
+     * @return o indice do elemento. -1 se nao for encontrado.
+     */
+    public int indiceDoElemento(int elemento);
+    public boolean contemElemento(int elemento);
     public int tamanho();
     public String toString();
     public boolean estaCheio();
