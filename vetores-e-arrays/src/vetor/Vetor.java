@@ -35,8 +35,13 @@ public class Vetor  {
         elementos[posicao] = elemento;
     }
 
-    
-    public void removerElemento(int posicao) {
+    public boolean removerElemento(int elemento){
+        int indice = indiceDoElemento(elemento);
+        if( indice==-1) return false;
+        removerElementoEmPosicao(indice);
+        return true;
+    }
+    public void removerElementoEmPosicao(int posicao) {
         if (!(posicao >= 0 && posicao < this.tamanho))
         throw new IllegalArgumentException("Posicao Invalida");
 
