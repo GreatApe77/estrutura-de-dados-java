@@ -4,18 +4,23 @@ import java.util.Arrays;
 
 public class Vetor implements IVetor {
     private int[] elementos;
-    private int numeroDeElementos;
+    private int tamanho;
+    private int capacidadeTotal;
 
     public Vetor(int capacidadeTotal) {
         this.elementos = new int[capacidadeTotal];
-        this.numeroDeElementos = 0;
+        this.capacidadeTotal = capacidadeTotal;
+        this.tamanho = 0;
     }
 
     @Override
-    public void adicionarElementoNoFinal(int elemento) {
-        int posicao = this.numeroDeElementos;
+    public boolean adicionarElementoNoFinal(int elemento) {
+        if (estaCheio())
+            return false;
+        int posicao = this.tamanho;
         this.adicionarElementoEmPosicao(posicao, elemento);
-        this.numeroDeElementos++;
+        this.tamanho++;
+        return true;
     }
 
     @Override
@@ -49,7 +54,18 @@ public class Vetor implements IVetor {
 
     @Override
     public String toString() {
-        return Arrays.toString(this.elementos);
+        StringBuilder arrayString = new StringBuilder();
+        arrayString.append("[");
+        for (int i = 0; i < this.tamanho - 1; i++) {
+            arrayString.append(this.elementos[i]);
+            arrayString.append(", ");
+
+        }
+        if (this.tamanho > 0) {
+            arrayString.append(this.elementos[this.tamanho - 1]); // ultimo elemento
+        }
+        arrayString.append("]");
+        return arrayString.toString();
     }
 
     @Override
@@ -58,7 +74,17 @@ public class Vetor implements IVetor {
         throw new UnsupportedOperationException("Unimplemented method 'adicionarElementoNoComeco'");
     }
 
-    public int getNumeroDeElementos() {
-        return numeroDeElementos;
+    public int getTamanho() {
+        return tamanho;
+    }
+
+    @Override
+    public boolean estaCheio() {
+        return tamanho == capacidadeTotal;
+    }
+
+    @Override
+    public boolean estaVazio() {
+        return tamanho == 0;
     }
 }

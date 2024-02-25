@@ -1,7 +1,12 @@
 package vetor;
 
 public interface IVetor {
-    public void adicionarElementoNoFinal(int elemento);
+    /**
+     * Adiciona um elemento no final do vetor
+     * @param elemento elemento a ser adicionado
+     * @return true se der certo, false se der errado
+     */
+    public boolean adicionarElementoNoFinal(int elemento)  ;
     public void adicionarElementoNoComeco(int elemento);
     public void adicionarElementoEmPosicao(int posicao,int elemento);
     public void removerElemento(int posicao);
@@ -9,4 +14,6 @@ public interface IVetor {
     public int indiceDoElemento(int indice);
     public int tamanho();
     public String toString();
+    public boolean estaCheio();
+    public boolean estaVazio();
 }
