@@ -1,18 +1,22 @@
 package vetor;
 
-public class VetorObjetos {
-    private Object[] elementos;
+
+public class Lista<T> {
+    private T[] elementos;
     private int tamanho;
    
 
-    public VetorObjetos(int capacidadeTotal) {
-        this.elementos = new Object[capacidadeTotal];
+    @SuppressWarnings("unchecked")
+    public Lista(int capacidadeTotal) {
+        this.elementos = (T[])new Object[capacidadeTotal];
         
         this.tamanho = 0;
     }
+    
     private void aumentaCapacidade(){
         if(estaCheio()){
-            Object[] elementosNovos = new Object[this.elementos.length*2];
+            @SuppressWarnings("unchecked")
+            T[] elementosNovos =(T[]) new Object[this.elementos.length*2];
             for (int i = 0; i <this.tamanho; i++) {
                 elementosNovos[i] = this.elementos[i];
             }
@@ -20,7 +24,7 @@ public class VetorObjetos {
         }
     }
     
-    public boolean adicionarElementoNoFinal(Object elemento) {
+    public boolean adicionarElementoNoFinal(T elemento) {
         aumentaCapacidade();
         int posicao = this.tamanho;
         this.setElementoEmPosicao(posicao, elemento);
@@ -29,11 +33,11 @@ public class VetorObjetos {
     }
 
     
-    private void setElementoEmPosicao(int posicao, Object elemento) {
+    private void setElementoEmPosicao(int posicao, T elemento) {
         elementos[posicao] = elemento;
     }
 
-    public boolean removerElemento(Object elemento){
+    public boolean removerElemento(T elemento){
         int indice = indiceDoElemento(elemento);
         if( indice==-1) return false;
         removerElementoEmPosicao(indice);
@@ -50,14 +54,14 @@ public class VetorObjetos {
     }
 
     
-    public Object buscarElementoEmPosicao(int posicao) {
+    public T buscarElementoEmPosicao(int posicao) {
         if (!(posicao >= 0 && posicao < this.tamanho))
             throw new IllegalArgumentException("Posicao Invalida");
         return this.elementos[posicao];
     }
 
     
-    public int indiceDoElemento(Object elemento) {
+    public int indiceDoElemento(T elemento) {
         // busca sequencial nao otimizada
         for (int i = 0; i < this.tamanho; i++) {
             if (this.elementos[i].equals(elemento)) {
@@ -68,7 +72,7 @@ public class VetorObjetos {
     }
 
     
-    public boolean contemElemento(Object elemento) {
+    public boolean contemElemento(T elemento) {
         // busca sequencial nao otimizada
         for (int i = 0; i < this.tamanho; i++) {
             if (this.elementos[i].equals(elemento)) {
@@ -100,7 +104,7 @@ public class VetorObjetos {
     }
 
     
-    public void adicionarElementoNoComeco(Object elemento) {
+    public void adicionarElementoNoComeco(T elemento) {
         adiciona(0, elemento);
     }
 
@@ -119,7 +123,7 @@ public class VetorObjetos {
     }
 
     
-    public boolean adiciona(int posicao, Object elemento) {
+    public boolean adiciona(int posicao, T elemento) {
         if (!(posicao >= 0 && posicao < this.tamanho))
             throw new IllegalArgumentException("Posicao Invalida");
         this.aumentaCapacidade();
