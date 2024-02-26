@@ -1,17 +1,23 @@
 package com.mateus.lista;
 
 public class Lista<T> implements ILista<T> {
-    private T[] elementos; 
-    private int tamanho; 
-    private int tamanhoPadrao = 5; 
-    public Lista(int capacidade){
+    private T[] elementos;
+    private int tamanho;
+    private int tamanhoPadrao = 5;
 
+    @SuppressWarnings("unchecked")
+    public Lista(int capacidade) {
+        this.elementos = (T[]) new Object[capacidade];
     }
-    public Lista(T[] elementosIniciais){
 
+    public Lista(T[] elementosIniciais) {
+        this.elementos = elementosIniciais;
+        this.tamanho = elementosIniciais.length;
     }
-    public Lista(){
 
+    @SuppressWarnings("unchecked")
+    public Lista() {
+        this.elementos = (T[]) new Object[this.tamanhoPadrao];
     }
 
     @Override
@@ -28,8 +34,7 @@ public class Lista<T> implements ILista<T> {
 
     @Override
     public void setElemento(int posicao, T elemento) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setElemento'");
+        
     }
 
     @Override
@@ -38,4 +43,11 @@ public class Lista<T> implements ILista<T> {
         throw new UnsupportedOperationException("Unimplemented method 'limpar'");
     }
 
+    //privados
+    private boolean _posicaoValida(int posicao){
+        return posicao>=0 && posicao<tamanho;
+    }
+    private void _lancarErroDePosicaoInvalida(int posicao) throws IllegalAccessException{
+        if(!_posicaoValida(posicao)) throw new IllegalArgumentException("Tentando acessar posicao invalida");
+    }
 }
