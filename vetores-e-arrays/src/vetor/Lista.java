@@ -94,13 +94,7 @@ public class Lista<T> implements ILista<T> {
 
     @Override
     public boolean contemElemento(T elemento) {
-        // busca sequencial nao otimizada
-        for (int i = 0; i < this.tamanho; i++) {
-            if (this.elementos[i].equals(elemento)) {
-                return true;
-            }
-        }
-        return false;
+        return indiceDoElemento(elemento)>=0;
     }
 
     @Override
