@@ -94,7 +94,18 @@ public class Lista<T> implements ILista<T> {
 
     @Override
     public boolean contemElemento(T elemento) {
-        return indiceDoElemento(elemento)>=0;
+        return indiceDoElemento(elemento) >= 0;
+    }
+
+    @Override
+    public int ultimoIndiceDoElemento(T elemento) {
+        // busca sequencial nao otimizada
+        for (int i = this.tamanho - 1; i >= 0; i--) {
+            if (this.elementos[i].equals(elemento)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
@@ -149,5 +160,13 @@ public class Lista<T> implements ILista<T> {
     @Override
     public void removerElementoDoFinal() {
         removerElementoEmPosicao(this.tamanho - 1);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+
+    public void limpar() {
+        this.tamanho = 0;
+        this.elementos = (T[]) new Object[5];
     }
 }

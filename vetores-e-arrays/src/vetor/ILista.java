@@ -13,7 +13,7 @@ public interface ILista<T> {
     T buscarElementoEmPosicao(int posicao);
 
     int indiceDoElemento(T elemento);
-
+    int ultimoIndiceDoElemento(T elemento);
     boolean contemElemento(T elemento);
 
     int tamanho();
@@ -29,5 +29,5 @@ public interface ILista<T> {
     boolean adiciona(int posicao, T elemento);
 
     void removerElementoDoFinal();
-
+    void limpar();
 }
