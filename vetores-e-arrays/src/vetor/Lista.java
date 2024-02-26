@@ -12,6 +12,15 @@ public class Lista<T> {
         
         this.tamanho = 0;
     }
+    public Lista(T[] elementosIniciais){
+        this.elementos = elementosIniciais;
+        this.tamanho = elementosIniciais.length;
+    }
+    @SuppressWarnings("unchecked")
+    public Lista(){
+        this.elementos = (T[]) new Object[5];
+        this.tamanho = 0;
+    }
     
     private void aumentaCapacidade(){
         if(estaCheio()){
@@ -133,5 +142,8 @@ public class Lista<T> {
         this.elementos[posicao] = elemento;
         this.tamanho++;
         return true;
+    }
+    public void removerElementoDoFinal(){
+        removerElementoEmPosicao(this.tamanho-1);
     }
 }
