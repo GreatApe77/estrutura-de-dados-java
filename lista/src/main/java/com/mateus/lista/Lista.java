@@ -72,6 +72,7 @@ public class Lista<T> implements ILista<T> {
         if (_estaCheia()) {
             int capacidadeAtual = this.elementos.length;
             int novaCapacidade = capacidadeAtual * 2;
+            @SuppressWarnings("unchecked")
             T[] novoArrayMaior = (T[]) new Object[novaCapacidade];
             for (int i = 0; i < this.tamanho; i++) {
                 novoArrayMaior[i] = this.elementos[i];
@@ -135,4 +136,28 @@ public class Lista<T> implements ILista<T> {
         return vetorEmString.toString();
     }
 
+    @Override
+    public boolean remover(int posicao) {
+        _lancarErroDePosicaoInvalida(posicao);
+        // [a b c e f ]|f] i=4
+        for (int i = posicao;  i < tamanho-1; i++) {
+            this.elementos[i] = this.elementos[i+1];
+        }
+        this.tamanho--;
+        return true;
+    }
+
+    @Override
+    public boolean remover(T elemento) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'remover'");
+    }
+    @SuppressWarnings("unchecked")
+    public T[] toArray(){
+        T[] formatoArray = (T[]) new Object[this.tamanho];
+        for (int i = 0; i < formatoArray.length; i++) {
+            formatoArray[i] = this.elementos[i];
+        }
+        return formatoArray;
+    }
 }

@@ -89,10 +89,25 @@ public class ListaTest {
         Lista<Integer> lista = new Lista<Integer>(arrayTeste);
         Assert.assertTrue(lista.contem(3));
     }
+    @Test
     public void naoDeveConterElementoNaLista(){
         Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40,5,55,2,2,3,5,70,80 };
         Lista<Integer> lista = new Lista<Integer>(arrayTeste);
         Assert.assertFalse(lista.contem(9999));
         
+    }
+
+    @Test
+    public  void deveRemoverElementoDadaPosicao(){
+        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40,5,55,2,2,3,5,70,80 };
+        Lista<Integer> lista = new Lista<Integer>(arrayTeste);
+        int tamanhoAntesDaRemocao = lista.tamanho();
+        Integer[] arrayEsperado = new Integer[]{ 10, 20, 40,5,55,2,2,3,5,70,80 }; //sem o elemento 30
+        boolean removido = lista.remover(2);
+        int tamanhoAposRemocao = lista.tamanho();
+        Assert.assertTrue(removido);
+        Assert.assertTrue(lista.pesquisarPorIndice(2)==40);
+        Assert.assertArrayEquals(arrayEsperado,lista.toArray());
+        Assert.assertTrue(tamanhoAposRemocao==tamanhoAntesDaRemocao-1);
     }
 }

@@ -22,7 +22,17 @@ public interface ILista<T> {
      * @param posicao Posicao
      */
     public T pesquisarPorIndice(int posicao);
+    /**
+     * Retorna a primeira posicao(indice) do elemento se este existir na lista
+     * @param elemento Elemento a ser Buscado 
+     * @return O indice se ele existir -1 se nao existir
+     */
     public int pesquisarIndiceDe(T elemento);
+    /**
+     * Retorna true se o elemento for encontrado na lista
+     * @param elemento Elemento 
+     * @return true se existir na lista
+     */
     public boolean contem(T elemento);
     /**
      * Atualiza um elemento na lista
@@ -39,5 +49,19 @@ public interface ILista<T> {
      * @return true se vazia
      */
     public boolean estaVazia();
+
+    /**
+     * Remove um elemento dada sua posicao organizando a lista novamente
+     * @param posicao
+     * @return
+     */
+    public boolean remover(int posicao);
+
+    /**
+     * Busca um elemento e remove da lista
+     * @param elemento a ser resolvido
+     * @return true se removido
+     */
+    public boolean remover(T elemento);
     
 }
