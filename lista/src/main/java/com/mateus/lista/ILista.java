@@ -32,4 +32,5 @@ public interface ILista<T> {
      * Limpa a lista
      */
     public void limpar();
+    
 }

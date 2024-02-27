@@ -31,4 +31,19 @@ public class ListaTest {
         Lista<Integer> lista = new Lista<Integer>(arrayTeste);
         Assert.assertTrue(lista.pesquisarPorIndice(0) == arrayTeste[0]);
     }
+
+    @Test
+    public void deveVerificarSeEstaVazia(){
+        Lista<Integer> lista = new Lista<Integer>();
+        Assert.assertTrue(lista.tamanho()==0);
+    }
+    @Test
+    public void deveAdicionarUmElementoNoFinal(){
+        Lista<Integer> lista = new Lista<Integer>();
+        Integer elemento = 9999;
+        lista.adicionarElementoNoFinal(elemento);
+        Assert.assertTrue(lista.tamanho()==1);
+        
+        Assert.assertTrue(lista.pesquisarPorIndice(0)==elemento);
+    }
 }
