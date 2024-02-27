@@ -33,17 +33,28 @@ public class ListaTest {
     }
 
     @Test
-    public void deveVerificarSeEstaVazia(){
+    public void deveVerificarSeEstaVazia() {
         Lista<Integer> lista = new Lista<Integer>();
-        Assert.assertTrue(lista.tamanho()==0);
+        Assert.assertTrue(lista.tamanho() == 0);
     }
+
     @Test
-    public void deveAdicionarUmElementoNoFinal(){
+    public void deveAdicionarUmElementoNoFinal() {
         Lista<Integer> lista = new Lista<Integer>();
         Integer elemento = 9999;
         lista.adicionarElementoNoFinal(elemento);
-        Assert.assertTrue(lista.tamanho()==1);
-        
-        Assert.assertTrue(lista.pesquisarPorIndice(0)==elemento);
+        Assert.assertTrue(lista.tamanho() == 1);
+
+        Assert.assertTrue(lista.pesquisarPorIndice(0) == elemento);
+    }
+
+    @Test
+    public void deveAdicionarUmElementoNoMeio() {
+        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40 };
+        Lista<Integer> lista = new Lista<Integer>(arrayTeste);
+        int elemento = 9999;
+        lista.adicionarElemento(elemento, 2);
+        Assert.assertTrue(lista.pesquisarPorIndice(2) == elemento);
+        Assert.assertTrue(lista.pesquisarPorIndice(4)==40);
     }
 }

@@ -29,8 +29,15 @@ public class Lista<T> implements ILista<T> {
 
     @Override
     public void adicionarElemento(T elemento, int posicao) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'adicionarElemento'");
+        _aumentarCapacidade();
+        //inserir x na posicao 4
+        // [a b c d e e f] t = 6 i=4
+        for (int i = tamanho-1; i >= posicao; i--) {
+            this.elementos[i+1] = this.elementos[i];
+        }
+        //[a b c d x e f]
+        setElemento(posicao, elemento);
+        this.tamanho++;
     }
 
     @Override
