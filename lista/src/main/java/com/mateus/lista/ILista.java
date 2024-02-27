@@ -13,6 +13,16 @@ public interface ILista<T> {
      */
     public void adicionarElemento(T elemento,int posicao);
     /**
+     * Adiciona elemento no final da lista
+     * @param elemento Elemento a ser adicionado
+     */
+    public void adicionarElementoNoFinal(T elemento);
+    /**
+     * Busca um elemento dada a sua posicao
+     * @param posicao Posicao
+     */
+    public T pesquisarPorIndice(int posicao);
+    /**
      * Atualiza um elemento na lista
      * @param posicao Posicao do elemento a ser atualizado
      * @param elemento novo Elemento

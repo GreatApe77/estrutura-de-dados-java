@@ -22,8 +22,7 @@ public class Lista<T> implements ILista<T> {
 
     @Override
     public int tamanho() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'tamanho'");
+        return this.tamanho;
     }
 
     @Override
@@ -47,7 +46,34 @@ public class Lista<T> implements ILista<T> {
     private boolean _posicaoValida(int posicao){
         return posicao>=0 && posicao<tamanho;
     }
-    private void _lancarErroDePosicaoInvalida(int posicao) throws IllegalAccessException{
+    private void _lancarErroDePosicaoInvalida(int posicao) throws IllegalArgumentException{
         if(!_posicaoValida(posicao)) throw new IllegalArgumentException("Tentando acessar posicao invalida");
     }
+
+    @Override
+    public void adicionarElementoNoFinal(T elemento) {
+        
+        setElemento(this.tamanho, elemento);
+        this.tamanho++;
+    }
+
+    @Override
+    public T pesquisarPorIndice(int posicao) throws IllegalArgumentException {
+        _lancarErroDePosicaoInvalida(posicao);
+        return this.elementos[posicao];
+    }
+    @Override
+    public String toString() {
+        StringBuilder vetorEmString = new StringBuilder();
+        vetorEmString.append("[");
+
+        for (int i = 0; i < this.tamanho; i++) {
+            vetorEmString.append(i);
+            vetorEmString.append(", ");
+        }
+        vetorEmString.append("]");
+
+        return vetorEmString.toString();
+    }
+    
 }
