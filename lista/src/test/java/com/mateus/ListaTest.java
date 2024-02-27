@@ -55,59 +55,80 @@ public class ListaTest {
         int elemento = 9999;
         lista.adicionarElemento(elemento, 2);
         Assert.assertTrue(lista.pesquisarPorIndice(2) == elemento);
-        Assert.assertTrue(lista.pesquisarPorIndice(4)==40);
+        Assert.assertTrue(lista.pesquisarPorIndice(4) == 40);
     }
+
     @Test
-    public void deveRetornarTrueSeAListaEstiverVazia(){
+    public void deveRetornarTrueSeAListaEstiverVazia() {
         Lista<Integer> lista = new Lista<Integer>();
         Assert.assertTrue(lista.estaVazia());
     }
+
     @Test
-    public void deveRetornarFalseParaListaNaoVazia(){
+    public void deveRetornarFalseParaListaNaoVazia() {
         Lista<Integer> lista = new Lista<Integer>();
         int elemento = 123456;
         lista.adicionarElementoNoFinal(elemento);
         Assert.assertFalse(lista.estaVazia());
     }
+
     @Test
-    public void devePesquisarIndiceDeElemento(){
-        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40,5,55,2,2,3,5,70,80 };
+    public void devePesquisarIndiceDeElemento() {
+        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40, 5, 55, 2, 2, 3, 5, 70, 80 };
         Lista<Integer> lista = new Lista<Integer>(arrayTeste);
-        Assert.assertTrue(lista.pesquisarIndiceDe(70)==10);
-        
-    }
-    @Test
-    public void deveRetornarMenos1SeNaoExistirElemento(){
-        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40,5,55,2,2,3,5,70,80 };
-        Lista<Integer> lista = new Lista<Integer>(arrayTeste);
-        Assert.assertTrue(lista.pesquisarIndiceDe(7777)==-1);
-        
-    }
-    @Test 
-    public void deveConterElementoNaLista(){
-        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40,5,55,2,2,3,5,70,80 };
-        Lista<Integer> lista = new Lista<Integer>(arrayTeste);
-        Assert.assertTrue(lista.contem(3));
-    }
-    @Test
-    public void naoDeveConterElementoNaLista(){
-        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40,5,55,2,2,3,5,70,80 };
-        Lista<Integer> lista = new Lista<Integer>(arrayTeste);
-        Assert.assertFalse(lista.contem(9999));
-        
+        Assert.assertTrue(lista.pesquisarIndiceDe(70) == 10);
+
     }
 
     @Test
-    public  void deveRemoverElementoDadaPosicao(){
-        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40,5,55,2,2,3,5,70,80 };
+    public void deveRetornarMenos1SeNaoExistirElemento() {
+        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40, 5, 55, 2, 2, 3, 5, 70, 80 };
+        Lista<Integer> lista = new Lista<Integer>(arrayTeste);
+        Assert.assertTrue(lista.pesquisarIndiceDe(7777) == -1);
+
+    }
+
+    @Test
+    public void deveConterElementoNaLista() {
+        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40, 5, 55, 2, 2, 3, 5, 70, 80 };
+        Lista<Integer> lista = new Lista<Integer>(arrayTeste);
+        Assert.assertTrue(lista.contem(3));
+    }
+
+    @Test
+    public void naoDeveConterElementoNaLista() {
+        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40, 5, 55, 2, 2, 3, 5, 70, 80 };
+        Lista<Integer> lista = new Lista<Integer>(arrayTeste);
+        Assert.assertFalse(lista.contem(9999));
+
+    }
+
+    @Test
+    public void deveRemoverElementoDadaPosicao() {
+        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40, 5, 55, 2, 2, 3, 5, 70, 80 };
         Lista<Integer> lista = new Lista<Integer>(arrayTeste);
         int tamanhoAntesDaRemocao = lista.tamanho();
-        Integer[] arrayEsperado = new Integer[]{ 10, 20, 40,5,55,2,2,3,5,70,80 }; //sem o elemento 30
-        boolean removido = lista.remover(2);
+        Integer[] arrayEsperado = new Integer[] { 10, 20, 40, 5, 55, 2, 2, 3, 5, 70, 80 }; // sem o elemento 30
+        boolean removido = lista.removerPorPosicao(2);
         int tamanhoAposRemocao = lista.tamanho();
         Assert.assertTrue(removido);
-        Assert.assertTrue(lista.pesquisarPorIndice(2)==40);
-        Assert.assertArrayEquals(arrayEsperado,lista.toArray());
-        Assert.assertTrue(tamanhoAposRemocao==tamanhoAntesDaRemocao-1);
+        Assert.assertTrue(lista.pesquisarPorIndice(2) == 40);
+        Assert.assertArrayEquals(arrayEsperado, lista.toArray());
+        Assert.assertTrue(tamanhoAposRemocao == tamanhoAntesDaRemocao - 1);
+    }
+
+    @Test
+    public void devePesquisarERemoverElementoSeEncontrado() {
+        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40, 5, 55, 2, 2, 3, 5, 70, 80 };
+        Lista<Integer> lista = new Lista<Integer>(arrayTeste);
+        int tamanhoAntesDaRemocao = lista.tamanho();
+        boolean removido = lista.removerElemento(55);
+        int tamanhoAposRemocao = lista.tamanho();
+        Assert.assertTrue(removido);
+        Assert.assertTrue(tamanhoAposRemocao == tamanhoAntesDaRemocao - 1);
+        Integer[] valoresEsperadosAposRemocao = new Integer[] { 10, 20, 30, 40, 5, 2, 2, 3, 5, 70, 80 };
+
+        Assert.assertArrayEquals(valoresEsperadosAposRemocao, lista.toArray());
+
     }
 }

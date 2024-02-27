@@ -55,13 +55,13 @@ public interface ILista<T> {
      * @param posicao
      * @return
      */
-    public boolean remover(int posicao);
+    public boolean removerPorPosicao(int posicao);
 
     /**
      * Busca um elemento e remove da lista
      * @param elemento a ser resolvido
      * @return true se removido
      */
-    public boolean remover(T elemento);
+    public boolean removerElemento(T elemento);
     
 }

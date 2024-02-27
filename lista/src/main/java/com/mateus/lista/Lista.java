@@ -137,7 +137,7 @@ public class Lista<T> implements ILista<T> {
     }
 
     @Override
-    public boolean remover(int posicao) {
+    public boolean removerPorPosicao(int posicao) {
         _lancarErroDePosicaoInvalida(posicao);
         // [a b c e f ]|f] i=4
         for (int i = posicao;  i < tamanho-1; i++) {
@@ -148,9 +148,10 @@ public class Lista<T> implements ILista<T> {
     }
 
     @Override
-    public boolean remover(T elemento) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remover'");
+    public boolean removerElemento(T elemento) {
+        int posicao = pesquisarIndiceDe(elemento);
+        if(posicao==-1) return false;
+        return this.removerPorPosicao(posicao);
     }
     @SuppressWarnings("unchecked")
     public T[] toArray(){
