@@ -22,6 +22,8 @@ public interface ILista<T> {
      * @param posicao Posicao
      */
     public T pesquisarPorIndice(int posicao);
+    public int pesquisarIndiceDe(T elemento);
+    public boolean contem(T elemento);
     /**
      * Atualiza um elemento na lista
      * @param posicao Posicao do elemento a ser atualizado
@@ -32,5 +34,10 @@ public interface ILista<T> {
      * Limpa a lista
      */
     public void limpar();
+    /**
+     * Verifica se a lista esta vazia
+     * @return true se vazia
+     */
+    public boolean estaVazia();
     
 }

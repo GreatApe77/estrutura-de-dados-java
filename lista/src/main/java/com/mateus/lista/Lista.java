@@ -8,7 +8,7 @@ public class Lista<T> implements ILista<T> {
     @SuppressWarnings("unchecked")
     public Lista(int capacidade) {
         this.elementos = (T[]) new Object[capacidade];
-        this.tamanho=0;
+        this.tamanho = 0;
     }
 
     public Lista(T[] elementosIniciais) {
@@ -19,7 +19,7 @@ public class Lista<T> implements ILista<T> {
     @SuppressWarnings("unchecked")
     public Lista() {
         this.elementos = (T[]) new Object[this.tamanhoPadrao];
-        this.tamanho=0;
+        this.tamanho = 0;
     }
 
     @Override
@@ -29,13 +29,14 @@ public class Lista<T> implements ILista<T> {
 
     @Override
     public void adicionarElemento(T elemento, int posicao) {
+        _lancarErroDePosicaoInvalida(posicao);
         _aumentarCapacidade();
-        //inserir x na posicao 4
+        // inserir x na posicao 4
         // [a b c d e e f] t = 6 i=4
-        for (int i = tamanho-1; i >= posicao; i--) {
-            this.elementos[i+1] = this.elementos[i];
+        for (int i = tamanho - 1; i >= posicao; i--) {
+            this.elementos[i + 1] = this.elementos[i];
         }
-        //[a b c d x e f]
+        // [a b c d x e f]
         setElemento(posicao, elemento);
         this.tamanho++;
     }
@@ -45,10 +46,16 @@ public class Lista<T> implements ILista<T> {
         this.elementos[posicao] = elemento;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void limpar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'limpar'");
+        this.elementos = (T[]) new Object[tamanhoPadrao];
+        this.tamanho = 0;
+    }
+
+    @Override
+    public boolean estaVazia() {
+        return _estaVazia();
     }
 
     // privados
@@ -60,10 +67,11 @@ public class Lista<T> implements ILista<T> {
         if (!_posicaoValida(posicao))
             throw new IllegalArgumentException("Tentando acessar posicao invalida");
     }
-    private void _aumentarCapacidade(){
-        if(_estaCheia()){
+
+    private void _aumentarCapacidade() {
+        if (_estaCheia()) {
             int capacidadeAtual = this.elementos.length;
-            int novaCapacidade = capacidadeAtual*2;
+            int novaCapacidade = capacidadeAtual * 2;
             T[] novoArrayMaior = (T[]) new Object[novaCapacidade];
             for (int i = 0; i < this.tamanho; i++) {
                 novoArrayMaior[i] = this.elementos[i];
@@ -71,11 +79,13 @@ public class Lista<T> implements ILista<T> {
             this.elementos = novoArrayMaior;
         }
     }
-    private boolean _estaCheia(){
+
+    private boolean _estaCheia() {
         return this.tamanho == this.elementos.length;
     }
-    private boolean _estaVazia(){
-        return this.tamanho ==0;
+
+    private boolean _estaVazia() {
+        return this.tamanho == 0;
     }
 
     @Override
@@ -87,8 +97,26 @@ public class Lista<T> implements ILista<T> {
 
     @Override
     public T pesquisarPorIndice(int posicao) throws IllegalArgumentException {
-        //_lancarErroDePosicaoInvalida(posicao);
+        _lancarErroDePosicaoInvalida(posicao);
         return this.elementos[posicao];
+    }
+
+    @Override
+    // Big O(n)
+    public int pesquisarIndiceDe(T elemento) {
+
+        for (int i = 0; i < this.tamanho; i++) {
+            if (this.elementos[i].equals(elemento)) {
+                return i;
+            }
+
+        }
+        return -1;
+    }
+
+    @Override
+    public boolean contem(T elemento) {
+        return pesquisarIndiceDe(elemento) != -1;
     }
 
     @Override

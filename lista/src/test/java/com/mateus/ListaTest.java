@@ -57,4 +57,42 @@ public class ListaTest {
         Assert.assertTrue(lista.pesquisarPorIndice(2) == elemento);
         Assert.assertTrue(lista.pesquisarPorIndice(4)==40);
     }
+    @Test
+    public void deveRetornarTrueSeAListaEstiverVazia(){
+        Lista<Integer> lista = new Lista<Integer>();
+        Assert.assertTrue(lista.estaVazia());
+    }
+    @Test
+    public void deveRetornarFalseParaListaNaoVazia(){
+        Lista<Integer> lista = new Lista<Integer>();
+        int elemento = 123456;
+        lista.adicionarElementoNoFinal(elemento);
+        Assert.assertFalse(lista.estaVazia());
+    }
+    @Test
+    public void devePesquisarIndiceDeElemento(){
+        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40,5,55,2,2,3,5,70,80 };
+        Lista<Integer> lista = new Lista<Integer>(arrayTeste);
+        Assert.assertTrue(lista.pesquisarIndiceDe(70)==10);
+        
+    }
+    @Test
+    public void deveRetornarMenos1SeNaoExistirElemento(){
+        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40,5,55,2,2,3,5,70,80 };
+        Lista<Integer> lista = new Lista<Integer>(arrayTeste);
+        Assert.assertTrue(lista.pesquisarIndiceDe(7777)==-1);
+        
+    }
+    @Test 
+    public void deveConterElementoNaLista(){
+        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40,5,55,2,2,3,5,70,80 };
+        Lista<Integer> lista = new Lista<Integer>(arrayTeste);
+        Assert.assertTrue(lista.contem(3));
+    }
+    public void naoDeveConterElementoNaLista(){
+        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40,5,55,2,2,3,5,70,80 };
+        Lista<Integer> lista = new Lista<Integer>(arrayTeste);
+        Assert.assertFalse(lista.contem(9999));
+        
+    }
 }
