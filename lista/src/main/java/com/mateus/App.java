@@ -12,6 +12,12 @@ public class App {
         Lista<Integer> lista = new Lista<Integer>();
         lista.adicionarElementoNoFinal(1000);
         lista.adicionarElemento(500, 0);
+        lista.adicionarElementoNoFinal(222);
+        lista.adicionarElementoNoFinal(333);
+        lista.adicionarElementoNoFinal(7878);
+        lista.adicionarElementoNoFinal(77);
+        lista.removerElemento(77);
+        lista.removerPorPosicao(2);
         System.out.println(lista);
     }
 }
