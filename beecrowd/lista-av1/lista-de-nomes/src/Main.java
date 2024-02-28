@@ -3,7 +3,7 @@ import java.io.IOException;
 class ListaDeNomes{
 
     String[] nomes;
-    
+    String[][] nomesPorLinha;
     
     ListaDeNomes(String[] nomes){
         this.nomes = nomes;
