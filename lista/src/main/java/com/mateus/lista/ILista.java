@@ -63,5 +63,11 @@ public interface ILista<T> {
      * @return true se removido
      */
     public boolean removerElemento(T elemento);
+    /**
+     * Pesquisa a ultima ocorrencia do Elemento na lista
+     * @param elemento Elemento
+     * @return indice 
+     */
+    public int pesquisarUltimoIndiceDe(T elemento);
     
 }

@@ -115,6 +115,17 @@ public class Lista<T> implements ILista<T> {
         return -1;
     }
 
+    public int pesquisarUltimoIndiceDe(T elemento) {
+
+        for (int i = this.tamanho - 1; i >= 0; i--) {
+            if (this.elementos[i].equals(elemento)) {
+                return i;
+            }
+
+        }
+        return -1;
+    }
+
     @Override
     public boolean contem(T elemento) {
         return pesquisarIndiceDe(elemento) != -1;
@@ -140,8 +151,8 @@ public class Lista<T> implements ILista<T> {
     public boolean removerPorPosicao(int posicao) {
         _lancarErroDePosicaoInvalida(posicao);
         // [a b c e f ]|f] i=4
-        for (int i = posicao;  i < tamanho-1; i++) {
-            this.elementos[i] = this.elementos[i+1];
+        for (int i = posicao; i < tamanho - 1; i++) {
+            this.elementos[i] = this.elementos[i + 1];
         }
         this.tamanho--;
         return true;
@@ -150,11 +161,13 @@ public class Lista<T> implements ILista<T> {
     @Override
     public boolean removerElemento(T elemento) {
         int posicao = pesquisarIndiceDe(elemento);
-        if(posicao==-1) return false;
+        if (posicao == -1)
+            return false;
         return this.removerPorPosicao(posicao);
     }
+
     @SuppressWarnings("unchecked")
-    public T[] toArray(){
+    public T[] toArray() {
         T[] formatoArray = (T[]) new Object[this.tamanho];
         for (int i = 0; i < formatoArray.length; i++) {
             formatoArray[i] = this.elementos[i];
