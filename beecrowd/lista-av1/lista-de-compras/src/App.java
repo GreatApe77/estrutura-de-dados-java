@@ -165,35 +165,20 @@ class Lista<T> {
 
 class ListaDeCompras {
 
-    // Deve retornar true se o caractere a vem primeiro que o b no alfabeto ou sao
-    // iguais
-    public static boolean caractereVemPrimeiroNoAlfabeto(String a, String b) {
+    Lista<String> items;
 
-        String[] alfabeto = new String[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
-                "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
-
-        Lista<String> listaAlfabeto = new Lista<String>(alfabeto);
-
-        int indiceA = listaAlfabeto.pesquisarIndiceDe(a);
-        int indiceB = listaAlfabeto.pesquisarIndiceDe(b);
-        if (indiceA == -1 || indiceB == -1)
-            throw new IllegalArgumentException("Caracteres invalidos");
-        return indiceA < indiceB;
+    public ListaDeCompras(String[] listaDeElementos){
+        items = new Lista<String>(listaDeElementos);
     }
+    
 
-    public static String vemPrimeiroCaractere(String a, String b) {
 
-        String[] alfabeto = new String[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
-                "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
-        Lista<String> listaAlfabeto = new Lista<String>(alfabeto);
 
-        int indiceA = listaAlfabeto.pesquisarIndiceDe(a);
-        int indiceB = listaAlfabeto.pesquisarIndiceDe(b);
-        if (indiceA == -1 || indiceB == -1)
-            throw new IllegalArgumentException("Caracteres invalidos");
-        if (indiceA < indiceB)
+    public static String escolherPrimeiroEmOrdemAlfabetica(String a, String b) {
+        if (a.compareTo(b) < 0) {
             return a;
+        }
         return b;
     }
 
@@ -201,7 +186,7 @@ class ListaDeCompras {
 
 public class App {
     public static void main(String[] args) throws Exception {
-        
+
         
     }
 }
