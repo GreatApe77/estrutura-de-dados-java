@@ -201,16 +201,36 @@ class ListaDeCompras {
         }
         return b;
     }
-
+    public static boolean vemPrimeiroNoAlfabeto(String a, String b) {
+        if (a.compareTo(b) < 0) {
+            return true; // String A vem primeiro que a B
+        }
+        return false; //B vem primeiro que a A
+    }
     public Lista<String> getListaDeComprasOrdenada(){
-
+        Lista<String> semDuplicatas = getListaSemRepeticao();
+        
+        for (int i = 0; i < semDuplicatas.tamanho(); i++) {
+            for (int j = 0; j < semDuplicatas.tamanho()-1; j++) {
+                if(!vemPrimeiroNoAlfabeto(semDuplicatas.pesquisarPorIndice(j), semDuplicatas.pesquisarPorIndice(j+1))){
+                    String variavelAuxiliar = semDuplicatas.pesquisarPorIndice(j);
+                    semDuplicatas.setElemento(j, semDuplicatas.pesquisarPorIndice(j+1));
+                    semDuplicatas.setElemento(j+1, variavelAuxiliar);
+                }
+            }
+        }
+        
+        return semDuplicatas;
     }
 
 }
 
 public class App {
     public static void main(String[] args) throws Exception {
-
+        ///String[] entradaDeDados = new String[]{"laranja", "pera", "laranja", "pera" ,"pera"};
+        String[] entradaDeDados = new String[]{"carne", "laranja", "suco", "picles" ,"laranja","picles"};
+        ListaDeCompras listaDeCompras = new ListaDeCompras(entradaDeDados);
+        System.out.println(listaDeCompras.getListaDeComprasOrdenada());
         
     }
 }
