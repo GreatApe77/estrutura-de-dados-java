@@ -173,13 +173,37 @@ class ListaDeCompras {
     
 
 
+    public Lista<String> getListaSemRepeticao() {
+        Lista<String> listaSemDuplicatas = new Lista<String>();
 
+        _adicionarNovos(listaSemDuplicatas, 0);
+        return listaSemDuplicatas;
+    }
+    private void _adicionarNovos(Lista<String> listaSemDuplicatas, int indiceDePartida) {
+        if (indiceDePartida == this.items.tamanho()) {
+            return;
+        }
 
+        String pokemon = this.items.pesquisarPorIndice(indiceDePartida);
+        boolean existeNaLista = listaSemDuplicatas.contem(pokemon);
+        if (!existeNaLista) {
+
+            listaSemDuplicatas.adicionarElementoNoFinal(pokemon);
+            _adicionarNovos(listaSemDuplicatas, indiceDePartida + 1);
+        } else {
+
+            _adicionarNovos(listaSemDuplicatas, indiceDePartida + 1);
+        }
+    }
     public static String escolherPrimeiroEmOrdemAlfabetica(String a, String b) {
         if (a.compareTo(b) < 0) {
             return a;
         }
         return b;
+    }
+
+    public Lista<String> getListaDeComprasOrdenada(){
+
     }
 
 }
