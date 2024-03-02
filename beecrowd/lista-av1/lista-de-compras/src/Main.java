@@ -1,3 +1,6 @@
+
+import java.util.Scanner;
+import java.io.IOException;
 class Lista<T> {
     private T[] elementos;
     private int tamanho;
@@ -167,11 +170,9 @@ class ListaDeCompras {
 
     Lista<String> items;
 
-    public ListaDeCompras(String[] listaDeElementos){
+    public ListaDeCompras(String[] listaDeElementos) {
         items = new Lista<String>(listaDeElementos);
     }
-    
-
 
     public Lista<String> getListaSemRepeticao() {
         Lista<String> listaSemDuplicatas = new Lista<String>();
@@ -179,6 +180,7 @@ class ListaDeCompras {
         _adicionarNovos(listaSemDuplicatas, 0);
         return listaSemDuplicatas;
     }
+
     private void _adicionarNovos(Lista<String> listaSemDuplicatas, int indiceDePartida) {
         if (indiceDePartida == this.items.tamanho()) {
             return;
@@ -195,56 +197,91 @@ class ListaDeCompras {
             _adicionarNovos(listaSemDuplicatas, indiceDePartida + 1);
         }
     }
+
     public static String escolherPrimeiroEmOrdemAlfabetica(String a, String b) {
         if (a.compareTo(b) < 0) {
             return a;
         }
         return b;
     }
+
     public static boolean vemPrimeiroNoAlfabeto(String a, String b) {
         if (a.compareTo(b) < 0) {
             return true; // String A vem primeiro que a B
         }
-        return false; //B vem primeiro que a A
+        return false; // B vem primeiro que a A
     }
-    public Lista<String> getListaDeComprasOrdenada(){
+
+    public Lista<String> getListaDeComprasOrdenada() {
         Lista<String> semDuplicatas = getListaSemRepeticao();
         int i = 0;
         int j = 0;
-        
+
         _percorrerLista(semDuplicatas, i, j);
         return semDuplicatas;
     }
 
-    private void _percorrerLista(Lista<String> semDuplicatas,int i,int j){
-        if(i==semDuplicatas.tamanho()){
+    private void _percorrerLista(Lista<String> semDuplicatas, int i, int j) {
+        if (i == semDuplicatas.tamanho()) {
             return;
         }
-        
+
         _ordenarLista(semDuplicatas, i, j);
-        _percorrerLista(semDuplicatas, i+1, j);
+        _percorrerLista(semDuplicatas, i + 1, j);
 
     }
 
-    private void _ordenarLista(Lista<String> semDuplicatas,int i,int j){
-        if(j==semDuplicatas.tamanho()-1){
+    private void _ordenarLista(Lista<String> semDuplicatas, int i, int j) {
+        if (j == semDuplicatas.tamanho() - 1) {
             return;
         }
-        if(!vemPrimeiroNoAlfabeto(semDuplicatas.pesquisarPorIndice(j), semDuplicatas.pesquisarPorIndice(j+1))){
+        if (!vemPrimeiroNoAlfabeto(semDuplicatas.pesquisarPorIndice(j), semDuplicatas.pesquisarPorIndice(j + 1))) {
             String variavelAuxiliar = semDuplicatas.pesquisarPorIndice(j);
-            semDuplicatas.setElemento(j, semDuplicatas.pesquisarPorIndice(j+1));
-            semDuplicatas.setElemento(j+1, variavelAuxiliar);
+            semDuplicatas.setElemento(j, semDuplicatas.pesquisarPorIndice(j + 1));
+            semDuplicatas.setElemento(j + 1, variavelAuxiliar);
         }
-        _ordenarLista(semDuplicatas, i, j+1);
+        _ordenarLista(semDuplicatas, i, j + 1);
     }
 }
 
-public class App {
-    public static void main(String[] args) throws Exception {
-        ///String[] entradaDeDados = new String[]{"laranja", "pera", "laranja", "pera" ,"pera"};
-        //String[] entradaDeDados = new String[]{"carne", "laranja", "suco", "picles" ,"laranja","picles"};
-        //ListaDeCompras listaDeCompras = new ListaDeCompras(entradaDeDados);
-        //System.out.println(listaDeCompras.getListaDeComprasOrdenada());
-        
+public class Main {
+    public static void printarFormatado(Lista<String> lista) {
+        String linha = "";
+        String linhaFormatada = _concatenarStrings(lista, 0, linha);
+        System.out.println(linhaFormatada);
+    }
+
+    public static String _concatenarStrings(Lista<String> lista, int posicao, String linha) {
+        if (posicao == lista.tamanho()) {
+            return linha;
+        }
+        if (posicao == lista.tamanho() - 1) {
+            linha = linha + lista.pesquisarPorIndice(posicao);
+        } else {
+
+            linha = linha + lista.pesquisarPorIndice(posicao) + " ";
+        }
+        return _concatenarStrings(lista, posicao + 1, linha);
+    }
+
+    public static void main(String[] args) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        scanner.useDelimiter("\\n");
+        int N = scanner.nextInt();
+        for (int i = 0; i < N; i++) {
+            String[] linhaComItens = scanner.next().split(" ");
+            
+            ListaDeCompras listaDeCompras = new ListaDeCompras(linhaComItens);
+            Lista<String> arrayOrdenado = listaDeCompras.getListaDeComprasOrdenada();
+            printarFormatado(arrayOrdenado);
+        }
+        scanner.close();
+        // String[] entradaDeDados = new String[] { "laranja", "pera", "laranja",
+        // "pera", "pera" };
+        // String[] entradaDeDados = new String[]{"carne", "laranja", "suco", "picles"
+        // ,"laranja","picles"};
+        // ListaDeCompras listaDeCompras = new ListaDeCompras(entradaDeDados);
+        // System.out.println(listaDeCompras.getListaDeComprasOrdenada());
+        // printarFormatado(listaOrdenadaSemRepetidos);
     }
 }
