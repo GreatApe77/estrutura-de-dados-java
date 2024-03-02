@@ -209,8 +209,9 @@ class ListaDeCompras {
     }
     public Lista<String> getListaDeComprasOrdenada(){
         Lista<String> semDuplicatas = getListaSemRepeticao();
-        
-        for (int i = 0; i < semDuplicatas.tamanho(); i++) {
+        int i = 0;
+        int j = 0;
+        /* for (int i = 0; i < semDuplicatas.tamanho(); i++) {
             for (int j = 0; j < semDuplicatas.tamanho()-1; j++) {
                 if(!vemPrimeiroNoAlfabeto(semDuplicatas.pesquisarPorIndice(j), semDuplicatas.pesquisarPorIndice(j+1))){
                     String variavelAuxiliar = semDuplicatas.pesquisarPorIndice(j);
@@ -218,11 +219,24 @@ class ListaDeCompras {
                     semDuplicatas.setElemento(j+1, variavelAuxiliar);
                 }
             }
-        }
+        } */
         
         return semDuplicatas;
     }
 
+    private void _percorrerLista(Lista<String> semDuplicatas,int i){
+        if(i==semDuplicatas.tamanho()){
+            return;
+        }
+
+
+    }
+
+    private void _ordenarLista(Lista<String> semDuplicatas,int j){
+        if(j==semDuplicatas.tamanho()-1){
+            return;
+        }
+    }
 }
 
 public class App {
