@@ -224,18 +224,26 @@ class ListaDeCompras {
         return semDuplicatas;
     }
 
-    private void _percorrerLista(Lista<String> semDuplicatas,int i){
+    private void _percorrerLista(Lista<String> semDuplicatas,int i,int j){
         if(i==semDuplicatas.tamanho()){
             return;
         }
-
+        
+        _ordenarLista(semDuplicatas, i, j);
+        _percorrerLista(semDuplicatas, i+1, j);
 
     }
 
-    private void _ordenarLista(Lista<String> semDuplicatas,int j){
+    private void _ordenarLista(Lista<String> semDuplicatas,int i,int j){
         if(j==semDuplicatas.tamanho()-1){
             return;
         }
+        if(!vemPrimeiroNoAlfabeto(semDuplicatas.pesquisarPorIndice(j), semDuplicatas.pesquisarPorIndice(j+1))){
+            String variavelAuxiliar = semDuplicatas.pesquisarPorIndice(j);
+            semDuplicatas.setElemento(j, semDuplicatas.pesquisarPorIndice(j+1));
+            semDuplicatas.setElemento(j+1, variavelAuxiliar);
+        }
+        _ordenarLista(semDuplicatas, i, j+1);
     }
 }
 
