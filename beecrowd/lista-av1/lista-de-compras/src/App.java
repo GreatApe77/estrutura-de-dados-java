@@ -211,16 +211,8 @@ class ListaDeCompras {
         Lista<String> semDuplicatas = getListaSemRepeticao();
         int i = 0;
         int j = 0;
-        /* for (int i = 0; i < semDuplicatas.tamanho(); i++) {
-            for (int j = 0; j < semDuplicatas.tamanho()-1; j++) {
-                if(!vemPrimeiroNoAlfabeto(semDuplicatas.pesquisarPorIndice(j), semDuplicatas.pesquisarPorIndice(j+1))){
-                    String variavelAuxiliar = semDuplicatas.pesquisarPorIndice(j);
-                    semDuplicatas.setElemento(j, semDuplicatas.pesquisarPorIndice(j+1));
-                    semDuplicatas.setElemento(j+1, variavelAuxiliar);
-                }
-            }
-        } */
         
+        _percorrerLista(semDuplicatas, i, j);
         return semDuplicatas;
     }
 
@@ -250,9 +242,9 @@ class ListaDeCompras {
 public class App {
     public static void main(String[] args) throws Exception {
         ///String[] entradaDeDados = new String[]{"laranja", "pera", "laranja", "pera" ,"pera"};
-        String[] entradaDeDados = new String[]{"carne", "laranja", "suco", "picles" ,"laranja","picles"};
-        ListaDeCompras listaDeCompras = new ListaDeCompras(entradaDeDados);
-        System.out.println(listaDeCompras.getListaDeComprasOrdenada());
+        //String[] entradaDeDados = new String[]{"carne", "laranja", "suco", "picles" ,"laranja","picles"};
+        //ListaDeCompras listaDeCompras = new ListaDeCompras(entradaDeDados);
+        //System.out.println(listaDeCompras.getListaDeComprasOrdenada());
         
     }
 }
