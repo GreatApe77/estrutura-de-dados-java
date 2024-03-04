@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.List;
 class Lista<T>  {
     private T[] elementos;
     private int tamanho;
@@ -196,21 +197,58 @@ class Nome{
     }
 }
 class ListaDeNomes{
+    
     Lista<Nome> todosOsNomes;
-    public ListaDeNomes(Nome[] nomes){
-        this.todosOsNomes = new Lista<Nome>(nomes);
+    public ListaDeNomes(Lista<Nome> nomes){
+        this.todosOsNomes = nomes;
     }
 
-    
+    public Lista<Nome> getListaSemRepeticao() {
+        Lista<Nome> listaSemDuplicatas = new Lista<Nome>();
+
+        _adicionarNovos(listaSemDuplicatas, 0);
+        return listaSemDuplicatas;
+    }
+
+    private void _adicionarNovos(Lista<Nome> listaSemDuplicatas, int indiceDePartida) {
+        if (indiceDePartida == this.todosOsNomes.tamanho()) {
+            return;
+        }
+
+        Nome nome = this.todosOsNomes.pesquisarPorIndice(indiceDePartida);
+        boolean existeNaLista = listaSemDuplicatas.contem(nome);
+        if (!existeNaLista) {
+
+            listaSemDuplicatas.adicionarElementoNoFinal(nome);
+            _adicionarNovos(listaSemDuplicatas, indiceDePartida + 1);
+        } else {
+
+            _adicionarNovos(listaSemDuplicatas, indiceDePartida + 1);
+        }
+    }
+
+    public int pegarTamanhoDaListaBiDimensional(){
+        return this.todosOsNomes.tamanho() - this.getListaSemRepeticao().tamanho();
+    }
 
 }
+
+
 public class Main {
 
     public static void main(String[] args) throws IOException {
       //  "sergio" "ana" maria carlos eva joaquim jo mara laura lucas ari paulo
-    //String[] nomesTeste = new String[]{"sergio", "ana", "maria", "carlos", "eva", "joaquim", "jo", "mara", "laura", "lucas", "ari", "paulo"};
-     //  ListaDeNomes listaDeNomes = new ListaDeNomes(nomesTeste);
-     //  System.out.println(listaDeNomes.getQuantidadeDeLinhas());
+     String[] nomesTeste = new String[]{"sergio", "ana", "maria", "carlos", "eva", "joaquim", "jo", "mara", "laura", "lucas", "ari", "paulo"};
+    
+        Lista<Nome> lista = new Lista<Nome>();
+        for(String nome : nomesTeste){
+            lista.adicionarElementoNoFinal(new Nome(nome));
+        }
+        ListaDeNomes listaDeNomes = new ListaDeNomes(lista);
+       //System.out.println(listaDeNomes.pegarTamanhoDaListaBiDimensional()); 
+    //Nome nome1 = new Nome("ana");
+    //Nome nome2 = new Nome("yan");
+    //System.out.println(nome1.equals(nome2));
     }
 
 }
