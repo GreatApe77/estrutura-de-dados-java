@@ -202,7 +202,31 @@ class ListaDeNomes{
     public ListaDeNomes(Lista<Nome> nomes){
         this.todosOsNomes = nomes;
     }
-
+    public Lista<Lista<Nome>> getListaBiDimensional(){
+        Lista<Lista<Nome>> listaBidimensional = new Lista<Lista<Nome>>();
+        int tamanho = this.pegarTamanhoDaListaBiDimensional();
+        for (int i = 0; i < tamanho; i++) {
+            listaBidimensional.adicionarElementoNoFinal(new Lista<Nome>());
+        }
+        for (int i = 0; i < this.todosOsNomes.tamanho(); i++) {
+            Nome nome = this.todosOsNomes.pesquisarPorIndice(i);
+            
+            for (int j = 0; j < listaBidimensional.tamanho(); j++) {
+                for (int k = 0; k < listaBidimensional.pesquisarPorIndice(j).tamanho(); k++) {
+                    boolean existe = listaBidimensional.pesquisarPorIndice(j).contem(nome);
+                    System.out.println(existe);
+                    if(existe){
+                        Lista<Nome> proximaLista = listaBidimensional.pesquisarPorIndice(j+1);
+                        proximaLista.adicionarElementoNoFinal(nome);
+                    }else{
+                        Lista<Nome> listaAtual = listaBidimensional.pesquisarPorIndice(j);
+                        listaAtual.adicionarElementoNoFinal(nome);
+                    }
+                }
+            }
+        }
+        return listaBidimensional;
+    }
     public Lista<Nome> getListaSemRepeticao() {
         Lista<Nome> listaSemDuplicatas = new Lista<Nome>();
 
@@ -245,7 +269,7 @@ public class Main {
             lista.adicionarElementoNoFinal(new Nome(nome));
         }
         ListaDeNomes listaDeNomes = new ListaDeNomes(lista);
-       //System.out.println(listaDeNomes.pegarTamanhoDaListaBiDimensional()); 
+       System.out.println(listaDeNomes.getListaBiDimensional()); 
     //Nome nome1 = new Nome("ana");
     //Nome nome2 = new Nome("yan");
     //System.out.println(nome1.equals(nome2));
