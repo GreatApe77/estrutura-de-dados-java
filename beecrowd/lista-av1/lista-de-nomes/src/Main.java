@@ -202,76 +202,106 @@ class ListaDeNomes {
     public ListaDeNomes(Lista<Nome> nomes) {
         this.todosOsNomes = nomes;
     }
-    private void _criarLinhasrecursivo(Lista<Lista<Nome>> listaBidimensional ,int posicao){
-        if(posicao==pegarTamanhoDaListaBiDimensional()){
+
+    private void _criarLinhasrecursivo(Lista<Lista<Nome>> listaBidimensional, int posicao) {
+        if (posicao == pegarTamanhoDaListaBiDimensional()) {
             return;
         }
         listaBidimensional.adicionarElementoNoFinal(new Lista<Nome>());
-         _criarLinhasrecursivo(listaBidimensional, posicao+1);
+        _criarLinhasrecursivo(listaBidimensional, posicao + 1);
     }
-    private void _adicionarElementosRecursivo(Lista<Lista<Nome>> listaBidimensional,int j,Nome nome){
-        if(j==listaBidimensional.tamanho()){
+
+    private void _adicionarElementosRecursivo(Lista<Lista<Nome>> listaBidimensional, int j, Nome nome) {
+        if (j == listaBidimensional.tamanho()) {
             return;
         }
         boolean contem = listaBidimensional.pesquisarPorIndice(j).contem(nome);
-        if(!contem){
+        if (!contem) {
             listaBidimensional.pesquisarPorIndice(j).adicionarElementoNoFinal(nome);
             return;
         }
-        _adicionarElementosRecursivo(listaBidimensional, j+1, nome);
+        _adicionarElementosRecursivo(listaBidimensional, j + 1, nome);
     }
-    private void _iterarSobreNomesRecursivo(Lista<Lista<Nome>> listaBidimensional,int i,int j){
-        if(i==todosOsNomes.tamanho()){
+
+    private void _iterarSobreNomesRecursivo(Lista<Lista<Nome>> listaBidimensional, int i, int j) {
+        if (i == todosOsNomes.tamanho()) {
             return;
         }
         Nome nome = this.todosOsNomes.pesquisarPorIndice(i);
         _adicionarElementosRecursivo(listaBidimensional, j, nome);
-        _iterarSobreNomesRecursivo(listaBidimensional, i+1, j);
+        _iterarSobreNomesRecursivo(listaBidimensional, i + 1, j);
 
     }
+
     public Lista<Lista<Nome>> getListaBiDimensional() {
         Lista<Lista<Nome>> listaBidimensional = new Lista<Lista<Nome>>();
-        //ITERATIVO
-        /* for (int i = 0; i < pegarTamanhoDaListaBiDimensional(); i++) {
-            listaBidimensional.adicionarElementoNoFinal(new Lista<Nome>());
-        } */
-        //RECURSIVO
+        // ITERATIVO
+        /*
+         * for (int i = 0; i < pegarTamanhoDaListaBiDimensional(); i++) {
+         * listaBidimensional.adicionarElementoNoFinal(new Lista<Nome>());
+         * }
+         */
+        // RECURSIVO
         int iCriarLinhas = 0;
         _criarLinhasrecursivo(listaBidimensional, iCriarLinhas);
 
         int j = 0;
         int i = 0;
         _iterarSobreNomesRecursivo(listaBidimensional, i, j);
-       // for (int i = 0; i < this.todosOsNomes.tamanho(); i++) {
-         //   Nome nome = this.todosOsNomes.pesquisarPorIndice(i);
-            //ITERATIVO
-            /* for (int j = 0; j < listaBidimensional.tamanho(); j++) {
-                boolean contem = listaBidimensional.pesquisarPorIndice(j).contem(nome);
-                if (!contem) {
-                    listaBidimensional.pesquisarPorIndice(j).adicionarElementoNoFinal(nome);
-                    break;
-                }
-                
-            } */
-         //   _adicionarElementosRecursivo(listaBidimensional, j+1, nome);
-        //}
+        // for (int i = 0; i < this.todosOsNomes.tamanho(); i++) {
+        // Nome nome = this.todosOsNomes.pesquisarPorIndice(i);
+        // ITERATIVO
+        /*
+         * for (int j = 0; j < listaBidimensional.tamanho(); j++) {
+         * boolean contem = listaBidimensional.pesquisarPorIndice(j).contem(nome);
+         * if (!contem) {
+         * listaBidimensional.pesquisarPorIndice(j).adicionarElementoNoFinal(nome);
+         * break;
+         * }
+         * 
+         * }
+         */
+        // _adicionarElementosRecursivo(listaBidimensional, j+1, nome);
+        // }
         return listaBidimensional;
     }
 
+    private void _trocarVariaveis(int j2, Lista<Nome> linha) {
+        if (j2 == linha.tamanho() - 1) {
+            return;
+        }
+        if (linha.pesquisarPorIndice(j2).getTamanho() > linha.pesquisarPorIndice(j2 + 1).getTamanho()) {
+            Nome auxiliar = new Nome(linha.pesquisarPorIndice(j2 + 1).getNome());
+            linha.setElemento(j2 + 1, linha.pesquisarPorIndice(j2));
+            linha.setElemento(j2, auxiliar);
+        }
+        _trocarVariaveis(j2 + 1, linha);
+    }
+
+    private void _iterarEmLinhaParaOrdenar(int j, Lista<Nome> linha, int j2) {
+        if (j == linha.tamanho()) {
+            return;
+        }
+        _trocarVariaveis(j2, linha);
+        _iterarEmLinhaParaOrdenar(j+1, linha, j2);
+    }
+    private void _iterarEmListaBiDimensional(int i, int j ,int j2,Lista<Lista<Nome>> listaBiDimensional  ){
+        if(i==listaBiDimensional.tamanho()){
+            return;
+        }
+        Lista<Nome> linha = listaBiDimensional.pesquisarPorIndice(i);
+        _iterarEmLinhaParaOrdenar(j, linha, j2);
+        _iterarEmListaBiDimensional(i+1, j, j2, listaBiDimensional);
+
+
+    }
     public Lista<Lista<Nome>> getListaOrdenada() {
         Lista<Lista<Nome>> listaBiDimensional = getListaBiDimensional();
-        for (int i = 0; i < listaBiDimensional.tamanho(); i++) {
-            Lista<Nome> linha = listaBiDimensional.pesquisarPorIndice(i);
-            for (int j = 0; j < linha.tamanho(); j++) {
-                for (int j2 = 0; j2 < linha.tamanho() - 1; j2++) {
-                    if (linha.pesquisarPorIndice(j2).getTamanho() > linha.pesquisarPorIndice(j2 + 1).getTamanho()) {
-                        Nome auxiliar = new Nome(linha.pesquisarPorIndice(j2 + 1).getNome());
-                        linha.setElemento(j2 + 1, linha.pesquisarPorIndice(j2));
-                        linha.setElemento(j2, auxiliar);
-                    }
-                }
-            }
-        }
+        int j2 = 0;
+        int i = 0;
+        int j = 0;
+
+        _iterarEmListaBiDimensional(i, j, j2, listaBiDimensional);
         return listaBiDimensional;
     }
 
@@ -281,8 +311,9 @@ class ListaDeNomes {
             if (listaOrdenada.pesquisarPorIndice(i).tamanho() > 0) {
                 String linhaFormatada = "";
                 for (int j = 0; j < listaOrdenada.pesquisarPorIndice(i).tamanho(); j++) {
-                    String virgula = j< listaOrdenada.pesquisarPorIndice(i).tamanho()-1?", ":""; 
-                    linhaFormatada = linhaFormatada+ listaOrdenada.pesquisarPorIndice(i).pesquisarPorIndice(j).getNome() + virgula;
+                    String virgula = j < listaOrdenada.pesquisarPorIndice(i).tamanho() - 1 ? ", " : "";
+                    linhaFormatada = linhaFormatada
+                            + listaOrdenada.pesquisarPorIndice(i).pesquisarPorIndice(j).getNome() + virgula;
 
                 }
                 System.out.println(linhaFormatada);
