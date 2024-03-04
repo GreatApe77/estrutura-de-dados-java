@@ -188,9 +188,10 @@ class Nome {
     public int getTamanho() {
         return tamanho;
     }
+
     @Override
     public String toString() {
-        return "nome: "+this.nome;
+        return "nome: " + this.nome;
     }
 }
 
@@ -211,44 +212,64 @@ class ListaDeNomes {
             Nome nome = this.todosOsNomes.pesquisarPorIndice(i);
             for (int j = 0; j < listaBidimensional.tamanho(); j++) {
                 boolean contem = listaBidimensional.pesquisarPorIndice(j).contem(nome);
-                if(!contem){
+                if (!contem) {
                     listaBidimensional.pesquisarPorIndice(j).adicionarElementoNoFinal(nome);
                     break;
                 }
-               /*  if (!contemNaZero) {
-                    listaBidimensional.pesquisarPorIndice(0).adicionarElementoNoFinal(nome);
-                } else {
-                    for (int j2 = 1; j2 < listaBidimensional.tamanho(); j++) {
-
-                        boolean contemEmOutra = listaBidimensional.pesquisarPorIndice(j).contem(nome);
-                        if(contemEmOutra){
-                            listaBidimensional.pesquisarPorIndice(j+1).adicionarElementoNoFinal(nome);
-                        }
-
-                    }
-
-                } */
+                /*
+                 * if (!contemNaZero) {
+                 * listaBidimensional.pesquisarPorIndice(0).adicionarElementoNoFinal(nome);
+                 * } else {
+                 * for (int j2 = 1; j2 < listaBidimensional.tamanho(); j++) {
+                 * 
+                 * boolean contemEmOutra =
+                 * listaBidimensional.pesquisarPorIndice(j).contem(nome);
+                 * if(contemEmOutra){
+                 * listaBidimensional.pesquisarPorIndice(j+1).adicionarElementoNoFinal(nome);
+                 * }
+                 * 
+                 * }
+                 * 
+                 * }
+                 */
             }
 
         }
         return listaBidimensional;
     }
-    public Lista<Lista<Nome>> getListaOrdenada(){
+
+    public Lista<Lista<Nome>> getListaOrdenada() {
         Lista<Lista<Nome>> listaBiDimensional = getListaBiDimensional();
         for (int i = 0; i < listaBiDimensional.tamanho(); i++) {
             Lista<Nome> linha = listaBiDimensional.pesquisarPorIndice(i);
             for (int j = 0; j < linha.tamanho(); j++) {
-                for (int j2 = 0; j2 < linha.tamanho()-1; j2++) {
-                    if(linha.pesquisarPorIndice(j2).getTamanho()>linha.pesquisarPorIndice(j2+1).getTamanho()){
-                       Nome auxiliar = new Nome(linha.pesquisarPorIndice(j2+1).getNome());
-                       linha.setElemento(j2+1, linha.pesquisarPorIndice(j2));
-                       linha.setElemento(j2, auxiliar);
+                for (int j2 = 0; j2 < linha.tamanho() - 1; j2++) {
+                    if (linha.pesquisarPorIndice(j2).getTamanho() > linha.pesquisarPorIndice(j2 + 1).getTamanho()) {
+                        Nome auxiliar = new Nome(linha.pesquisarPorIndice(j2 + 1).getNome());
+                        linha.setElemento(j2 + 1, linha.pesquisarPorIndice(j2));
+                        linha.setElemento(j2, auxiliar);
                     }
                 }
             }
         }
         return listaBiDimensional;
     }
+
+    public void printarFormatado() {
+        Lista<Lista<Nome>> listaOrdenada = this.getListaOrdenada();
+        for (int i = 0; i < listaOrdenada.tamanho(); i++) {
+            if (listaOrdenada.pesquisarPorIndice(i).tamanho() > 0) {
+                String linhaFormatada = "";
+                for (int j = 0; j < listaOrdenada.pesquisarPorIndice(i).tamanho(); j++) {
+                    String virgula = j< listaOrdenada.pesquisarPorIndice(i).tamanho()-1?", ":""; 
+                    linhaFormatada = linhaFormatada+ listaOrdenada.pesquisarPorIndice(i).pesquisarPorIndice(j).getNome() + virgula;
+
+                }
+                System.out.println(linhaFormatada);
+            }
+        }
+    }
+
     public Lista<Nome> getListaSemRepeticao() {
         Lista<Nome> listaSemDuplicatas = new Lista<Nome>();
 
@@ -291,8 +312,8 @@ public class Main {
             lista.adicionarElementoNoFinal(new Nome(nome));
         }
         ListaDeNomes listaDeNomes = new ListaDeNomes(lista);
-        //System.out.println(lista.contem(new Nome("Yan")));
-        System.out.println(listaDeNomes.getListaOrdenada());
+        // System.out.println(lista.contem(new Nome("Yan")));
+        listaDeNomes.printarFormatado();
         // Nome nome1 = new Nome("ana");
         // Nome nome2 = new Nome("yan");
         // System.out.println(nome1.equals(nome2));
