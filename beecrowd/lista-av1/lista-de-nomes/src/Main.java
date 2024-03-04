@@ -212,7 +212,7 @@ class ListaDeNomes{
             Nome nome = this.todosOsNomes.pesquisarPorIndice(i);
             
             for (int j = 0; j < listaBidimensional.tamanho(); j++) {
-                for (int k = 0; k < listaBidimensional.pesquisarPorIndice(j).tamanho(); k++) {
+               
                     boolean existe = listaBidimensional.pesquisarPorIndice(j).contem(nome);
                     System.out.println(existe);
                     if(existe){
@@ -222,7 +222,7 @@ class ListaDeNomes{
                         Lista<Nome> listaAtual = listaBidimensional.pesquisarPorIndice(j);
                         listaAtual.adicionarElementoNoFinal(nome);
                     }
-                }
+                
             }
         }
         return listaBidimensional;
