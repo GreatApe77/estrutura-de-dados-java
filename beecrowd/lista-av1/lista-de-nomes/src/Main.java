@@ -204,25 +204,10 @@ class ListaDeNomes{
     }
     public Lista<Lista<Nome>> getListaBiDimensional(){
         Lista<Lista<Nome>> listaBidimensional = new Lista<Lista<Nome>>();
-        int tamanho = this.pegarTamanhoDaListaBiDimensional();
-        for (int i = 0; i < tamanho; i++) {
-            listaBidimensional.adicionarElementoNoFinal(new Lista<Nome>());
-        }
+        
         for (int i = 0; i < this.todosOsNomes.tamanho(); i++) {
-            Nome nome = this.todosOsNomes.pesquisarPorIndice(i);
-            
-            for (int j = 0; j < listaBidimensional.tamanho(); j++) {
-               
-                    boolean existe = listaBidimensional.pesquisarPorIndice(j).contem(nome);
-                    System.out.println(existe);
-                    if(existe){
-                        Lista<Nome> proximaLista = listaBidimensional.pesquisarPorIndice(j+1);
-                        proximaLista.adicionarElementoNoFinal(nome);
-                    }else{
-                        Lista<Nome> listaAtual = listaBidimensional.pesquisarPorIndice(j);
-                        listaAtual.adicionarElementoNoFinal(nome);
-                    }
-                
+            for (int j = 0; j < listaBidimensional.pesquisarPorIndice(i).tamanho(); j++) {
+                Nome nome = this.todosOsNomes.pesquisarPorIndice(i);
             }
         }
         return listaBidimensional;
