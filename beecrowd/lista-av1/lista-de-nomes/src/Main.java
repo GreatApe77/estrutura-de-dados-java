@@ -202,39 +202,59 @@ class ListaDeNomes {
     public ListaDeNomes(Lista<Nome> nomes) {
         this.todosOsNomes = nomes;
     }
+    private void _criarLinhasrecursivo(Lista<Lista<Nome>> listaBidimensional ,int posicao){
+        if(posicao==pegarTamanhoDaListaBiDimensional()){
+            return;
+        }
+        listaBidimensional.adicionarElementoNoFinal(new Lista<Nome>());
+         _criarLinhasrecursivo(listaBidimensional, posicao+1);
+    }
+    private void _adicionarElementosRecursivo(Lista<Lista<Nome>> listaBidimensional,int j,Nome nome){
+        if(j==listaBidimensional.tamanho()){
+            return;
+        }
+        boolean contem = listaBidimensional.pesquisarPorIndice(j).contem(nome);
+        if(!contem){
+            listaBidimensional.pesquisarPorIndice(j).adicionarElementoNoFinal(nome);
+            return;
+        }
+        _adicionarElementosRecursivo(listaBidimensional, j+1, nome);
+    }
+    private void _iterarSobreNomesRecursivo(Lista<Lista<Nome>> listaBidimensional,int i,int j){
+        if(i==todosOsNomes.tamanho()){
+            return;
+        }
+        Nome nome = this.todosOsNomes.pesquisarPorIndice(i);
+        _adicionarElementosRecursivo(listaBidimensional, j, nome);
+        _iterarSobreNomesRecursivo(listaBidimensional, i+1, j);
 
+    }
     public Lista<Lista<Nome>> getListaBiDimensional() {
         Lista<Lista<Nome>> listaBidimensional = new Lista<Lista<Nome>>();
-        for (int i = 0; i < pegarTamanhoDaListaBiDimensional(); i++) {
+        //ITERATIVO
+        /* for (int i = 0; i < pegarTamanhoDaListaBiDimensional(); i++) {
             listaBidimensional.adicionarElementoNoFinal(new Lista<Nome>());
-        }
-        for (int i = 0; i < this.todosOsNomes.tamanho(); i++) {
-            Nome nome = this.todosOsNomes.pesquisarPorIndice(i);
-            for (int j = 0; j < listaBidimensional.tamanho(); j++) {
+        } */
+        //RECURSIVO
+        int iCriarLinhas = 0;
+        _criarLinhasrecursivo(listaBidimensional, iCriarLinhas);
+
+        int j = 0;
+        int i = 0;
+        _iterarSobreNomesRecursivo(listaBidimensional, i, j);
+       // for (int i = 0; i < this.todosOsNomes.tamanho(); i++) {
+         //   Nome nome = this.todosOsNomes.pesquisarPorIndice(i);
+            //ITERATIVO
+            /* for (int j = 0; j < listaBidimensional.tamanho(); j++) {
                 boolean contem = listaBidimensional.pesquisarPorIndice(j).contem(nome);
                 if (!contem) {
                     listaBidimensional.pesquisarPorIndice(j).adicionarElementoNoFinal(nome);
                     break;
                 }
-                /*
-                 * if (!contemNaZero) {
-                 * listaBidimensional.pesquisarPorIndice(0).adicionarElementoNoFinal(nome);
-                 * } else {
-                 * for (int j2 = 1; j2 < listaBidimensional.tamanho(); j++) {
-                 * 
-                 * boolean contemEmOutra =
-                 * listaBidimensional.pesquisarPorIndice(j).contem(nome);
-                 * if(contemEmOutra){
-                 * listaBidimensional.pesquisarPorIndice(j+1).adicionarElementoNoFinal(nome);
-                 * }
-                 * 
-                 * }
-                 * 
-                 * }
-                 */
-            }
-
-        }
+                
+            } */
+         //   _adicionarElementosRecursivo(listaBidimensional, j+1, nome);
+        //}
         return listaBidimensional;
     }
 
