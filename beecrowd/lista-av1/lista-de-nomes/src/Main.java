@@ -283,18 +283,19 @@ class ListaDeNomes {
             return;
         }
         _trocarVariaveis(j2, linha);
-        _iterarEmLinhaParaOrdenar(j+1, linha, j2);
+        _iterarEmLinhaParaOrdenar(j + 1, linha, j2);
     }
-    private void _iterarEmListaBiDimensional(int i, int j ,int j2,Lista<Lista<Nome>> listaBiDimensional  ){
-        if(i==listaBiDimensional.tamanho()){
+
+    private void _iterarEmListaBiDimensional(int i, int j, int j2, Lista<Lista<Nome>> listaBiDimensional) {
+        if (i == listaBiDimensional.tamanho()) {
             return;
         }
         Lista<Nome> linha = listaBiDimensional.pesquisarPorIndice(i);
         _iterarEmLinhaParaOrdenar(j, linha, j2);
-        _iterarEmListaBiDimensional(i+1, j, j2, listaBiDimensional);
-
+        _iterarEmListaBiDimensional(i + 1, j, j2, listaBiDimensional);
 
     }
+
     public Lista<Lista<Nome>> getListaOrdenada() {
         Lista<Lista<Nome>> listaBiDimensional = getListaBiDimensional();
         int j2 = 0;
@@ -307,18 +308,31 @@ class ListaDeNomes {
 
     public void printarFormatado() {
         Lista<Lista<Nome>> listaOrdenada = this.getListaOrdenada();
+        int j = 0;
         for (int i = 0; i < listaOrdenada.tamanho(); i++) {
             if (listaOrdenada.pesquisarPorIndice(i).tamanho() > 0) {
-                String linhaFormatada = "";
-                for (int j = 0; j < listaOrdenada.pesquisarPorIndice(i).tamanho(); j++) {
+                
+                /* for (int j = 0; j < listaOrdenada.pesquisarPorIndice(i).tamanho(); j++) {
                     String virgula = j < listaOrdenada.pesquisarPorIndice(i).tamanho() - 1 ? ", " : "";
                     linhaFormatada = linhaFormatada
                             + listaOrdenada.pesquisarPorIndice(i).pesquisarPorIndice(j).getNome() + virgula;
 
-                }
-                System.out.println(linhaFormatada);
+                } */
+
+                String linhaMontada =_concatenarStrings(listaOrdenada, i, j, "");
+                
+                System.out.println(linhaMontada);
             }
         }
+    }
+
+    private String _concatenarStrings(Lista<Lista<Nome>> listaOrdenada, int i, int j, String linhaFormatada) {
+        if (j == listaOrdenada.pesquisarPorIndice(i).tamanho()) {
+            return linhaFormatada;
+        }
+        String virgula = j < listaOrdenada.pesquisarPorIndice(i).tamanho() - 1 ? ", " : "";
+        linhaFormatada = linhaFormatada+ listaOrdenada.pesquisarPorIndice(i).pesquisarPorIndice(j).getNome() + virgula;
+        return _concatenarStrings(listaOrdenada, i, j+1, linhaFormatada);
     }
 
     public Lista<Nome> getListaSemRepeticao() {
