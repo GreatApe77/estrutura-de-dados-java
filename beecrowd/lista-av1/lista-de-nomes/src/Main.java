@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 class Lista<T> {
     private T[] elementos;
@@ -309,21 +310,39 @@ class ListaDeNomes {
     public void printarFormatado() {
         Lista<Lista<Nome>> listaOrdenada = this.getListaOrdenada();
         int j = 0;
-        for (int i = 0; i < listaOrdenada.tamanho(); i++) {
+        int i = 0;
+        _iterarParaPrintar(listaOrdenada, i, j);
+        /* for (int i = 0; i < listaOrdenada.tamanho(); i++) {
             if (listaOrdenada.pesquisarPorIndice(i).tamanho() > 0) {
-                
-                /* for (int j = 0; j < listaOrdenada.pesquisarPorIndice(i).tamanho(); j++) {
-                    String virgula = j < listaOrdenada.pesquisarPorIndice(i).tamanho() - 1 ? ", " : "";
-                    linhaFormatada = linhaFormatada
-                            + listaOrdenada.pesquisarPorIndice(i).pesquisarPorIndice(j).getNome() + virgula;
 
-                } */
-
-                String linhaMontada =_concatenarStrings(listaOrdenada, i, j, "");
                 
+                  for (int j = 0; j < listaOrdenada.pesquisarPorIndice(i).tamanho(); j++) {
+                  String virgula = j < listaOrdenada.pesquisarPorIndice(i).tamanho() - 1 ? ", "
+                 : "";
+                 linhaFormatada = linhaFormatada
+                  + listaOrdenada.pesquisarPorIndice(i).pesquisarPorIndice(j).getNome() +
+                  virgula;
+                  
+                  }
+                 
+
+                String linhaMontada = _concatenarStrings(listaOrdenada, i, j, "");
+
                 System.out.println(linhaMontada);
             }
+        } */
+    }
+
+    private void _iterarParaPrintar(Lista<Lista<Nome>> listaOrdenada,int i,int j) {
+        if(i==listaOrdenada.tamanho()){
+            return;
         }
+        if (listaOrdenada.pesquisarPorIndice(i).tamanho() > 0) {
+            String linhaMontada = _concatenarStrings(listaOrdenada, i, j, "");
+            System.out.println(linhaMontada);
+        }
+        _iterarParaPrintar(listaOrdenada, i+1, j);
+
     }
 
     private String _concatenarStrings(Lista<Lista<Nome>> listaOrdenada, int i, int j, String linhaFormatada) {
@@ -331,8 +350,8 @@ class ListaDeNomes {
             return linhaFormatada;
         }
         String virgula = j < listaOrdenada.pesquisarPorIndice(i).tamanho() - 1 ? ", " : "";
-        linhaFormatada = linhaFormatada+ listaOrdenada.pesquisarPorIndice(i).pesquisarPorIndice(j).getNome() + virgula;
-        return _concatenarStrings(listaOrdenada, i, j+1, linhaFormatada);
+        linhaFormatada = linhaFormatada + listaOrdenada.pesquisarPorIndice(i).pesquisarPorIndice(j).getNome() + virgula;
+        return _concatenarStrings(listaOrdenada, i, j + 1, linhaFormatada);
     }
 
     public Lista<Nome> getListaSemRepeticao() {
@@ -368,17 +387,29 @@ class ListaDeNomes {
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        // "sergio" "ana" maria carlos eva joaquim jo mara laura lucas ari paulo
-        String[] nomesTeste = new String[] { "sergio", "ana", "maria", "carlos", "eva", "joaquim", "jo", "mara",
-                "laura", "lucas", "ari", "paulo" };
+        Scanner scanner = new Scanner(System.in);
+        Lista<Nome> nomesDaEntrada = new Lista<Nome>(1000);
+        int N = scanner.nextInt();
 
-        Lista<Nome> lista = new Lista<Nome>();
-        for (String nome : nomesTeste) {
-            lista.adicionarElementoNoFinal(new Nome(nome));
+        for (int i = 0; i < N; i++) {
+            String nomeTitulo = scanner.next();
+            nomesDaEntrada.adicionarElementoNoFinal(new Nome(nomeTitulo));
         }
-        ListaDeNomes listaDeNomes = new ListaDeNomes(lista);
-        // System.out.println(lista.contem(new Nome("Yan")));
+        ListaDeNomes listaDeNomes = new ListaDeNomes(nomesDaEntrada);
         listaDeNomes.printarFormatado();
+
+        scanner.close();
+        // "sergio" "ana" maria carlos eva joaquim jo mara laura lucas ari paulo
+        //String[] nomesTeste = new String[] { "sergio", "ana", "maria", "carlos", "eva", "joaquim", "jo", "mara",
+        //        "laura", "lucas", "ari", "paulo" };
+
+        //Lista<Nome> lista = new Lista<Nome>();
+        //for (String nome : nomesTeste) {
+        //    lista.adicionarElementoNoFinal(new Nome(nome));
+        //}
+        //ListaDeNomes listaDeNomes = new ListaDeNomes(lista);
+        // System.out.println(lista.contem(new Nome("Yan")));
+        //listaDeNomes.printarFormatado();
         // Nome nome1 = new Nome("ana");
         // Nome nome2 = new Nome("yan");
         // System.out.println(nome1.equals(nome2));
