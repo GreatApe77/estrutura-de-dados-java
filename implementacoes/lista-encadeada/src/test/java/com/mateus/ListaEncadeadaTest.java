@@ -1,17 +1,18 @@
 package com.mateus;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import com.mateus.lista.encadeada.ListaEncadeada;
 
-/**
- * Hello world!
- *
- */
-public class App {
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
+public class ListaEncadeadaTest {
+    
+
+    @Test
+    public void deveTransformarAListaParaString(){
         ListaEncadeada<String> lista = new ListaEncadeada<String>();
         lista.adicionarNoFinal("Bom");
         lista.adicionarNoFinal("Dia");
-        System.out.println(lista);
+        Assert.assertEquals("[Bom, Dia]",lista.toString());
     }
 }
