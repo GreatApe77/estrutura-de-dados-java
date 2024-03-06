@@ -1,5 +1,5 @@
-package com.example;
-import java.io.IOException;
+/* package com.example;
+
 import java.util.Scanner;
 
 class Fibonacci {
@@ -30,24 +30,22 @@ public class Main {
     public static void printarFormatado(int entrada, int chamadas, int resultado) {
         System.out.println("fib(" + entrada + ") = " + chamadas + " calls = " + resultado);
     }
-    private static void _entradaDeDados(int i, int numeroCasosDeTeste,Scanner scanner,Fibonacci fibonacci){
-        if(i==numeroCasosDeTeste ){
-            return;
-        }
-        int x = scanner.nextInt();
-        int resultado = fibonacci.calcularFibonacci(x);
-        printarFormatado(x, fibonacci.getQuantidadeDeChamadas(), resultado);
-        fibonacci.resetarContador();
-        _entradaDeDados(i+1, numeroCasosDeTeste, scanner, fibonacci);
-    }
-    public static void main(String[] args) throws IOException {
+
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Fibonacci fibonacci = new Fibonacci();
         int numeroCasosDeTeste = scanner.nextInt();
-        int i = 0;
-        _entradaDeDados(i, numeroCasosDeTeste, scanner, fibonacci);
+        
+        for (int i = 0; i < numeroCasosDeTeste; i++) {
+            int x = scanner.nextInt();
+            int resultado = fibonacci.calcularFibonacci(x);
+            printarFormatado(x, fibonacci.getQuantidadeDeChamadas(), resultado);
+            fibonacci.resetarContador();
+            
+        }
         
         scanner.close();
 
     }
 }
+ */
