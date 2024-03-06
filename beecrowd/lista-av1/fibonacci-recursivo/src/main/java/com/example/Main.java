@@ -4,15 +4,36 @@ import java.util.Scanner;
 
 class Fibonacci {
     int quantidadeDeChamadas = 0;
-
-    public int calcularFibonacci(int n) {
+    
+    public void _preencherArray(int[] array,int i){
+        if(i==array.length){
+            return;
+        }
+        array[i] = -77;
+        _preencherArray(array, i+1);
+    }
+    public int calcularFibonacci(int n){
+        int[] cacheDeN = new int[39];
+        int i = 0;
+        _preencherArray(cacheDeN, i);
+        cacheDeN[0] = 0;
+        cacheDeN[1] = 1;
+        return  _calcularFibonacci(n, cacheDeN);
+        
+    }
+    public int _calcularFibonacci(int n,int[] cacheDeN) {
         this.quantidadeDeChamadas++;
+        if(cacheDeN[n]!=-77){
+            return cacheDeN[n];
+        }
         if (n == 0)
             return 0;
         if (n == 1)
             return 1;
 
-        return calcularFibonacci(n - 1) + calcularFibonacci(n - 2);
+        cacheDeN[n] =  _calcularFibonacci(n - 1,cacheDeN) + _calcularFibonacci(n - 2,cacheDeN);
+
+        return cacheDeN[n];
 
     }
 
