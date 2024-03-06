@@ -10,7 +10,6 @@ import java.util.Scanner;
  */
 public class Main {
     public static int calcularMDC(int a, int b) {
-        
         if (b == 0)
             return a;
         int resto = a % b;
@@ -19,7 +18,7 @@ public class Main {
         return calcularMDC(a, b);
 
     }
-    /* private static void _entradaDeDados(int i,int entradaN,Scanner scanner){
+    private static void _entradaDeDados(int i,int entradaN,Scanner scanner){
         if( i==entradaN){
             return;
         }
@@ -33,23 +32,14 @@ public class Main {
         int mdc = calcularMDC(Integer.parseInt(f1), Integer.parseInt(f2));
         System.out.println(mdc);
         _entradaDeDados(i+1, entradaN, scanner);
-    } */
+    }
     public static void main(String[] args) throws IOException {
 
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\\n");
         int entradaN = scanner.nextInt();
-        //int i=0;
-       //_entradaDeDados(i, entradaN, scanner);
-       for (int i = 0; i < entradaN; i++) {
-        String entradaNumeros = scanner.next();
-        String[] entradaSeparadaPorEspacos =entradaNumeros.split(" ");
-        //System.out.println(Arrays.toString(entradaSeparadaPorEspacos));
-        String f1 = entradaSeparadaPorEspacos[0];
-        String f2 = entradaSeparadaPorEspacos[1];
-        int mdc = calcularMDC(Integer.parseInt(f1), Integer.parseInt(f2));
-        System.out.println(mdc);
-       }
+        int i=0;
+       _entradaDeDados(i, entradaN, scanner);
         scanner.close();
         /**
          * Escreva a sua solução aqui
