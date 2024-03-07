@@ -11,6 +11,20 @@ public class ListaEncadeada<T> {
         this.tamanho = 0;
     }
 
+    public void removerFinal(){
+        if(this.tamanho==0){
+            throw new IllegalArgumentException("A lista esta vazia");
+        }
+        if(tamanho==1){
+            this.primeiro = null;
+            this.ultimo = null;
+            return;
+        }
+        Nodo<T> penultimo = this._getNodo(tamanho-2);
+        this.ultimo = penultimo;
+        penultimo.setProximoNodo(null);
+        this.tamanho--;
+    }
     public void adicionarEmPosicao(T elemento, int posicao) {
         if (posicao < 0 || posicao > this.tamanho) {
             throw new IndexOutOfBoundsException("Indice invalido");

@@ -39,4 +39,29 @@ public class ListaEncadeadaTest {
         String element = lista.get(1);
         Assert.assertEquals("B",element);
     }
+    @Test
+    public void deveAdicionarNoMeio(){
+        ListaEncadeada<String> lista = new ListaEncadeada<String>();
+        lista.adicionarNoFinal("A");
+        lista.adicionarNoFinal("B");
+        lista.adicionarNoFinal("C");
+        String elemento = "MEIO";
+        lista.adicionarEmPosicao(elemento, 1);
+        String retornado = lista.get(1);
+        Assert.assertEquals(elemento,retornado);
+        String listaString =lista.toString();
+        Assert.assertEquals("[A, MEIO, B, C]",listaString);
+    }
+
+    @Test
+    public void deveRemoverDoFinal(){
+        ListaEncadeada<String> lista = new ListaEncadeada<String>();
+        lista.adicionarNoFinal("A");
+        lista.adicionarNoFinal("B");
+        lista.adicionarNoFinal("C");
+        lista.removerFinal();
+        Assert.assertTrue(lista.tamanho()==2);
+        String listaString = lista.toString();
+        Assert.assertEquals("[A, B]",listaString);
+    }
 }
