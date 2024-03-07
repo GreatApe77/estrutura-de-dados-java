@@ -8,10 +8,12 @@ import com.mateus.lista.encadeada.ListaEncadeada;
  */
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+
         ListaEncadeada<String> lista = new ListaEncadeada<String>();
         lista.adicionarNoFinal("Bom");
         lista.adicionarNoFinal("Dia");
+        lista.adicionarNoComeco("Inicio");
+        System.out.println(lista.get(1));
         System.out.println(lista);
     }
 }
