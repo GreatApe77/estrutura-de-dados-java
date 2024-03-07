@@ -13,6 +13,8 @@ public class App {
         lista.adicionarNoFinal("Bom");
         lista.adicionarNoFinal("Dia");
         lista.adicionarNoComeco("Inicio");
+        lista.adicionarEmPosicao("Opa", 1);
+        lista.adicionarEmPosicao("Sou o 3", 3);
         System.out.println(lista.get(1));
         System.out.println(lista);
     }

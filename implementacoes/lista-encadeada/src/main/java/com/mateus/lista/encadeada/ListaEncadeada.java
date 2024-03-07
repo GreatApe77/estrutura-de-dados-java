@@ -11,16 +11,37 @@ public class ListaEncadeada<T> {
         this.tamanho = 0;
     }
 
+    public void adicionarEmPosicao(T elemento, int posicao) {
+        if (posicao < 0 || posicao > this.tamanho) {
+            throw new IndexOutOfBoundsException("Indice invalido");
+        }
+        if (posicao == 0) {
+            this.adicionarNoComeco(elemento);
+            return;
+        }
+        if (posicao == this.tamanho) {
+            this.adicionarNoFinal(elemento);
+            return;
+        }
+
+        Nodo<T> novoNodo = new Nodo<T>(elemento);
+
+        Nodo<T> antesDoNovo = this._getNodo(posicao - 1); // pegar o que vai ficar antes dele
+        novoNodo.setProximoNodo(antesDoNovo.getProximoNodo());
+        antesDoNovo.setProximoNodo(novoNodo);
+        this.tamanho++;
+    }
+
     public void adicionarNoFinal(T elemento) {
         Nodo<T> novoNodo = new Nodo<T>(elemento);
         if (this.tamanho == 0) {
             this.primeiro = novoNodo;
             this.ultimo = novoNodo;
         } else {
-            
+
             this.ultimo.setProximoNodo(novoNodo);
             this.ultimo = novoNodo;
-            
+
         }
         this.tamanho++;
     }
@@ -30,21 +51,22 @@ public class ListaEncadeada<T> {
         //
         // [] -> [] -> [] -> []
         //
-        // prim             ultimo
+        // prim ultimo
         //
         if (tamanho == 0) {
             this.primeiro = novoNodo;
             this.ultimo = novoNodo;
-        }else{
+        } else {
             novoNodo.setProximoNodo(this.primeiro);
             this.primeiro = novoNodo;
         }
 
         tamanho++;
     }
-    public T get(int posicao){
-        if(posicao<0|| posicao>=this.tamanho){
-           throw new IndexOutOfBoundsException("Indice invalido"); 
+
+    public T get(int posicao) {
+        if (posicao < 0 || posicao >= this.tamanho) {
+            throw new IndexOutOfBoundsException("Indice invalido");
         }
         Nodo<T> atual = this.primeiro;
         for (int i = 0; i < posicao; i++) {
@@ -52,6 +74,18 @@ public class ListaEncadeada<T> {
         }
         return atual.getElemento();
     }
+
+    private Nodo<T> _getNodo(int posicao) {
+        if (posicao < 0 || posicao >= this.tamanho) {
+            throw new IndexOutOfBoundsException("Indice invalido");
+        }
+        Nodo<T> atual = this.primeiro;
+        for (int i = 0; i < posicao; i++) {
+            atual = atual.getProximoNodo();
+        }
+        return atual;
+    }
+
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
@@ -76,7 +110,5 @@ public class ListaEncadeada<T> {
     public int tamanho() {
         return this.tamanho;
     }
-
-    
 
 }
