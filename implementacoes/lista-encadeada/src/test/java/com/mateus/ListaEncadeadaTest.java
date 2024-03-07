@@ -75,4 +75,16 @@ public class ListaEncadeadaTest {
         String listaString = lista.toString();
         Assert.assertEquals("[B, C]",listaString);
     }
+    @Test
+    public void deveRemoverEmPosicao(){
+        ListaEncadeada<String> lista = new ListaEncadeada<String>();
+        lista.adicionarNoFinal("A");
+        lista.adicionarNoFinal("B");
+        lista.adicionarNoFinal("C");
+        lista.removerEmPosicao(1);
+        Assert.assertTrue(lista.tamanho()==2);
+        String listaString = lista.toString();
+        Assert.assertEquals("[A, C]",listaString);
+    }
 }
+

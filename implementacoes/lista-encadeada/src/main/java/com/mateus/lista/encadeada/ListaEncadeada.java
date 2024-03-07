@@ -11,6 +11,23 @@ public class ListaEncadeada<T> {
         this.tamanho = 0;
     }
 
+    public void removerEmPosicao(int posicao){
+        if(posicao<0 || posicao>=this.tamanho){
+            throw new IndexOutOfBoundsException("Indice invalido");
+        }
+        if(posicao==0){
+            this.removerComeco();
+            return;
+        }
+        if(posicao==this.tamanho-1){
+            this.removerFinal();
+            return;
+        }
+        Nodo<T> anteriorAoRemovido = this._getNodo(posicao-1);
+        Nodo<T> removido = anteriorAoRemovido.getProximoNodo();
+        anteriorAoRemovido.setProximoNodo(removido.getProximoNodo());
+        this.tamanho--;
+    }
     public void removerComeco(){
         if(this.tamanho==0){
             throw new IllegalArgumentException("A lista esta vazia");
