@@ -11,6 +11,13 @@ public class ListaEncadeada<T> {
         this.tamanho = 0;
     }
 
+    public void removerComeco(){
+        if(this.tamanho==0){
+            throw new IllegalArgumentException("A lista esta vazia");
+        }
+        this.primeiro = this.primeiro.getProximoNodo();
+        this.tamanho--;
+    }
     public void removerFinal(){
         if(this.tamanho==0){
             throw new IllegalArgumentException("A lista esta vazia");
