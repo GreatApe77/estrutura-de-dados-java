@@ -15,7 +15,10 @@ public class Lista<T> implements ILista<T> {
         this.elementos = elementosIniciais;
         this.tamanho = elementosIniciais.length;
     }
-
+    public Lista(Lista<T> lista){
+        this.tamanho = lista.tamanho();
+        this.elementos = lista.toArray();
+    }
     @SuppressWarnings("unchecked")
     public Lista() {
         this.elementos = (T[]) new Object[this.tamanhoPadrao];
@@ -173,5 +176,10 @@ public class Lista<T> implements ILista<T> {
             formatoArray[i] = this.elementos[i];
         }
         return formatoArray;
+    }
+
+    
+    public Lista<T> copia(){
+        return new Lista<T>(this);
     }
 }

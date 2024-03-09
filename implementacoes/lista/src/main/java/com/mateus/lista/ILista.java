@@ -70,4 +70,6 @@ public interface ILista<T> {
      */
     public int pesquisarUltimoIndiceDe(T elemento);
     
+
+    
 }

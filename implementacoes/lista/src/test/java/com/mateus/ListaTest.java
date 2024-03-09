@@ -131,4 +131,11 @@ public class ListaTest {
         Assert.assertArrayEquals(valoresEsperadosAposRemocao, lista.toArray());
 
     }
+    @Test
+    public void deveClonarUmaLista(){
+        Integer[] arrayTeste = new Integer[] { 10, 20, 30, 40, 5, 55, 2, 2, 3, 5, 70, 80 };
+        Lista<Integer> lista = new Lista<Integer>(arrayTeste);
+        Lista<Integer> clone = lista.copia();
+        Assert.assertNotEquals(lista,clone);
+    }
 }

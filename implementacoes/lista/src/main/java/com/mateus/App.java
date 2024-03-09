@@ -18,6 +18,12 @@ public class App {
         lista.adicionarElementoNoFinal(77);
         lista.removerElemento(77);
         lista.removerPorPosicao(2);
+        Lista<Integer> novaLista = new Lista<Integer>(lista);
+        novaLista.adicionarElementoNoFinal(60);
+        Lista<Integer> clone = novaLista.copia();
+        clone.adicionarElementoNoFinal(777);
         System.out.println(lista);
+        System.out.println(novaLista);
+        System.out.println(clone);
     }
 }
