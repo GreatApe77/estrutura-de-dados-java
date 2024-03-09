@@ -11,44 +11,47 @@ public class ListaEncadeada<T> {
         this.tamanho = 0;
     }
 
-    public void removerEmPosicao(int posicao){
-        if(posicao<0 || posicao>=this.tamanho){
+    public void removerEmPosicao(int posicao) {
+        if (posicao < 0 || posicao >= this.tamanho) {
             throw new IndexOutOfBoundsException("Indice invalido");
         }
-        if(posicao==0){
+        if (posicao == 0) {
             this.removerComeco();
             return;
         }
-        if(posicao==this.tamanho-1){
+        if (posicao == this.tamanho - 1) {
             this.removerFinal();
             return;
         }
-        Nodo<T> anteriorAoRemovido = this._getNodo(posicao-1);
+        Nodo<T> anteriorAoRemovido = this._getNodo(posicao - 1);
         Nodo<T> removido = anteriorAoRemovido.getProximoNodo();
         anteriorAoRemovido.setProximoNodo(removido.getProximoNodo());
         this.tamanho--;
     }
-    public void removerComeco(){
-        if(this.tamanho==0){
+
+    public void removerComeco() {
+        if (this.tamanho == 0) {
             throw new IllegalArgumentException("A lista esta vazia");
         }
         this.primeiro = this.primeiro.getProximoNodo();
         this.tamanho--;
     }
-    public void removerFinal(){
-        if(this.tamanho==0){
+
+    public void removerFinal() {
+        if (this.tamanho == 0) {
             throw new IllegalArgumentException("A lista esta vazia");
         }
-        if(tamanho==1){
+        if (tamanho == 1) {
             this.primeiro = null;
             this.ultimo = null;
             return;
         }
-        Nodo<T> penultimo = this._getNodo(tamanho-2);
+        Nodo<T> penultimo = this._getNodo(tamanho - 2);
         this.ultimo = penultimo;
         penultimo.setProximoNodo(null);
         this.tamanho--;
     }
+
     public void adicionarEmPosicao(T elemento, int posicao) {
         if (posicao < 0 || posicao > this.tamanho) {
             throw new IndexOutOfBoundsException("Indice invalido");
@@ -111,6 +114,24 @@ public class ListaEncadeada<T> {
             atual = atual.getProximoNodo();
         }
         return atual.getElemento();
+    }
+
+    public int indiceDe(T elemento) {
+
+        if (this.tamanho == 0) {
+            return -1;
+        }
+        int indice = 0;
+        Nodo<T> atual = this.primeiro;
+        while (atual != null) {
+            if(atual.getElemento()==elemento){
+                return indice;
+            }
+            atual=atual.getProximoNodo();
+            indice++;
+        }
+        return -1;
+
     }
 
     private Nodo<T> _getNodo(int posicao) {

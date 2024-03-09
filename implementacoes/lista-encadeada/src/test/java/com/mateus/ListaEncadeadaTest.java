@@ -86,5 +86,14 @@ public class ListaEncadeadaTest {
         String listaString = lista.toString();
         Assert.assertEquals("[A, C]",listaString);
     }
+    @Test
+    public void deveRetornarOIndiceDadoElemento(){
+        ListaEncadeada<String> lista = new ListaEncadeada<String>();
+        lista.adicionarNoFinal("A");
+        lista.adicionarNoFinal("B");
+        lista.adicionarNoFinal("C");
+        int indiceDeB = lista.indiceDe("B");
+        Assert.assertTrue(indiceDeB==1);
+    }
 }
 
