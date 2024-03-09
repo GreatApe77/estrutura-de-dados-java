@@ -189,6 +189,30 @@ public class ListaEncadeada<T> {
         }
         atual.setElemento(elemento);
     }
+    
+    public static void inserirOrdenado(ListaEncadeada<Integer> lista,int elemento){
+        Nodo<Integer> novoNodo = new Nodo<Integer>(elemento);
+        if(lista.tamanho==0){
+            lista.primeiro = novoNodo;
+            lista.ultimo = novoNodo;
+        }else if(elemento<=lista.primeiro.getElemento()){
+            novoNodo.setProximoNodo(novoNodo);
+            lista.primeiro = novoNodo;
+        }else if (elemento>=lista.ultimo.getElemento()){
+            lista.ultimo.setProximoNodo(novoNodo);
+            lista.ultimo = novoNodo;
+
+        }else{
+            Nodo<Integer> atual = lista.primeiro;
+
+            while (atual.getProximoNodo()!=null && elemento>atual.getProximoNodo().getElemento()) {
+                atual = atual.getProximoNodo();
+            }
+            novoNodo.setProximoNodo(atual.getProximoNodo());
+            atual.setProximoNodo(novoNodo);
+        }
+        lista.tamanho++;
+    }
     public int tamanho() {
         return this.tamanho;
     }
