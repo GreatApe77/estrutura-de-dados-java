@@ -130,4 +130,22 @@ public class ListaEncadeadaTest {
         String listaEmString = listaInteiros.toString();
         Assert.assertEquals("[1, 2, 3, 7, 9, 66, 609, 610, 610]",listaEmString);
     }
+    @Test 
+    public void deveInserirOrdenado(){
+        ListaEncadeada<Integer> listaInteiros = new ListaEncadeada<Integer>();
+        ListaEncadeada.inserirOrdenado(listaInteiros, 66);
+        ListaEncadeada.inserirOrdenado(listaInteiros,7 );
+        ListaEncadeada.inserirOrdenado(listaInteiros, 610);
+        ListaEncadeada.inserirOrdenado(listaInteiros, 9);
+        ListaEncadeada.inserirOrdenado(listaInteiros, 3);
+        ListaEncadeada.inserirOrdenado(listaInteiros, 1);
+        ListaEncadeada.inserirOrdenado(listaInteiros, 2);
+        ListaEncadeada.inserirOrdenado(listaInteiros, 610);
+        ListaEncadeada.inserirOrdenado(listaInteiros, 609);
+        String listaEmString = listaInteiros.toString();
+        Assert.assertTrue(listaInteiros.tamanho()==9);
+        Assert.assertEquals("[1, 2, 3, 7, 9, 66, 609, 610, 610]",listaEmString);
+
+
+    }
 }

@@ -196,7 +196,7 @@ public class ListaEncadeada<T> {
             lista.primeiro = novoNodo;
             lista.ultimo = novoNodo;
         }else if(elemento<=lista.primeiro.getElemento()){
-            novoNodo.setProximoNodo(novoNodo);
+            novoNodo.setProximoNodo(lista.primeiro);
             lista.primeiro = novoNodo;
         }else if (elemento>=lista.ultimo.getElemento()){
             lista.ultimo.setProximoNodo(novoNodo);

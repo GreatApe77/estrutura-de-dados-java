@@ -43,5 +43,6 @@ public class App {
         
         //ListaEncadeada.ordena(listaInteiros);
         System.out.println(listaInteiros.tamanho());
+        System.out.println(listaInteiros);
     }
 }
