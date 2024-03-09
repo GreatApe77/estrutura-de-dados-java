@@ -137,7 +137,17 @@ public class ListaEncadeada<T> {
         return -1;
 
     }
-
+    public static void ordena(ListaEncadeada<Integer> lista){
+        for (int i = 0; i < lista.tamanho(); i++) {
+            for (int j = 0; j < lista.tamanho()-1; j++) {
+                if(lista.get(j)>lista.get(j+1)){
+                    int auxiliar = lista.get(j+1);
+                    lista.set(lista.get(j), j+1);
+                    lista.set(auxiliar, j);
+                }
+            }
+        }
+    }
     private Nodo<T> _getNodo(int posicao) {
         if (posicao < 0 || posicao >= this.tamanho) {
             throw new IndexOutOfBoundsException("Indice invalido");
@@ -169,7 +179,16 @@ public class ListaEncadeada<T> {
 
         return s.toString();
     }
-
+    public void set(T elemento,int posicao){
+        if (posicao < 0 || posicao >= this.tamanho) {
+            throw new IndexOutOfBoundsException("Indice invalido");
+        }
+        Nodo<T> atual = this.primeiro;
+        for (int i = 0; i < posicao; i++) {
+            atual = atual.getProximoNodo();
+        }
+        atual.setElemento(elemento);
+    }
     public int tamanho() {
         return this.tamanho;
     }

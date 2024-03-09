@@ -20,5 +20,17 @@ public class App {
         System.out.println(lista.indiceDe("Diaa"));
         lista.limpa();
         System.out.println(lista);
+        ListaEncadeada<Integer> listaInteiros = new ListaEncadeada<Integer>();
+        listaInteiros.adicionarNoFinal(66);
+        listaInteiros.adicionarNoFinal(7);
+        listaInteiros.adicionarNoFinal(610);
+        listaInteiros.adicionarNoFinal(9);
+        listaInteiros.adicionarNoFinal(3);
+        listaInteiros.adicionarNoFinal(1);
+        listaInteiros.adicionarNoFinal(2);
+        listaInteiros.adicionarNoFinal(610);
+        listaInteiros.adicionarNoFinal(609);
+        ListaEncadeada.ordena(listaInteiros);
+        System.out.println(listaInteiros);
     }
 }

@@ -113,4 +113,21 @@ public class ListaEncadeadaTest {
         Assert.assertTrue(lista.tamanho() == 0);
         Assert.assertEquals(listaVaziaEmString,"[]");
     }
+    @Test
+    public void deveOrdenarListaDeInteiros(){
+        //[1, 2, 3, 7, 9, 66, 609, 610, 610]
+        ListaEncadeada<Integer> listaInteiros = new ListaEncadeada<Integer>();
+        listaInteiros.adicionarNoFinal(66);
+        listaInteiros.adicionarNoFinal(7);
+        listaInteiros.adicionarNoFinal(610);
+        listaInteiros.adicionarNoFinal(9);
+        listaInteiros.adicionarNoFinal(3);
+        listaInteiros.adicionarNoFinal(1);
+        listaInteiros.adicionarNoFinal(2);
+        listaInteiros.adicionarNoFinal(610);
+        listaInteiros.adicionarNoFinal(609);
+        ListaEncadeada.ordena(listaInteiros);
+        String listaEmString = listaInteiros.toString();
+        Assert.assertEquals("[1, 2, 3, 7, 9, 66, 609, 610, 610]",listaEmString);
+    }
 }
