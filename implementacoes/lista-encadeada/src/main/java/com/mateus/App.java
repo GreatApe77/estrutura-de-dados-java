@@ -18,5 +18,7 @@ public class App {
 
         System.out.println(lista);
         System.out.println(lista.indiceDe("Diaa"));
+        lista.limpa();
+        System.out.println(lista);
     }
 }

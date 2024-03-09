@@ -10,7 +10,11 @@ public class ListaEncadeada<T> {
         this.ultimo = null;
         this.tamanho = 0;
     }
-
+    public void limpa(){
+        this.primeiro = null;
+        this.ultimo =null;
+        this.tamanho = 0;
+    }
     public void removerEmPosicao(int posicao) {
         if (posicao < 0 || posicao >= this.tamanho) {
             throw new IndexOutOfBoundsException("Indice invalido");

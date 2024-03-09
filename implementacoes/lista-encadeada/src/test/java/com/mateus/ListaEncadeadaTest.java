@@ -16,31 +16,33 @@ public class ListaEncadeadaTest {
     }
 
     @Test
-    public void deveAdicionarNoFinal(){
+    public void deveAdicionarNoFinal() {
         ListaEncadeada<String> lista = new ListaEncadeada<String>();
         lista.adicionarNoFinal("Oi");
-        Assert.assertTrue(lista.tamanho()==1);
+        Assert.assertTrue(lista.tamanho() == 1);
     }
 
-    @Test 
-    public void deveAdicionarNoComeco(){
+    @Test
+    public void deveAdicionarNoComeco() {
         ListaEncadeada<String> lista = new ListaEncadeada<String>();
         lista.adicionarNoComeco("1");
         lista.adicionarNoComeco("2");
-        Assert.assertTrue(lista.tamanho()==2);
-        Assert.assertEquals("[2, 1]",lista.toString());
+        Assert.assertTrue(lista.tamanho() == 2);
+        Assert.assertEquals("[2, 1]", lista.toString());
     }
+
     @Test
-    public void deveRetornarElemento(){
+    public void deveRetornarElemento() {
         ListaEncadeada<String> lista = new ListaEncadeada<String>();
         lista.adicionarNoFinal("A");
         lista.adicionarNoFinal("B");
         lista.adicionarNoFinal("C");
         String element = lista.get(1);
-        Assert.assertEquals("B",element);
+        Assert.assertEquals("B", element);
     }
+
     @Test
-    public void deveAdicionarNoMeio(){
+    public void deveAdicionarNoMeio() {
         ListaEncadeada<String> lista = new ListaEncadeada<String>();
         lista.adicionarNoFinal("A");
         lista.adicionarNoFinal("B");
@@ -48,52 +50,67 @@ public class ListaEncadeadaTest {
         String elemento = "MEIO";
         lista.adicionarEmPosicao(elemento, 1);
         String retornado = lista.get(1);
-        Assert.assertEquals(elemento,retornado);
-        String listaString =lista.toString();
-        Assert.assertEquals("[A, MEIO, B, C]",listaString);
+        Assert.assertEquals(elemento, retornado);
+        String listaString = lista.toString();
+        Assert.assertEquals("[A, MEIO, B, C]", listaString);
     }
 
     @Test
-    public void deveRemoverDoFinal(){
+    public void deveRemoverDoFinal() {
         ListaEncadeada<String> lista = new ListaEncadeada<String>();
         lista.adicionarNoFinal("A");
         lista.adicionarNoFinal("B");
         lista.adicionarNoFinal("C");
         lista.removerFinal();
-        Assert.assertTrue(lista.tamanho()==2);
+        Assert.assertTrue(lista.tamanho() == 2);
         String listaString = lista.toString();
-        Assert.assertEquals("[A, B]",listaString);
+        Assert.assertEquals("[A, B]", listaString);
     }
+
     @Test
-    public void deveRemoverDoComeco(){
+    public void deveRemoverDoComeco() {
         ListaEncadeada<String> lista = new ListaEncadeada<String>();
         lista.adicionarNoFinal("A");
         lista.adicionarNoFinal("B");
         lista.adicionarNoFinal("C");
         lista.removerComeco();
-        Assert.assertTrue(lista.tamanho()==2);
+        Assert.assertTrue(lista.tamanho() == 2);
         String listaString = lista.toString();
-        Assert.assertEquals("[B, C]",listaString);
+        Assert.assertEquals("[B, C]", listaString);
     }
+
     @Test
-    public void deveRemoverEmPosicao(){
+    public void deveRemoverEmPosicao() {
         ListaEncadeada<String> lista = new ListaEncadeada<String>();
         lista.adicionarNoFinal("A");
         lista.adicionarNoFinal("B");
         lista.adicionarNoFinal("C");
         lista.removerEmPosicao(1);
-        Assert.assertTrue(lista.tamanho()==2);
+        Assert.assertTrue(lista.tamanho() == 2);
         String listaString = lista.toString();
-        Assert.assertEquals("[A, C]",listaString);
+        Assert.assertEquals("[A, C]", listaString);
     }
+
     @Test
-    public void deveRetornarOIndiceDadoElemento(){
+    public void deveRetornarOIndiceDadoElemento() {
         ListaEncadeada<String> lista = new ListaEncadeada<String>();
         lista.adicionarNoFinal("A");
         lista.adicionarNoFinal("B");
         lista.adicionarNoFinal("C");
         int indiceDeB = lista.indiceDe("B");
-        Assert.assertTrue(indiceDeB==1);
+        Assert.assertTrue(indiceDeB == 1);
+    }
+
+    @Test
+    public void deveLimparUmaLista() {
+        ListaEncadeada<String> lista = new ListaEncadeada<String>();
+        lista.adicionarNoFinal("A");
+        lista.adicionarNoFinal("B");
+        lista.adicionarNoFinal("C");
+        lista.limpa();
+        String listaVaziaEmString = lista.toString();
+
+        Assert.assertTrue(lista.tamanho() == 0);
+        Assert.assertEquals(listaVaziaEmString,"[]");
     }
 }
-
