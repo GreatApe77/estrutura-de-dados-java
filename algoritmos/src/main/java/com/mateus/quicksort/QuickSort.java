@@ -1,6 +1,6 @@
 package com.mateus.quicksort;
 
-import java.util.Arrays;
+
 
 public class QuickSort {
     private static int partition(int[] array,int comeco,int fim){
@@ -55,14 +55,5 @@ public class QuickSort {
         quickSortDecrescente(array, pivot+1, fim);
         quickSortDecrescente(array, comeco, pivot-1); 
     }
-    public static void main(String[] args) {
-        //int[] lista = new int[] { 4, 7, 2, 6, 4, 1, 8, 3,2000,9999,1,2,2,1,333,2,1,55,67,876,8,3 };
-        // quickSortCrescente(lista);
-        // System.out.println(Arrays.toString(lista));
-        // quickSortDecrescente(lista);
-        //quickSort(lista, 0, lista.length-1);
-        //System.out.println(Arrays.toString(lista));
-        //quickSortDecrescente(lista, 0, lista.length-1);
-        //System.out.println(Arrays.toString(lista));
-    }
+    
 }
