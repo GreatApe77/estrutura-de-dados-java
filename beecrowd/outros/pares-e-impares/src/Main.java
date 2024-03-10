@@ -1,75 +1,237 @@
-import java.util.Arrays;
+
 import java.util.Scanner;
 import java.io.IOException;
 
+class Lista<T> {
+    private T[] elementos;
+    private int tamanho;
+    private int tamanhoPadrao = 5;
+
+    @SuppressWarnings("unchecked")
+    public Lista(int capacidade) {
+        this.elementos = (T[]) new Object[capacidade];
+        this.tamanho = 0;
+    }
+
+    public Lista(T[] elementosIniciais) {
+        this.elementos = elementosIniciais;
+        this.tamanho = elementosIniciais.length;
+    }
+
+    public Lista(Lista<T> lista) {
+        this.tamanho = lista.tamanho();
+        this.elementos = lista.toArray();
+    }
+
+    @SuppressWarnings("unchecked")
+    public Lista() {
+        this.elementos = (T[]) new Object[this.tamanhoPadrao];
+        this.tamanho = 0;
+    }
+
+    public int tamanho() {
+        return this.tamanho;
+    }
+
+    public void adicionarElemento(T elemento, int posicao) {
+        _lancarErroDePosicaoInvalida(posicao);
+        _aumentarCapacidade();
+        // inserir x na posicao 4
+        // [a b c d e e f] t = 6 i=4
+        for (int i = tamanho - 1; i >= posicao; i--) {
+            this.elementos[i + 1] = this.elementos[i];
+        }
+        // [a b c d x e f]
+        setElemento(posicao, elemento);
+        this.tamanho++;
+    }
+
+    public void setElemento(int posicao, T elemento) {
+        this.elementos[posicao] = elemento;
+    }
+
+    @SuppressWarnings("unchecked")
+
+    public void limpar() {
+        this.elementos = (T[]) new Object[tamanhoPadrao];
+        this.tamanho = 0;
+    }
+
+    public boolean estaVazia() {
+        return _estaVazia();
+    }
+
+    // privados
+    private boolean _posicaoValida(int posicao) {
+        return posicao >= 0 && posicao < tamanho;
+    }
+
+    private void _lancarErroDePosicaoInvalida(int posicao) throws IllegalArgumentException {
+        if (!_posicaoValida(posicao))
+            throw new IllegalArgumentException("Tentando acessar posicao invalida");
+    }
+
+    private void _aumentarCapacidade() {
+        if (_estaCheia()) {
+            int capacidadeAtual = this.elementos.length;
+            int novaCapacidade = capacidadeAtual * 2;
+            @SuppressWarnings("unchecked")
+            T[] novoArrayMaior = (T[]) new Object[novaCapacidade];
+            for (int i = 0; i < this.tamanho; i++) {
+                novoArrayMaior[i] = this.elementos[i];
+            }
+            this.elementos = novoArrayMaior;
+        }
+    }
+
+    private boolean _estaCheia() {
+        return this.tamanho == this.elementos.length;
+    }
+
+    private boolean _estaVazia() {
+        return this.tamanho == 0;
+    }
+
+    public void adicionarElementoNoFinal(T elemento) {
+        _aumentarCapacidade();
+        setElemento(this.tamanho, elemento);
+        this.tamanho++;
+    }
+
+    public T pesquisarPorIndice(int posicao) throws IllegalArgumentException {
+        _lancarErroDePosicaoInvalida(posicao);
+        return this.elementos[posicao];
+    }
+
+    // Big O(n)
+    public int pesquisarIndiceDe(T elemento) {
+
+        for (int i = 0; i < this.tamanho; i++) {
+            if (this.elementos[i].equals(elemento)) {
+                return i;
+            }
+
+        }
+        return -1;
+    }
+
+    public int pesquisarUltimoIndiceDe(T elemento) {
+
+        for (int i = this.tamanho - 1; i >= 0; i--) {
+            if (this.elementos[i].equals(elemento)) {
+                return i;
+            }
+
+        }
+        return -1;
+    }
+
+    public boolean contem(T elemento) {
+        return pesquisarIndiceDe(elemento) != -1;
+    }
+
+    public String toString() {
+        StringBuilder vetorEmString = new StringBuilder();
+        vetorEmString.append("[");
+
+        for (int i = 0; i < this.tamanho; i++) {
+            vetorEmString.append(this.elementos[i]);
+            if (i < this.tamanho - 1) {
+                vetorEmString.append(", ");
+            }
+        }
+        vetorEmString.append("]");
+
+        return vetorEmString.toString();
+    }
+
+    public boolean removerPorPosicao(int posicao) {
+        _lancarErroDePosicaoInvalida(posicao);
+        // [a b c e f ]|f] i=4
+        for (int i = posicao; i < tamanho - 1; i++) {
+            this.elementos[i] = this.elementos[i + 1];
+        }
+        this.tamanho--;
+        return true;
+    }
+
+    public boolean removerElemento(T elemento) {
+        int posicao = pesquisarIndiceDe(elemento);
+        if (posicao == -1)
+            return false;
+        return this.removerPorPosicao(posicao);
+    }
+
+    @SuppressWarnings("unchecked")
+    public T[] toArray() {
+        T[] formatoArray = (T[]) new Object[this.tamanho];
+        for (int i = 0; i < formatoArray.length; i++) {
+            formatoArray[i] = this.elementos[i];
+        }
+        return formatoArray;
+    }
+
+    public Lista<T> copia() {
+        return new Lista<T>(this);
+    }
+}
+
 class QuickSort {
-    private static int _partition(int[] array, int inicio, int fim) {
-        int pivot = array[fim];
-        int i = inicio;
-        for (int j = inicio; j < fim; j++) {
-            if (array[j] <= pivot) {
-                int auxiliar = array[j];
-                array[j] = array[i];
-                array[i] = auxiliar;
+    private static int partition(Lista<Integer> lista, int comeco, int fim) {
+        int pivot = lista.pesquisarPorIndice(fim);
+        int i = comeco - 1;
+        for (int j = comeco; j <= fim - 1; j++) {
+            if (lista.pesquisarPorIndice(j) < pivot) {
                 i++;
+                int auxiliar = lista.pesquisarPorIndice(i);
+                lista.setElemento(i, lista.pesquisarPorIndice(j));
+                lista.setElemento(j, auxiliar);
             }
         }
-        int auxiliar = array[i];
-        array[i] = array[fim];
-        array[fim] = auxiliar;
+        i++;
+        int auxiliar = lista.pesquisarPorIndice(i);
+        lista.setElemento(i, lista.pesquisarPorIndice(fim));
+        lista.setElemento(fim, auxiliar);
         return i;
     }
 
-    private static void _quickSort(int[] array, int inicio, int fim) {
-        if (fim == -1) {
-            fim = array.length - 1;
-        }
-        if (inicio < fim) {
-            int posicaoPivot = _partition(array, inicio, fim);
-            _quickSort(array, inicio, posicaoPivot - 1);
-            _quickSort(array, posicaoPivot + 1, fim);
-        }
-    }
+    public static void quickSort(Lista<Integer> lista, int comeco, int fim) {
+        if (fim <= comeco) {
+            return;
 
-    public static void quickSort(int[] array) {
-        int inicio = 0;
-        int fim = -1;
-        _quickSort(array, inicio, fim);
+        }
+        int pivot = partition(lista, comeco, fim);
+        quickSort(lista, pivot + 1, fim);
+        quickSort(lista, comeco, pivot - 1);
 
     }
 
-    private static void _quickSortDecrescente(int[] array, int inicio, int fim) {
-        if (fim == -1) {
-            fim = array.length - 1;
-        }
-        if (inicio < fim) {
-            int posicaoPivot = _partitionDecrescente(array, inicio, fim);
-            _quickSortDecrescente(array, inicio, posicaoPivot - 1);
-            _quickSortDecrescente(array, posicaoPivot + 1, fim);
-        }
-    }
-
-    private static int _partitionDecrescente(int[] array, int inicio, int fim) {
-        int pivot = array[fim];
-        int i = inicio;
-        for (int j = inicio; j < fim; j++) {
-            if (array[j] >= pivot) {
-                int auxiliar = array[j];
-                array[j] = array[i];
-                array[i] = auxiliar;
+    private static int partitionDecrescente(Lista<Integer> lista, int comeco, int fim) {
+        int pivot = lista.pesquisarPorIndice(fim);
+        int i = comeco - 1;
+        for (int j = comeco; j <= fim - 1; j++) {
+            if (lista.pesquisarPorIndice(j) > pivot) {
                 i++;
+                int auxiliar = lista.pesquisarPorIndice(i);
+                lista.setElemento(i, lista.pesquisarPorIndice(j));
+                lista.setElemento(j, auxiliar);
             }
         }
-        int auxiliar = array[i];
-        array[i] = array[fim];
-        array[fim] = auxiliar;
+        i++;
+        int auxiliar = lista.pesquisarPorIndice(i);
+        lista.setElemento(i, lista.pesquisarPorIndice(fim));
+        lista.setElemento(fim, auxiliar);
         return i;
     }
 
-    public static void quickSortDecrescente(int[] array) {
-        int inicio = 0;
-        int fim = -1;
-        _quickSortDecrescente(array, inicio, fim);
+    public static void ordenaListaDecrescente(Lista<Integer> lista, int comeco, int fim) {
+        if (fim <= comeco) {
+            return;
+
+        }
+        int pivot = partitionDecrescente(lista, comeco, fim);
+        ordenaListaDecrescente(lista, pivot + 1, fim);
+        ordenaListaDecrescente(lista, comeco, pivot - 1);
     }
 }
 
@@ -100,46 +262,39 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
 
+        //Integer[] l = new Integer[] { 123, 42, 2, 1, 4, 6, 734, 3, 3, 3, 5, 7, 444, 3, 222, 4, 6, 7, 6, 45, 3, 2, 1, 1,
+        //        5 };
+//
+        //Lista<Integer> lista = new Lista<Integer>(l);
+        //QuickSort.quickSort(lista, 0, lista.tamanho() - 1);
+        //System.out.println(lista);
+        //QuickSort.ordenaListaDecrescente(lista, 0, lista.tamanho() - 1);
+        //System.out.println(lista);
+        Lista<Integer> pares = new Lista<Integer>(10000);
+        Lista<Integer> impares = new Lista<Integer>(10000);
+
         Scanner scanner = new Scanner(System.in);
-        // Lista<Integer> pares = new Lista<Integer>(100000);
-        // Lista<Integer> impares = new Lista<Integer>(100000);
-        int[] pares = new int[100000];
-        int[] impares = new int[100000];
-        int tamanhoPares = 0;
-        int tamanhoImpares = 0;
         int N = scanner.nextInt();
         for (int i = 0; i < N; i++) {
-            int numeroEntrada = scanner.nextInt();
-
-            if (numeroEntrada % 2 == 0) {
-                // par
-                pares[tamanhoPares] = numeroEntrada;
-                tamanhoPares++;
-            } else {
-                impares[tamanhoImpares] = numeroEntrada;
-                tamanhoImpares++;
+            int entradaN = scanner.nextInt();
+            if(entradaN%2==0){
+                pares.adicionarElementoNoFinal(entradaN);
+            }else{
+                impares.adicionarElementoNoFinal(entradaN);
             }
         }
-        QuickSort.quickSort(pares);
-        QuickSort.quickSortDecrescente(impares);
-        // ordenaListaDecrescente(impares);
-        for (int i = 0; i < tamanhoPares; i++) {
-            System.out.println(pares[i]);
-        }
-
-        for (int i = 0; i < tamanhoImpares; i++) {
-            System.out.println(impares[i]);
-        }
         scanner.close();
+        QuickSort.quickSort(pares, 0, pares.tamanho()-1);
+        QuickSort.ordenaListaDecrescente(impares, 0, impares.tamanho()-1);
+        for (int i = 0; i < pares.tamanho(); i++) {
+            System.out.println(pares.pesquisarPorIndice(i));
+        }
+        for (int i = 0; i < impares.tamanho(); i++) {
+            System.out.println(impares.pesquisarPorIndice(i));
+        }
+        
+        //System.out.println(impares);
 
-        // int[] l = new int[] { 123, 42, 2, 1, 4, 6, 734, 3, 3, 3, 5, 7, 444, 3, 222,
-        // 4, 6, 7, 6, 45, 3, 2, 1, 1, 5 };
-        // QuickSort.quickSort(l);
-        // System.out.println(Arrays.toString(l));
-        // QuickSort.quickSort(l);
-        // System.out.println(Arrays.toString(l));
-        // QuickSort.quickSortDecrescente(l);
-        // System.out.println(Arrays.toString(l));
-
+        
     }
 }
