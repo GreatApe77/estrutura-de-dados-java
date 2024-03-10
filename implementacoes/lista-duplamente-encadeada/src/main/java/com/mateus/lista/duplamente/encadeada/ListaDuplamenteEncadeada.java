@@ -1,5 +1,5 @@
 package com.mateus.lista.duplamente.encadeada;
 
-public class ListaDuplamenteEncadeada {
+public class ListaDuplamenteEncadeada<T> {
     
 }
