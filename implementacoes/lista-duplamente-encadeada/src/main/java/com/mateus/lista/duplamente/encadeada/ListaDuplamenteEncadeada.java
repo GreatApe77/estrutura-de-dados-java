@@ -116,6 +116,26 @@ public class ListaDuplamenteEncadeada<T> {
         this.tamanho--;
     }
 
+    public void set(int posicao,T elemento){
+        if(posicao<0 || posicao>=this.tamanho){
+            throw new IndexOutOfBoundsException("Posicao invalida");
+        }
+        Nodo<T> atual = this.primeiro;
+        for (int i = 0; i < posicao; i++) {
+            atual = atual.getProximo();
+        }
+        atual.setElemento(elemento);
+    }
+    public T get(int posicao){
+        if(posicao<0 || posicao>=this.tamanho){
+            throw new IndexOutOfBoundsException("Posicao invalida");
+        }
+        Nodo<T> atual = this.primeiro;
+        for (int i = 0; i < posicao; i++) {
+            atual = atual.getProximo();
+        }
+        return atual.getElemento();
+    }
     @Override
     public String toString() {
         

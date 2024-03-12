@@ -22,7 +22,11 @@ public class App {
         lista.remover(2);
         lista.remover(0);
         lista.remover(2);
-        //lista.remover(2);
+        // lista.remover(2);
+        lista.adicionarFinal(88);
+        lista.set(2, 99);
+
         System.out.println(lista);
+        System.out.println(lista.get(2));
     }
 }
