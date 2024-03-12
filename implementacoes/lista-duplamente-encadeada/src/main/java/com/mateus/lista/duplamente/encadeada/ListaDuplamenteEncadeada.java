@@ -24,7 +24,16 @@ public class ListaDuplamenteEncadeada<T> {
         this.tamanho++;
     }
     public void adicionarFinal(T elemento){
-
+        Nodo<T> novoNodo = new Nodo<T>(elemento);
+        if(this.tamanho==0){
+            this.primeiro = novoNodo;
+            this.ultimo = novoNodo;
+        }else{
+            this.ultimo.setProximo(novoNodo);
+            novoNodo.setAnterior(this.ultimo);
+            this.ultimo = novoNodo;
+        }
+        this.tamanho++;
     }
     public void adicionar(int posicao, T elemento){
 

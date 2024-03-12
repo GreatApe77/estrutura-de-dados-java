@@ -9,8 +9,9 @@ import com.mateus.lista.duplamente.encadeada.ListaDuplamenteEncadeada;
 public class App {
     public static void main(String[] args) {
         ListaDuplamenteEncadeada<Integer> lista = new ListaDuplamenteEncadeada<Integer>();
-        lista.adicionarComeco(6);
-        lista.adicionarComeco(1);
+        
+        
+        lista.adicionarFinal(70);
         System.out.println(lista);
     }
 }
