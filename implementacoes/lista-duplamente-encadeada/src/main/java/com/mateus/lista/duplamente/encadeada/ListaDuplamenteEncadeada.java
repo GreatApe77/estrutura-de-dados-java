@@ -21,6 +21,7 @@ public class ListaDuplamenteEncadeada<T> {
             novoNodo.setProximo(primeiro);
             primeiro = novoNodo;
         }
+        this.tamanho++;
     }
     public void adicionarFinal(T elemento){
 
@@ -36,5 +37,16 @@ public class ListaDuplamenteEncadeada<T> {
         StringBuilder s = new StringBuilder();
         s.append("[");
         Nodo<T> atual = this.primeiro;
+        while (atual!=null) {
+            if(atual==ultimo){
+                s.append(atual.getElemento());
+            }else{
+                s.append(atual.getElemento());
+                s.append(", ");
+            }
+            atual = atual.getProximo();
+        }
+        s.append("]");
+        return s.toString();
     }
 }
