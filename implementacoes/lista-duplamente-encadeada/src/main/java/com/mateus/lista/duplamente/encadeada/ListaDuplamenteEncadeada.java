@@ -36,7 +36,31 @@ public class ListaDuplamenteEncadeada<T> {
         this.tamanho++;
     }
     public void adicionar(int posicao, T elemento){
+        if(posicao<0 || posicao>=this.tamanho){
+            throw new IndexOutOfBoundsException("Posicao invalida");
+        }
+        
+        if(posicao==0){
+            this.adicionarComeco(elemento);
+            return;
+        }
+        if(posicao == this.tamanho-1){
+            this.adicionarFinal(elemento);
+            return;
+        }
+        Nodo<T> novoNodo = new Nodo<T>(elemento);
+        
+        Nodo<T> atual = this.primeiro;
+        for (int i = 0; i < posicao-1; i++) {
+            atual = atual.getProximo();
+        }
+        novoNodo.setAnterior(atual);
+        novoNodo.setProximo(atual.getProximo());
+        atual.getProximo().setAnterior(novoNodo);
+        atual.setProximo(novoNodo);
 
+        this.tamanho++;
+        
     }
 
 
