@@ -14,6 +14,8 @@ public class App {
         lista.adicionar(0, 9);
         lista.adicionar(0, 99);
         lista.adicionar(1, 600);
+        lista.removerComeco();
+        lista.removerFinal();
         System.out.println(lista);
     }
 }

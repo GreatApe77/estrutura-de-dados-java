@@ -63,6 +63,36 @@ public class ListaDuplamenteEncadeada<T> {
         
     }
 
+    public void removerComeco(){
+        if(this.tamanho==0){
+            throw new IndexOutOfBoundsException("Lista esta vazia");
+
+        }
+        if(this.tamanho==1){
+            this.primeiro =null;
+            this.ultimo =null;
+        }else {
+            
+            this.primeiro = primeiro.getProximo();
+            this.primeiro.setAnterior(null);
+        }
+        this.tamanho--;
+    }
+
+    public void removerFinal(){
+        if(this.tamanho==0){
+            throw new IndexOutOfBoundsException("Lista esta vazia");
+
+        }
+        if(this.tamanho==1){
+            this.primeiro =null;
+            this.ultimo =null;
+        }else{
+            this.ultimo = this.ultimo.getAnterior();
+            this.ultimo.setProximo(null);
+        }
+        this.tamanho--;
+    }
 
     @Override
     public String toString() {
