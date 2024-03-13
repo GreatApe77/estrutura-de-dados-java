@@ -27,12 +27,13 @@ public class Pilha<T> {
     }
 
     public void empilha(T elemento) {
-        _aumentaCapacidade();
+        if(_estaCheia()) throw new StackOverflowError("A pilha atingiu sua capacidade maxima");
+        //_aumentaCapacidade();
         this.elementos[tamanho] = elemento;
         this.tamanho++;
     }
 
-    private void _aumentaCapacidade() {
+/*     private void _aumentaCapacidade() {
         if (_estaCheia()) {
             int capacidadeAtual = this.elementos.length;
             int novaCapacidade = capacidadeAtual * 2;
@@ -44,7 +45,7 @@ public class Pilha<T> {
             this.elementos = novoArrayMaior;
         }
     }
-
+ */
     public boolean estaVazia() {
         return false;
 
