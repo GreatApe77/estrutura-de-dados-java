@@ -1,6 +1,5 @@
 package pilha;
 
-
 import java.util.EmptyStackException;
 
 public class Pilha<T> {
@@ -27,27 +26,30 @@ public class Pilha<T> {
     }
 
     public void empilha(T elemento) {
-        if(_estaCheia()) throw new StackOverflowError("A pilha atingiu sua capacidade maxima");
-        //_aumentaCapacidade();
+        if (_estaCheia())
+            throw new StackOverflowError("A pilha atingiu sua capacidade maxima");
+        // _aumentaCapacidade();
         this.elementos[tamanho] = elemento;
         this.tamanho++;
     }
 
-/*     private void _aumentaCapacidade() {
-        if (_estaCheia()) {
-            int capacidadeAtual = this.elementos.length;
-            int novaCapacidade = capacidadeAtual * 2;
-            @SuppressWarnings("unchecked")
-            T[] novoArrayMaior = (T[]) new Object[novaCapacidade];
-            for (int i = 0; i < this.elementos.length; i++) {
-                novoArrayMaior[i] = this.elementos[i];
-            }
-            this.elementos = novoArrayMaior;
-        }
-    }
- */
+    /*
+     * private void _aumentaCapacidade() {
+     * if (_estaCheia()) {
+     * int capacidadeAtual = this.elementos.length;
+     * int novaCapacidade = capacidadeAtual * 2;
+     * 
+     * @SuppressWarnings("unchecked")
+     * T[] novoArrayMaior = (T[]) new Object[novaCapacidade];
+     * for (int i = 0; i < this.elementos.length; i++) {
+     * novoArrayMaior[i] = this.elementos[i];
+     * }
+     * this.elementos = novoArrayMaior;
+     * }
+     * }
+     */
     public boolean estaVazia() {
-        return false;
+        return this.tamanho == 0;
 
     }
 
@@ -56,16 +58,17 @@ public class Pilha<T> {
     }
 
     public T topo() {
-        if(estaVazia()) return null;
+        if (estaVazia())
+            return null;
         return this.elementos[this.tamanho - 1];
 
     }
 
     public T desempilha() {
-        if(estaVazia()){
+        if (estaVazia()) {
             throw new EmptyStackException();
         }
-        T elementoDesempilhado = this.elementos[tamanho];
+        T elementoDesempilhado = this.elementos[this.tamanho - 1];
         this.tamanho--;
         return elementoDesempilhado;
     }
