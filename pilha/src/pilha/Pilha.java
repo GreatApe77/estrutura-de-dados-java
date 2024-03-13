@@ -56,6 +56,7 @@ public class Pilha<T> {
     }
 
     public T topo() {
+        if(estaVazia()) return null;
         return this.elementos[this.tamanho - 1];
 
     }
