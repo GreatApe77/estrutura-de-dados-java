@@ -1,5 +1,6 @@
 package com.example;
 
+
 public class Fatorial {
     /**
      * Método que calcula o fatorial de um número
@@ -12,4 +13,6 @@ public class Fatorial {
 
         return n*fatorial(n-1); //Casos de Recursão. Recursão linear
     }
+    
+
 }
