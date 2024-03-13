@@ -1,6 +1,7 @@
 package pilha;
 
-import java.util.Arrays;
+
+import java.util.EmptyStackException;
 
 public class Pilha<T> {
     private T[] elementos;
@@ -26,6 +27,7 @@ public class Pilha<T> {
     }
 
     public void empilha(T elemento) {
+        _aumentaCapacidade();
         this.elementos[tamanho] = elemento;
         this.tamanho++;
     }
@@ -58,6 +60,9 @@ public class Pilha<T> {
     }
 
     public T desempilha() {
+        if(estaVazia()){
+            throw new EmptyStackException();
+        }
         T elementoDesempilhado = this.elementos[tamanho];
         this.tamanho--;
         return elementoDesempilhado;
