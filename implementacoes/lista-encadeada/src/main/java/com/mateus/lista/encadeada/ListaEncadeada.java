@@ -48,6 +48,7 @@ public class ListaEncadeada<T> {
         if (tamanho == 1) {
             this.primeiro = null;
             this.ultimo = null;
+            this.tamanho--;
             return;
         }
         Nodo<T> penultimo = this._getNodo(tamanho - 2);
