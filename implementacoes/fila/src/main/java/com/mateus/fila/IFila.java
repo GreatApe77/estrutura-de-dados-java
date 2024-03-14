@@ -7,5 +7,5 @@ public interface IFila<T> {
     T desenfileirar() throws NoSuchElementException;
     T primeiroDaFila() throws NoSuchElementException;
     boolean estaVazia();
-    int size();
+    int tamanho();
 }

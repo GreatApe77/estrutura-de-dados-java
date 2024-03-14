@@ -1,9 +1,9 @@
 package com.mateus.fila;
 
 public class ListaDuplamenteEncadeada<T> {
-    private int tamanho;
-    private Nodo<T> primeiro;
-    private Nodo<T> ultimo;
+    protected int tamanho;
+    protected Nodo<T> primeiro;
+    protected Nodo<T> ultimo;
 
     public ListaDuplamenteEncadeada(){
         this.tamanho= 0;
