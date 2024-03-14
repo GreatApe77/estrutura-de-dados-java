@@ -66,6 +66,15 @@ public class ListaEncadeadaTest {
         String listaString = lista.toString();
         Assert.assertEquals("[A, B]", listaString);
     }
+    @Test
+    public void deveRemoverCorretamenteQuandoExistirApenasUmElemento(){
+        ListaEncadeada<String> lista = new ListaEncadeada<String>();
+        lista.adicionarNoFinal("A");
+        Assert.assertTrue(lista.tamanho()==1);
+        lista.removerFinal();
+        Assert.assertTrue(lista.tamanho()==0);
+        Assert.assertEquals("[]", lista.toString());
+    }
 
     @Test
     public void deveRemoverDoComeco() {
