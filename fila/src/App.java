@@ -11,6 +11,7 @@ public class App {
         fila.enfileira(5);
         fila.desenfileira();
         System.out.println(fila);
+        System.out.println(fila.espiar());
 
     }
 }
