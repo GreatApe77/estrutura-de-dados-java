@@ -19,4 +19,18 @@ public class FilaTest {
         Assert.assertEquals(elemento,fila.primeiroDaFila());
 
     }
+    @Test
+    public void deveDesenfileirar(){
+        IFila<Integer> fila = new Fila<Integer>();
+        Integer elemento1 = 999;
+        Integer elemento2 = 77;
+        fila.enfileirar(elemento1);
+        fila.enfileirar(elemento2);
+        Assert.assertEquals(elemento1,fila.desenfileirar());
+        Assert.assertTrue(fila.tamanho()==1);
+        Assert.assertEquals(elemento2,fila.desenfileirar());
+        Assert.assertTrue(fila.tamanho()==0);
+        Assert.assertTrue(fila.estaVazia());
+        
+    }
 }
