@@ -10,7 +10,9 @@ interface IPilha<T> {
     T topo() throws EmptyStackException;
 
     boolean estaVazia();
+
     void limpa();
+
     int tamanho();
 }
 
@@ -287,9 +289,10 @@ class Pilha<T> extends ListaEncadeada<T> implements IPilha<T> {
     public T topo() throws EmptyStackException {
         return this.ultimo.getElemento();
     }
+
     @Override
     public void limpa() {
-        
+
         super.limpa();
     }
 
@@ -298,60 +301,43 @@ class Pilha<T> extends ListaEncadeada<T> implements IPilha<T> {
         return this.tamanho == 0;
     }
 
-    public boolean estaOrdenadaCrescente(Pilha<Integer> pilha) {
-
-        Nodo<Integer> atual = pilha.primeiro;
-        for (int i = 0; i < pilha.tamanho() - 1; i++) {
-            if (atual.getElemento() > atual.getProximoNodo().getElemento()) {
-                return false;
-            }
-
-            atual = atual.getProximoNodo();
-        }
-        return true;
-    }
-    
-    public boolean estaOrdenadaDecrescente(Pilha<Integer> pilha) {
-
-        Nodo<Integer> atual = pilha.primeiro;
-        for (int i = 0; i < pilha.tamanho() - 1; i++) {
-            if (atual.getElemento() < atual.getProximoNodo().getElemento()) {
-                return false;
-            }
-
-            atual = atual.getProximoNodo();
-        }
-        return true;
+    public T base() {
+        return this.primeiro.getElemento();
     }
 
 }
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        //Pilha<Integer> pilha = new Pilha<Integer>();
-        //pilha.empilhar(3);
-        //pilha.empilhar(4);
-        //System.out.println(pilha.estaOrdenadaDecrescente(pilha));
+        // Pilha<Integer> pilha = new Pilha<Integer>();
+        // pilha.empilhar(3);
+        // pilha.empilhar(4);
+        // System.out.println(pilha.estaOrdenadaDecrescente(pilha));
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\\n");
         Pilha<Integer> pilha = new Pilha<Integer>();
-        
+
         int N;
-        
+
         do {
             N = scanner.nextInt();
-            if(N==0) break;
-            String linha="";
+            if (N == 0)
+                break;
+            String linha = "";
             while (true) {
                 linha = scanner.next();
-                if(linha.startsWith("0")) break;
+                if (linha.startsWith("0"))
+                    break;
                 String[] linhaEmArray = linha.split(" ");
                 for (int i = 0; i < linhaEmArray.length; i++) {
                     pilha.empilhar(Integer.parseInt(linhaEmArray[i]));
                 }
-                if(pilha.estaOrdenadaCrescente(pilha) || pilha.estaOrdenadaDecrescente(pilha)){
+                int topo = pilha.topo();
+                int base = pilha.base();
+
+                if ((topo == N && base == 1) || (topo == 1 && base == N)) {
                     System.out.println("Yes");
-                }else{
+                } else {
                     System.out.println("No");
                 }
                 pilha.limpa();
