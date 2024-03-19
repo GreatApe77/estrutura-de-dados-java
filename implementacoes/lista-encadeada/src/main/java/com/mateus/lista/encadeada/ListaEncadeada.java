@@ -10,11 +10,13 @@ public class ListaEncadeada<T> {
         this.ultimo = null;
         this.tamanho = 0;
     }
-    public void limpa(){
+
+    public void limpa() {
         this.primeiro = null;
-        this.ultimo =null;
+        this.ultimo = null;
         this.tamanho = 0;
     }
+
     public void removerEmPosicao(int posicao) {
         if (posicao < 0 || posicao >= this.tamanho) {
             throw new IndexOutOfBoundsException("Indice invalido");
@@ -129,26 +131,28 @@ public class ListaEncadeada<T> {
         int indice = 0;
         Nodo<T> atual = this.primeiro;
         while (atual != null) {
-            if(atual.getElemento()==elemento){
+            if (atual.getElemento() == elemento) {
                 return indice;
             }
-            atual=atual.getProximoNodo();
+            atual = atual.getProximoNodo();
             indice++;
         }
         return -1;
 
     }
-    public static void ordena(ListaEncadeada<Integer> lista){
+
+    public static void ordena(ListaEncadeada<Integer> lista) {
         for (int i = 0; i < lista.tamanho(); i++) {
-            for (int j = 0; j < lista.tamanho()-1; j++) {
-                if(lista.get(j)>lista.get(j+1)){
-                    int auxiliar = lista.get(j+1);
-                    lista.set(lista.get(j), j+1);
+            for (int j = 0; j < lista.tamanho() - 1; j++) {
+                if (lista.get(j) > lista.get(j + 1)) {
+                    int auxiliar = lista.get(j + 1);
+                    lista.set(lista.get(j), j + 1);
                     lista.set(auxiliar, j);
                 }
             }
         }
     }
+
     private Nodo<T> _getNodo(int posicao) {
         if (posicao < 0 || posicao >= this.tamanho) {
             throw new IndexOutOfBoundsException("Indice invalido");
@@ -180,7 +184,8 @@ public class ListaEncadeada<T> {
 
         return s.toString();
     }
-    public void set(T elemento,int posicao){
+
+    public void set(T elemento, int posicao) {
         if (posicao < 0 || posicao >= this.tamanho) {
             throw new IndexOutOfBoundsException("Indice invalido");
         }
@@ -190,23 +195,46 @@ public class ListaEncadeada<T> {
         }
         atual.setElemento(elemento);
     }
-    
-    public static void inserirOrdenado(ListaEncadeada<Integer> lista,int elemento){
+
+    @SuppressWarnings("unchecked")
+    public void insereOrdenado(T elemento){
+        Nodo<T> novoNodo = new Nodo<T>(elemento);
+        if(primeiro==null || ((Comparable<T>) elemento).compareTo(primeiro.getElemento())==-1 ||((Comparable<T>) elemento).compareTo(primeiro.getElemento())==0  ){
+            novoNodo.setProximoNodo(this.primeiro);
+            this.primeiro = novoNodo;
+            if(this.ultimo==null){
+                this.ultimo = novoNodo;
+            }
+        }else{
+            Nodo<T> atual = this.primeiro;
+            while (atual.getProximoNodo()!=null && ((Comparable<T>)atual.getProximoNodo().getElemento()).compareTo(elemento)==-1) {
+                atual = atual.getProximoNodo();
+            }
+            novoNodo.setProximoNodo(atual.getProximoNodo());
+            atual.setProximoNodo(novoNodo);
+            if(atual==this.ultimo){
+                ultimo = novoNodo;
+            }
+        }
+        this.tamanho++;
+    }
+
+    public static void inserirOrdenado(ListaEncadeada<Integer> lista, int elemento) {
         Nodo<Integer> novoNodo = new Nodo<Integer>(elemento);
-        if(lista.tamanho==0){
+        if (lista.tamanho == 0) {
             lista.primeiro = novoNodo;
             lista.ultimo = novoNodo;
-        }else if(elemento<=lista.primeiro.getElemento()){
+        } else if (elemento <= lista.primeiro.getElemento()) {
             novoNodo.setProximoNodo(lista.primeiro);
             lista.primeiro = novoNodo;
-        }else if (elemento>=lista.ultimo.getElemento()){
+        } else if (elemento >= lista.ultimo.getElemento()) {
             lista.ultimo.setProximoNodo(novoNodo);
             lista.ultimo = novoNodo;
 
-        }else{
+        } else {
             Nodo<Integer> atual = lista.primeiro;
 
-            while (atual.getProximoNodo()!=null && elemento>atual.getProximoNodo().getElemento()) {
+            while (atual.getProximoNodo() != null && elemento > atual.getProximoNodo().getElemento()) {
                 atual = atual.getProximoNodo();
             }
             novoNodo.setProximoNodo(atual.getProximoNodo());
@@ -214,6 +242,7 @@ public class ListaEncadeada<T> {
         }
         lista.tamanho++;
     }
+
     public int tamanho() {
         return this.tamanho;
     }
