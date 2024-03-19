@@ -122,6 +122,18 @@ public class ListaEncadeadaTest {
         Assert.assertTrue(lista.tamanho() == 0);
         Assert.assertEquals(listaVaziaEmString,"[]");
     }
+
+    @Test
+    public void deveInserirOrdenadoComGenerics(){
+        ListaEncadeada<Integer> lista = new ListaEncadeada<Integer>();
+        //[1, 3, 50, 77, 78]
+        lista.insereOrdenado(77);
+        lista.insereOrdenado(78);
+        lista.insereOrdenado(3);
+        lista.insereOrdenado(1);
+        lista.insereOrdenado(50);
+        Assert.assertEquals("[1, 3, 50, 77, 78]", lista.toString());
+    }
     @Test
     public void deveOrdenarListaDeInteiros(){
         //[1, 2, 3, 7, 9, 66, 609, 610, 610]
