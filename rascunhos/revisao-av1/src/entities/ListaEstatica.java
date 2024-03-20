@@ -44,7 +44,30 @@ public class ListaEstatica<T> {
 
 
     }
-
+    
+    public void remover(){
+        if(estaVazia()) throw new Error("Vazia");
+        this.elementos[tamanho()-1] = null;
+        _decrementarTamanho();
+    }
+    public void remover(int posicao){
+        if(estaVazia()) throw new Error("Vazia");
+        if(posicao<0 || posicao>=tamanho()){
+            throw new IndexOutOfBoundsException();
+        }
+        if(posicao==tamanho()-1){
+            this.remover();
+            return;
+        }
+        //[a,b,c,d,f,g,h,t,t]
+        for (int i = posicao; i < tamanho(); i++) {
+            this.elementos[i] = this.elementos[i+1];
+        }
+        _decrementarTamanho();
+    }
+    public void atualizar(int posicao,T elemento){
+        this.elementos[posicao] = elemento;
+    }
     public int tamanho(){
         return this.tamanho;
     }
@@ -53,6 +76,9 @@ public class ListaEstatica<T> {
     }
     private boolean _estaCheia(){
         return tamanho()==elementos.length;
+    }
+    private void _decrementarTamanho(){
+        this.tamanho--;
     }
     private void _incrementarTamanho(){
         this.tamanho++;
