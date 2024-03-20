@@ -40,6 +40,8 @@ public class ListaEncadeada<T> {
         this.tamanho=0;
     }
     
+   
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public void insereOrdenado(T elemento){
         //Comparable == 0
         // Comparable > 1
@@ -103,6 +105,18 @@ public class ListaEncadeada<T> {
         this.ultimo = novoNodo;
         _incrementarTamanho();
     }
+    
+    public void removerComeco(){
+        if(estaVazia()) throw new Error("Lista vazia");
+        if(tamanho()==1){
+            this.primeiro=null;
+            this.ultimo = null;
+            _decrementarTamanho();
+            return;
+        }
+        this.primeiro = this.primeiro.getProximo();
+        _decrementarTamanho();
+    }
     public int tamanho() {
         return this.tamanho;
     }
@@ -113,7 +127,9 @@ public class ListaEncadeada<T> {
     private void _incrementarTamanho() {
         this.tamanho++;
     }
-
+    private void _decrementarTamanho(){
+        this.tamanho--;
+    }
     @Override
     public String toString() {
         String s = "[";

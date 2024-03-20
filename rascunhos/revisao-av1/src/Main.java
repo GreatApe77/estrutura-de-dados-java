@@ -22,7 +22,7 @@ public class Main {
             lista.insereOrdenado(77);
             lista.insereOrdenado(77);
             lista.insereOrdenado(99);
-            
+            lista.removerComeco();
 
         System.out.println(lista);
     }
