@@ -1,5 +1,8 @@
 package entities;
 
+/**
+ * Lista parecida com o ArrayList nativo
+ */
 public class ListaEstatica<T> {
     private T[] elementos;
     private int tamanho;
