@@ -112,6 +112,11 @@ public class ListaEstatica<T> {
     public int tamanho(){
         return this.tamanho;
     }
+    @SuppressWarnings("unchecked")
+    public void limpa(){
+        this.tamanho = 0;
+        this.elementos = (T[]) new Object[ListaEstatica.CAPACIDADE_PADRAO];
+    }
     public boolean estaVazia(){
         return this.tamanho()==0;
     }

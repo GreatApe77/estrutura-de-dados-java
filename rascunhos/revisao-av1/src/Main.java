@@ -23,6 +23,8 @@ public class Main {
         System.out.println(listaEstatica.buscaIndiceDe(77));
         System.out.println(listaEstatica.buscaUltimoIndiceDe(77));
         System.out.println(listaEstatica);
+        listaEstatica.limpa();
+        System.out.println(listaEstatica);
         // .out.println(listaEstatica.buscaIndiceDe(77));
     }
 }
