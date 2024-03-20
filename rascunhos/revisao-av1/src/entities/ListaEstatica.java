@@ -18,16 +18,12 @@ public class ListaEstatica<T> {
     }
     //ADICIONAR ELEMENTOS
     public void inserir(T elemento){
-        if(_estaCheia()){
-            throw new Error("Lista cheia");
-        }
+        _aumentarCapacidade();
         this.elementos[tamanho()] = elemento;
         _incrementarTamanho(); 
     }
     public void inserir(int posicao,T elemento){
-        if(_estaCheia()){
-            throw new Error("Lista cheia");
-        }
+        _aumentarCapacidade();
         if(posicao<0 || posicao>tamanho()){
             throw new IndexOutOfBoundsException();
         }
@@ -49,6 +45,17 @@ public class ListaEstatica<T> {
         if(estaVazia()) throw new Error("Vazia");
         this.elementos[tamanho()-1] = null;
         _decrementarTamanho();
+    }
+    private void _aumentarCapacidade(){
+        if(_estaCheia()){
+
+            @SuppressWarnings("unchecked")
+            T[] novoArray = (T[]) new Object[this.elementos.length*2];
+            for (int i = 0; i < elementos.length; i++) {
+                novoArray[i] = elementos[i];
+            }
+            this.elementos=novoArray;
+        }
     }
     public void remover(int posicao){
         if(estaVazia()) throw new Error("Vazia");

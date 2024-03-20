@@ -5,7 +5,7 @@ import entities.ListaEstatica;
 public class Main {
     public static void main(String[] args) throws Exception {
         // System.out.println("Hello, World!");
-        ListaEstatica<Integer> listaEstatica = new ListaEstatica<Integer>(20);
+        ListaEstatica<Integer> listaEstatica = new ListaEstatica<Integer>(6);
         for (int i = 1; i <= 10; i++) {
             listaEstatica.inserir(i);
         }
