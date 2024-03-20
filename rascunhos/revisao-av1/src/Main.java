@@ -15,7 +15,8 @@ public class Main {
         listaEstatica.remover(1);
         listaEstatica.remover(7);
         // ArrayList<Integer> arrayList = new ArrayList<>();
-
+        
         System.out.println(listaEstatica);
+        // .out.println(listaEstatica.buscaIndiceDe(77));
     }
 }

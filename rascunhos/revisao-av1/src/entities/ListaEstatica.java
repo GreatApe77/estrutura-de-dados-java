@@ -65,6 +65,32 @@ public class ListaEstatica<T> {
         }
         _decrementarTamanho();
     }
+    public boolean remover(T elemento){
+        int indice = buscaIndiceDe(elemento);
+        if(indice==-1) return false;
+        remover(indice);
+        return true;
+        
+    }
+    public int buscaIndiceDe(T elemento){
+
+        for (int i = 0; i < tamanho(); i++) {
+            if(this.elementos[i].equals(elemento)){
+                return i;
+            }
+        }
+        return -1;
+    }
+    public boolean contem(T elemento){
+        return this.buscaIndiceDe(elemento)!=-1;
+    }
+    public T busca(int posicao){
+        if(posicao<0 || posicao>=tamanho()){
+            throw new IndexOutOfBoundsException();
+        }
+        return this.elementos[posicao];
+    }
+    
     public void atualizar(int posicao,T elemento){
         this.elementos[posicao] = elemento;
     }
