@@ -79,6 +79,14 @@ public class ListaEstatica<T> {
         return true;
         
     }
+    public int buscaUltimoIndiceDe(T elemento){
+        for (int i = tamanho()-1; i >=0; i--) {
+            if(this.elementos[i].equals(elemento)){
+                return i;
+            }
+        }
+        return -1;
+    }
     public int buscaIndiceDe(T elemento){
 
         for (int i = 0; i < tamanho(); i++) {
