@@ -12,18 +12,23 @@ public class Main {
         // listaEstatica.inserir(i);
         // lista.inserirFinal(i);
         // }
-        //lista.inserirFinal(80);
-        //lista.inserirFinal(77);
-        //lista.inserirComeco(66);
-            lista.insereOrdenado(77);
-            lista.insereOrdenado(7);
-            lista.insereOrdenado(1);
-            lista.insereOrdenado(2);
-            lista.insereOrdenado(77);
-            lista.insereOrdenado(77);
-            lista.insereOrdenado(99);
-            lista.removerComeco();
-
+        // lista.inserirFinal(80);
+        // lista.inserirFinal(77);
+        // lista.inserirComeco(66);
+        lista.insereOrdenado(75);
+        lista.insereOrdenado(7);
+        lista.insereOrdenado(1);
+        lista.insereOrdenado(2);
+        lista.insereOrdenado(70);
+        lista.insereOrdenado(111);
+        lista.insereOrdenado(99);
+        // lista.removerComeco();
+        lista.removerPosicao(2);
+        lista.removerFinal();
+        lista.inserirComeco(9999);
+        for (int i = 0; i < 6; i++) {
+            lista.removerFinal();
+        }
         System.out.println(lista);
     }
 }

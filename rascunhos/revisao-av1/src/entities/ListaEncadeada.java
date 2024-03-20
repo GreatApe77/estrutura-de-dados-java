@@ -105,8 +105,30 @@ public class ListaEncadeada<T> {
         this.ultimo = novoNodo;
         _incrementarTamanho();
     }
-    
+    public void removerPosicao(int posicao){
+        if(posicao<0|| posicao >=tamanho()) throw new IndexOutOfBoundsException();
+        if(estaVazia()) throw new Error("Lista Vazia");
+        Nodo<T> atual = this.primeiro;
+        for (int i = 0; i < posicao-1; i++) {
+            atual = atual.getProximo();
+        }
+        atual.setProximo(atual.getProximo().getProximo());
+        _decrementarTamanho();
+    }
+    public T get(int posicao){
+        return _get(posicao).getElemento();
+    }
+    private Nodo<T> _get(int posicao){
+        if(posicao<0|| posicao >=tamanho()) throw new IndexOutOfBoundsException();
+        if(estaVazia()) throw new Error("Lista Vazia");
+        Nodo<T> atual = this.primeiro;
+        for (int i = 0; i < posicao; i++) {
+            atual = atual.getProximo();
+        }
+        return atual;
+    }
     public void removerComeco(){
+
         if(estaVazia()) throw new Error("Lista vazia");
         if(tamanho()==1){
             this.primeiro=null;
@@ -115,6 +137,19 @@ public class ListaEncadeada<T> {
             return;
         }
         this.primeiro = this.primeiro.getProximo();
+        _decrementarTamanho();
+    }
+    public void removerFinal(){
+        if(estaVazia()) throw new Error("Lista vazia");
+        if(tamanho()==1){
+            this.primeiro=null;
+            this.ultimo = null;
+            _decrementarTamanho();
+            return;
+        }
+        Nodo<T> penultimo = _get(tamanho()-2);
+        penultimo.setProximo(null);
+        this.ultimo = penultimo;
         _decrementarTamanho();
     }
     public int tamanho() {
