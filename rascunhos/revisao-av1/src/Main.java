@@ -26,9 +26,10 @@ public class Main {
         lista.removerPosicao(2);
         lista.removerFinal();
         lista.inserirComeco(9999);
-        for (int i = 0; i < 6; i++) {
-            lista.removerFinal();
-        }
+        // for (int i = 0; i < 6; i++) {
+        // lista.removerFinal();
+        // }
+        lista.limpa();
         System.out.println(lista);
     }
 }

@@ -152,6 +152,11 @@ public class ListaEncadeada<T> {
         this.ultimo = penultimo;
         _decrementarTamanho();
     }
+    public void limpa(){
+        this.primeiro =null;
+        this.ultimo = null;
+        this.tamanho =0;
+    }
     public int tamanho() {
         return this.tamanho;
     }
