@@ -1,5 +1,6 @@
 import java.util.Arrays;
 
+import alogritmos.DivisaoInteira;
 import alogritmos.InverterVetor;
 import alogritmos.Mdc;
 
@@ -9,5 +10,6 @@ public class Main {
         InverterVetor.inverterVtor(vetor);
         System.out.println(Arrays.toString(vetor));
         System.out.println(Mdc.mdc(12, 4));
+        System.out.println(DivisaoInteira.divisaoInteira(8, 4));
     }
 }
