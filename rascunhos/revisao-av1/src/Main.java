@@ -3,6 +3,7 @@ import java.util.Arrays;
 import alogritmos.DivisaoInteira;
 import alogritmos.InverterVetor;
 import alogritmos.Mdc;
+import alogritmos.SomarVetor;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -11,5 +12,6 @@ public class Main {
         System.out.println(Arrays.toString(vetor));
         System.out.println(Mdc.mdc(12, 4));
         System.out.println(DivisaoInteira.divisaoInteira(8, 4));
+        System.out.println(SomarVetor.somatorioVetor(vetor));
     }
 }
