@@ -1,17 +1,13 @@
+import java.util.Arrays;
 
-import entities.ListaDuplamenteEncadeada;
+import alogritmos.InverterVetor;
+import alogritmos.Mdc;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        ListaDuplamenteEncadeada<Integer> listaDuplamenteEncadeada = new ListaDuplamenteEncadeada<Integer>();
-        listaDuplamenteEncadeada.inserirComeco(77);
-        listaDuplamenteEncadeada.inserirComeco(88);
-        listaDuplamenteEncadeada.inserirFinal(1000);
-        listaDuplamenteEncadeada.insereOrdenado(10001);
-        listaDuplamenteEncadeada.insereOrdenado(90);
-        listaDuplamenteEncadeada.insereOrdenado(1);
-        
-        listaDuplamenteEncadeada.imprimeEmOrdem();
-        listaDuplamenteEncadeada.imprimeInvertido();
+        int[] vetor = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        InverterVetor.inverterVtor(vetor);
+        System.out.println(Arrays.toString(vetor));
+        System.out.println(Mdc.mdc(12, 4));
     }
 }
