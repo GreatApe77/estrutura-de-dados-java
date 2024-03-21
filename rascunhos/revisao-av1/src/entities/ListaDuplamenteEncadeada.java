@@ -16,77 +16,68 @@ public class ListaDuplamenteEncadeada<T> implements ILista<T> {
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void insereOrdenado(T elemento) {
-        Nodo<T> novoNodo = new Nodo<T>(elemento);
         Comparable elementoComparavel = (Comparable) elemento;
-        if (primeiro == null || elementoComparavel.compareTo(primeiro.getElemento()) == 0
-                || elementoComparavel.compareTo(primeiro.getElemento()) == -1) {
-
-            if (primeiro == null) {
-                primeiro = novoNodo;
-
-            }else if(tamanho()==1){
-                novoNodo.setProximo(primeiro);
-                ultimo.setAnterior(novoNodo);
-                primeiro.setAnterior(novoNodo);
-                primeiro = novoNodo;
-            } else {
-                novoNodo.setProximo(primeiro);
-                primeiro.setAnterior(novoNodo);
-                primeiro = novoNodo;
-
+        if(estaVazia()){
+            inserirFinal(elemento);
+            return;
+        }
+        else{
+            if(tamanho()==1){
+                if(elementoComparavel.compareTo(primeiro.getElemento())==1||elementoComparavel.compareTo(primeiro.getElemento())==0){
+                    inserirFinal(elemento);
+                }else{
+                    inserirComeco(elemento);
+                }
+                return;
             }
-
-            if (ultimo == null) {
-                ultimo = novoNodo;
-            }
-
-        } else if (elementoComparavel.compareTo(ultimo.getElemento()) == 0
-                || elementoComparavel.compareTo(ultimo.getElemento()) == 1) {
-            ultimo.setProximo(novoNodo);
-            novoNodo.setAnterior(ultimo);
-            ultimo = novoNodo;
-        } else {
-            Nodo<T> atual = primeiro.getProximo();
-            while (atual.getProximo() != null && elementoComparavel.compareTo(atual.getProximo().getProximo()) == 1) {
+            Nodo<T> novoNodo = new Nodo<T>(elemento);
+            Nodo<T> atual = this.primeiro;
+            while (atual.getProximo()!=null && (elementoComparavel.compareTo(atual.getProximo().getElemento())==1)) {
                 atual = atual.getProximo();
             }
-            novoNodo.setAnterior(atual);
             novoNodo.setProximo(atual.getProximo());
+            novoNodo.setAnterior(atual);
             atual.getProximo().setAnterior(novoNodo);
             atual.setProximo(novoNodo);
+
+            _incrementarTamanho();
+
         }
-        _incrementarTamanho();
+
+        
     }
 
     @Override
     public void inserirComeco(T elemento) {
         Nodo<T> novoNodo = new Nodo<T>(elemento);
-       if(estaVazia()){
-        this.primeiro = novoNodo;
-        this.ultimo =novoNodo;
-        _incrementarTamanho();
-        return;
-       }
-       if(tamanho()==1){
+        if (estaVazia()) {
+            this.primeiro = novoNodo;
+            this.ultimo = novoNodo;
+            _incrementarTamanho();
+            return;
+        }
+
         novoNodo.setProximo(primeiro);
-        //ultimo.setAnterior(novoNodo);
         primeiro.setAnterior(novoNodo);
-        primeiro=novoNodo;
+        primeiro = novoNodo;
         _incrementarTamanho();
-        return;
-       }
-       
-       novoNodo.setProximo(primeiro);
-       primeiro.setAnterior(novoNodo);
-       primeiro = novoNodo;
-       _incrementarTamanho();
 
     }
 
     @Override
     public void inserirFinal(T elemento) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'inserirFinal'");
+        Nodo<T> novoNodo = new Nodo<T>(elemento);
+        if (estaVazia()) {
+            this.primeiro = novoNodo;
+            this.ultimo = novoNodo;
+            _incrementarTamanho();
+            return;
+        }
+        novoNodo.setAnterior(ultimo);
+        ultimo.setProximo(novoNodo);
+        ultimo = novoNodo;
+        _incrementarTamanho();
+
     }
 
     @Override
@@ -148,8 +139,8 @@ public class ListaDuplamenteEncadeada<T> implements ILista<T> {
     public void imprimeInvertido() {
         String s = "[";
         Nodo<T> atual = this.ultimo;
-        for (int i = 0 ; i <tamanho() ; i++) {
-            if (i==tamanho()-1) {
+        for (int i = 0; i < tamanho(); i++) {
+            if (i == tamanho() - 1) {
                 s = s + atual.getElemento();
             } else {
                 s = s + atual.getElemento() + ", ";
