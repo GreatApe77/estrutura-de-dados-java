@@ -1,35 +1,11 @@
 package entities;
 
-class Nodo<T> {
-    private T elemento;
-    private Nodo<T> proximo;
-
-    public Nodo(T elemento) {
-        this.elemento = elemento;
-        this.proximo = null;
-    }
-
-    public Nodo<T> getProximo() {
-        return proximo;
-    }
-
-    public T getElemento() {
-        return elemento;
-    }
-
-    public void setProximo(Nodo<T> proximo) {
-        this.proximo = proximo;
-    }
-
-    public void setElemento(T elemento) {
-        this.elemento = elemento;
-    }
-}
+import entities.singlenode.Nodo;
 
 /**
  * LinkedList normal
  */
-public class ListaEncadeada<T> {
+public class ListaEncadeada<T> implements ILista<T> {
     protected Nodo<T> primeiro;
     protected Nodo<T> ultimo;
     protected int tamanho;
@@ -41,6 +17,7 @@ public class ListaEncadeada<T> {
     }
     
    
+    @Override
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public void insereOrdenado(T elemento){
         //Comparable == 0
@@ -63,6 +40,7 @@ public class ListaEncadeada<T> {
         atual.setProximo(novoNodo);
         _incrementarTamanho();
     }
+    @Override
     public void inserirComeco(T elemento){
         Nodo<T> novoNodo = new Nodo<T>(elemento);
         if(estaVazia()){
@@ -86,6 +64,7 @@ public class ListaEncadeada<T> {
         this.primeiro = novoNodo;
         _incrementarTamanho();
     }
+    @Override
     public void inserirFinal(T elemento){
         Nodo<T> novoNodo = new Nodo<T>(elemento);
         if(estaVazia()){
@@ -105,6 +84,7 @@ public class ListaEncadeada<T> {
         this.ultimo = novoNodo;
         _incrementarTamanho();
     }
+    @Override
     public void removerPosicao(int posicao){
         if(posicao<0|| posicao >=tamanho()) throw new IndexOutOfBoundsException();
         if(estaVazia()) throw new Error("Lista Vazia");
@@ -115,6 +95,7 @@ public class ListaEncadeada<T> {
         atual.setProximo(atual.getProximo().getProximo());
         _decrementarTamanho();
     }
+    @Override
     public T get(int posicao){
         return _get(posicao).getElemento();
     }
@@ -127,6 +108,7 @@ public class ListaEncadeada<T> {
         }
         return atual;
     }
+    @Override
     public void removerComeco(){
 
         if(estaVazia()) throw new Error("Lista vazia");
@@ -139,6 +121,7 @@ public class ListaEncadeada<T> {
         this.primeiro = this.primeiro.getProximo();
         _decrementarTamanho();
     }
+    @Override
     public void removerFinal(){
         if(estaVazia()) throw new Error("Lista vazia");
         if(tamanho()==1){
@@ -152,14 +135,17 @@ public class ListaEncadeada<T> {
         this.ultimo = penultimo;
         _decrementarTamanho();
     }
+    @Override
     public void limpa(){
         this.primeiro =null;
         this.ultimo = null;
         this.tamanho =0;
     }
+    @Override
     public int tamanho() {
         return this.tamanho;
     }
+    @Override
     public boolean estaVazia(){
         return tamanho()==0;
 
