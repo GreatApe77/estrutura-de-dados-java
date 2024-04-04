@@ -1,8 +1,8 @@
 package fila;
 
 public class Fila<T> {
-    private T[] elementos;
-    private int tamanho;
+    protected T[] elementos;
+    protected int tamanho;
     
     private static final int CAPACIDADE_PADRAO = 5;
     @SuppressWarnings("unchecked")
@@ -30,7 +30,7 @@ public class Fila<T> {
     }
     
     
-    private void _adicionarElemento(T elemento, int posicao) {
+    protected void _adicionarElemento(T elemento, int posicao) {
         //_lancarErroDePosicaoInvalida(posicao);
         //_aumentarCapacidade();
         // inserir x na posicao 4
