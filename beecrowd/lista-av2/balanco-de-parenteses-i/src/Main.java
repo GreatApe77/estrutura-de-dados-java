@@ -1,3 +1,6 @@
+import java.io.IOException;
+import java.util.Scanner;
+
 class ValidadorDeExpressao {
 
     public static boolean validar(String expressao) {
@@ -20,8 +23,28 @@ class ValidadorDeExpressao {
     }
 }
 public class Main {
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+    public static void main(String[] args) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        String entrada = scanner.next();
+        String[] expressoesSeparadas = entrada.split("\n");
+        for (int i = 0; i < expressoesSeparadas.length; i++) {
+            boolean expressaoValida = ValidadorDeExpressao.validar(expressoesSeparadas[i]);
+            if(expressaoValida){
+                System.out.println("correct");
+            }else{
+                System.out.println("incorrect");
+            }
+        }
+        scanner.close();;
+        /* for (int i = 0; i < N; i++) {
+            String expressao = scanner.next();
+            boolean expressaoValida = ValidadorDeExpressao.validar(expressao);
+            if(expressaoValida){
+                System.out.println("correct");
+            }else{
+                System.out.println("incorrect");
+            }
+        } */
     }
 }
 
