@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
+        
         //String s = scanner.next();
         while (true) {
 
@@ -21,11 +22,35 @@ public class Main {
                 break;
             PilhaEstatica<Carro> estacionamento = new PilhaEstatica<Carro>(K);
             int horarioAtual =0;
+            String resposta = "Sim";
             for (int i = 0; i < N; i++) {
                 String[] linhas = scanner.next().split(" ");
-                Carro carro = new Carro(Integer.parseInt(linhas[0]),Integer.parseInt(linhas[1]));
+                Carro carroAtual = new Carro(Integer.parseInt(linhas[0]),Integer.parseInt(linhas[1]));
+                horarioAtual = carroAtual.chegada;
+                if(estacionamento.estaVazia()){
+                    estacionamento.empilhar(carroAtual);
+                    horarioAtual = carroAtual.chegada;
+                }else {
+                    
+                    if(horarioAtual>=estacionamento.topo().saida ){
+                        estacionamento.desempilhar();
+                        if(carroAtual.saida<estacionamento.topo().saida){
+                            estacionamento.empilhar(carroAtual);
+                        }else{
+                            resposta = "Nao";
+                        }    
+                    }else{
+                        if(carroAtual.saida<estacionamento.topo().saida && !estacionamento.estaCheia()){
+                            estacionamento.empilhar(carroAtual);
+                        }else{
+                            resposta = "Nao";
+                        }
+                    }
+                    
+                }
                 
             }
+            System.out.println(resposta);
         }
         scanner.close();
     }
