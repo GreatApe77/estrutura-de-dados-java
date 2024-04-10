@@ -35,7 +35,7 @@ public class Main {
                     
                     if(horarioAtual>=estacionamento.topo().saida ){
                         estacionamento.desempilhar();
-                        if(carroAtual.saida<estacionamento.topo().saida){
+                        if(carroAtual.saida<estacionamento.topo().saida || estacionamento.estaVazia()){
                             estacionamento.empilhar(carroAtual);
                         }else{
                             resposta = "Nao";
