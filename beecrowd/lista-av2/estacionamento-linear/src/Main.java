@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.io.IOException;
 class Carro{
     public int chegada;
     public int saida;
@@ -8,7 +9,7 @@ class Carro{
     }
 }
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
         
