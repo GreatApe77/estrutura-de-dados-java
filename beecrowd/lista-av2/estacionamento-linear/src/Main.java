@@ -30,12 +30,19 @@ public class Main {
                 horarioAtual = carroAtual.chegada;
                 if(estacionamento.estaVazia()){
                     estacionamento.empilhar(carroAtual);
-                    horarioAtual = carroAtual.chegada;
+                   
                 }else {
                     
                     if(horarioAtual>=estacionamento.topo().saida ){
-                        estacionamento.desempilhar();
-                        if(carroAtual.saida<estacionamento.topo().saida || estacionamento.estaVazia()){
+                        while (horarioAtual>=estacionamento.topo().saida) {
+                            estacionamento.desempilhar();
+                        }
+                        //estacionamento.desempilhar();
+                        Carro topoAtual = estacionamento.topo();
+                        if(estacionamento.estaVazia()){
+                            estacionamento.empilhar(carroAtual);
+                            
+                        }else if(carroAtual.saida<topoAtual.saida){
                             estacionamento.empilhar(carroAtual);
                         }else{
                             resposta = "Nao";
@@ -120,3 +127,18 @@ class PilhaEstatica<T> {
         return s.toString();
     }
 }
+/**
+ * 
+ * 
+ * 10 5
+1 30
+2 28
+4 20 
+6 15
+8 10
+10 12
+13 14
+20 27
+21 26
+22 25
+ */
