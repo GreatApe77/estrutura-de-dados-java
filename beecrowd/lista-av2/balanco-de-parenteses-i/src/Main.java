@@ -1,5 +1,7 @@
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Scanner;
+import java.io.InputStreamReader;
+//import java.util.Scanner;
 
 class ValidadorDeExpressao {
 
@@ -24,18 +26,17 @@ class ValidadorDeExpressao {
 }
 public class Main {
     public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        String entrada = scanner.next();
-        String[] expressoesSeparadas = entrada.split("\n");
-        for (int i = 0; i < expressoesSeparadas.length; i++) {
-            boolean expressaoValida = ValidadorDeExpressao.validar(expressoesSeparadas[i]);
-            if(expressaoValida){
+        InputStreamReader ir = new InputStreamReader(System.in);
+        BufferedReader in = new BufferedReader(ir);
+        while (in.ready()) {
+            String expressao = in.readLine().trim();
+            boolean expressaoValido =  ValidadorDeExpressao.validar(expressao);
+            if(expressaoValido){
                 System.out.println("correct");
             }else{
                 System.out.println("incorrect");
             }
         }
-        scanner.close();;
         /* for (int i = 0; i < N; i++) {
             String expressao = scanner.next();
             boolean expressaoValida = ValidadorDeExpressao.validar(expressao);
