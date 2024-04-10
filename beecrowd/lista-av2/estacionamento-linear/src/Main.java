@@ -1,25 +1,37 @@
 import java.util.Scanner;
-
+class Carro{
+    public int chegada;
+    public int saida;
+    public Carro(int chegada, int saida){
+        this.chegada = chegada;
+        this.saida = saida;
+    }
+}
 public class Main {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
-        String s = scanner.next();
+        //String s = scanner.next();
         while (true) {
 
-        
-        String[] primeiraLinha = scanner.next().split(" ");
-        int N = Integer.parseInt(primeiraLinha[0]);
-        int K = Integer.parseInt(primeiraLinha[1]);
-        if(N==K) break;
-        for (int i = 0; i < N; i++) {
-            String[] linhas = scanner.next().split(" ");
+            String[] primeiraLinha = scanner.next().split(" ");
+            int N = Integer.parseInt(primeiraLinha[0]);
+            int K = Integer.parseInt(primeiraLinha[1]);
+            if (N == K)
+                break;
+            PilhaEstatica<Carro> estacionamento = new PilhaEstatica<Carro>(K);
+            int horarioAtual =0;
+            for (int i = 0; i < N; i++) {
+                String[] linhas = scanner.next().split(" ");
+                Carro carro = new Carro(Integer.parseInt(linhas[0]),Integer.parseInt(linhas[1]));
+                
+            }
         }
         scanner.close();
     }
-    }
 }
-class PilhaEstatica<T>  {
+
+class PilhaEstatica<T> {
     private T[] elementos;
     private int tamanho;
 
@@ -33,17 +45,14 @@ class PilhaEstatica<T>  {
         this(10);
     }
 
-    
     public boolean estaVazia() {
         return this.tamanho() == 0;
     }
 
-    
     public boolean estaCheia() {
         return this.tamanho() == this.elementos.length;
     }
 
-    
     public void empilhar(T element) {
         if (estaCheia())
             throw new StackOverflowError();
@@ -52,7 +61,6 @@ class PilhaEstatica<T>  {
         this.tamanho++;
     }
 
-    
     public T desempilhar() {
         if (estaVazia())
             throw new Error("Empty stack");
@@ -61,18 +69,15 @@ class PilhaEstatica<T>  {
         return topElement;
     }
 
-    
     public T topo() {
 
         return this.elementos[tamanho() - 1];
     }
 
-    
     public int tamanho() {
         return this.tamanho;
     }
 
-    
     public String toString() {
         StringBuilder s = new StringBuilder();
         s.append("[");
