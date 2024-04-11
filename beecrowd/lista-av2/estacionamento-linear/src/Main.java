@@ -1,19 +1,22 @@
 import java.util.Scanner;
 import java.io.IOException;
-class Carro{
+
+class Carro {
     public int chegada;
     public int saida;
-    public Carro(int chegada, int saida){
+
+    public Carro(int chegada, int saida) {
         this.chegada = chegada;
         this.saida = saida;
     }
 }
+
 public class Main {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
-        
-        //String s = scanner.next();
+
+        // String s = scanner.next();
         while (true) {
 
             String[] primeiraLinha = scanner.next().split(" ");
@@ -22,41 +25,52 @@ public class Main {
             if (N == K)
                 break;
             PilhaEstatica<Carro> estacionamento = new PilhaEstatica<Carro>(K);
-            int horarioAtual =0;
+            int horarioAtual = 0;
             String resposta = "Sim";
             for (int i = 0; i < N; i++) {
                 String[] linhas = scanner.next().split(" ");
-                Carro carroAtual = new Carro(Integer.parseInt(linhas[0]),Integer.parseInt(linhas[1]));
+                Carro carroAtual = new Carro(Integer.parseInt(linhas[0]), Integer.parseInt(linhas[1]));
                 horarioAtual = carroAtual.chegada;
-                if(estacionamento.estaVazia()){
+                if (estacionamento.estaVazia()) {
                     estacionamento.empilhar(carroAtual);
-                   
-                }else {
-                    
-                    if(horarioAtual>=estacionamento.topo().saida ){
-                        while (horarioAtual>=estacionamento.topo().saida) {
+
+                } else {
+
+                    if (horarioAtual >= estacionamento.topo().saida) {
+                        do {
+                            if (estacionamento.estaVazia())
+                                break;
                             estacionamento.desempilhar();
-                        }
-                        //estacionamento.desempilhar();
+                        } while (horarioAtual >= estacionamento.topo().saida);
+                        //while (horarioAtual >= estacionamento.topo().saida) {
+                        //    estacionamento.desempilhar();
+                        //    if (estacionamento.estaVazia())
+                        //        break;
+                        //}
+                        // do {
+
+                        // } while (condition);
+
+                        // estacionamento.desempilhar();
                         Carro topoAtual = estacionamento.topo();
-                        if(estacionamento.estaVazia()){
+                        if (estacionamento.estaVazia()) {
                             estacionamento.empilhar(carroAtual);
-                            
-                        }else if(carroAtual.saida<topoAtual.saida){
+
+                        } else if (carroAtual.saida < topoAtual.saida) {
                             estacionamento.empilhar(carroAtual);
-                        }else{
+                        } else {
                             resposta = "Nao";
-                        }    
-                    }else{
-                        if(carroAtual.saida<estacionamento.topo().saida && !estacionamento.estaCheia()){
+                        }
+                    } else {
+                        if (carroAtual.saida < estacionamento.topo().saida && !estacionamento.estaCheia()) {
                             estacionamento.empilhar(carroAtual);
-                        }else{
+                        } else {
                             resposta = "Nao";
                         }
                     }
-                    
+
                 }
-                
+
             }
             System.out.println(resposta);
         }
@@ -131,14 +145,14 @@ class PilhaEstatica<T> {
  * 
  * 
  * 10 5
-1 30
-2 28
-4 20 
-6 15
-8 10
-10 12
-13 14
-20 27
-21 26
-22 25
+ * 1 30
+ * 2 28
+ * 4 20
+ * 6 15
+ * 8 10
+ * 10 12
+ * 13 14
+ * 20 27
+ * 21 26
+ * 22 25
  */
