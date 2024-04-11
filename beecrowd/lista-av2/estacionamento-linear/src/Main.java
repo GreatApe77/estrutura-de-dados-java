@@ -41,6 +41,8 @@ public class Main {
                             if (estacionamento.estaVazia())
                                 break;
                             estacionamento.desempilhar();
+                            if (estacionamento.estaVazia())
+                                break;
                         } while (horarioAtual >= estacionamento.topo().saida);
                         //while (horarioAtual >= estacionamento.topo().saida) {
                         //    estacionamento.desempilhar();
@@ -52,11 +54,11 @@ public class Main {
                         // } while (condition);
 
                         // estacionamento.desempilhar();
-                        Carro topoAtual = estacionamento.topo();
+                        //Carro topoAtual = estacionamento.topo();
                         if (estacionamento.estaVazia()) {
                             estacionamento.empilhar(carroAtual);
 
-                        } else if (carroAtual.saida < topoAtual.saida) {
+                        } else if (carroAtual.saida < estacionamento.topo().saida) {
                             estacionamento.empilhar(carroAtual);
                         } else {
                             resposta = "Nao";
@@ -117,7 +119,7 @@ class PilhaEstatica<T> {
     }
 
     public T topo() {
-
+        //if (tamanho()==0) return null;
         return this.elementos[tamanho() - 1];
     }
 
