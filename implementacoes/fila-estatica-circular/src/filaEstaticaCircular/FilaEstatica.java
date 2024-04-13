@@ -43,4 +43,25 @@ public class FilaEstatica<T> {
     public int tamanho() {
         return this.tamanho;
     }
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        s.append("[");
+        @SuppressWarnings("unchecked")
+        T[] arrayAuxiliar = (T[]) new Object[tamanho()];
+        for (int i = 0; i < arrayAuxiliar.length; i++) {
+            arrayAuxiliar[i] = this.desenfileira();
+            if(i==arrayAuxiliar.length-1){
+                s.append(arrayAuxiliar[i]);
+            }else{
+                s.append(arrayAuxiliar[i]);
+                s.append(", ");
+            }
+        }
+        s.append("]");
+        for (int i = 0; i < arrayAuxiliar.length; i++) {
+            this.enfileira(arrayAuxiliar[i]);
+        }
+        return s.toString();
+    }
 }
