@@ -12,6 +12,9 @@ public class App {
         filaDinamica.enfileira("Mateus");
         filaDinamica.enfileira("Manoel Carlos");
         filaDinamica.enfileira("Kiko");
+        filaDinamica.desenfileira();
+        filaDinamica.desenfileira();
         System.out.println(filaDinamica);
+        System.out.println(filaDinamica.frente());
     }
 }

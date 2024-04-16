@@ -33,7 +33,16 @@ public class FilaDinamica<T> {
 
     }
     public T desenfileira(){
-        return null;
+        T frente = frente();
+        if(tamanho()==1){
+            this.cabeca =null;
+            this.cauda = null;
+            this.tamanho--;
+            return frente;
+        }
+        this.cabeca = cabeca.getProximoNodo();
+        this.tamanho--;
+        return frente;
     }
     public int tamanho(){
         return this.tamanho;
