@@ -3,12 +3,29 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        boolean[] mapaDeIdExcluso = new boolean[100001];
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
         int N = scanner.nextInt();
         String[] linha = scanner.next().split(" ");
         int M = scanner.nextInt();
         String[] linha2 = scanner.next().split(" ");
+        for (int i = 0; i < M; i++) {
+            mapaDeIdExcluso[Integer.parseInt(linha2[i])] = true;
+        }
+        String filaEmTexto = "";
+        //int numeroIteracoes = N-M;
+        for (int i = 0; i < linha.length; i++) {
+            if(mapaDeIdExcluso[Integer.parseInt(linha[i])]==false){
+                
+                
+                    filaEmTexto+=linha[i];
+                    filaEmTexto+=" ";
+                
+            }
+        }
+        System.out.println(filaEmTexto.strip());
+        scanner.close();
         /* Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
         int N = scanner.nextInt();
@@ -125,4 +142,4 @@ class FilaDinamica<T> {
         return s.toString();
     }
     
-}
+}}
