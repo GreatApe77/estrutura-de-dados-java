@@ -1,16 +1,18 @@
 package com.mateus.filaPrioridadeHeap;
 
-public class FilaPrioridadeHeap<Chave,Valor> implements FilaPrioridade<Chave,Valor> {
-    
-    
-     class ElementoDaFila implements Elemento<Chave,Valor> {
+import java.util.Comparator;
+
+public class FilaPrioridadeHeap<Chave, Valor> implements FilaPrioridade<Chave, Valor> {
+
+    class ElementoDaFila implements Elemento<Chave, Valor> {
         Chave chave;
         Valor valor;
-        
+
         @Override
         public Chave getChave() {
             return this.chave;
         }
+
         @Override
         public Valor getValor() {
             return this.valor;
@@ -20,8 +22,13 @@ public class FilaPrioridadeHeap<Chave,Valor> implements FilaPrioridade<Chave,Val
         public String toString() {
             return "(" + chave + " - " + valor + ")";
         }
-        
+
     }
+
+    private Comparator<Chave> comparador;
+    protected int tamanho;
+    protected Valor[] heap;
+
     @Override
     public void insere(Chave chave, Valor valor) {
         // TODO Auto-generated method stub
@@ -51,5 +58,5 @@ public class FilaPrioridadeHeap<Chave,Valor> implements FilaPrioridade<Chave,Val
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'estaVazia'");
     }
-    
+
 }
