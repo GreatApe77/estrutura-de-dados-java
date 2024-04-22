@@ -29,6 +29,13 @@ public class FilaPrioridadeHeap<Chave, Valor> implements FilaPrioridade<Chave, V
     protected int tamanho;
     protected Valor[] heap;
 
+    @SuppressWarnings("unchecked")
+    public FilaPrioridadeHeap(int capacidade){
+        this.comparador = new ComparadorPadrao<>();
+        this.heap = (Valor[]) new Object[capacidade];
+        this.tamanho = 0;
+        
+    }
     @Override
     public void insere(Chave chave, Valor valor) {
         // TODO Auto-generated method stub
