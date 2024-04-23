@@ -8,6 +8,10 @@ public class FilaPrioridadeHeap<Chave, Valor> implements FilaPrioridade<Chave, V
         Chave chave;
         Valor valor;
 
+        public ElementoDaFila(Chave chave, Valor valor){
+            this.chave = chave;
+            this.valor = valor;
+        }
         @Override
         public Chave getChave() {
             return this.chave;
@@ -32,13 +36,22 @@ public class FilaPrioridadeHeap<Chave, Valor> implements FilaPrioridade<Chave, V
     @SuppressWarnings("unchecked")
     public FilaPrioridadeHeap(int capacidade){
         this.comparador = new ComparadorPadrao<>();
-        this.heap = (Elemento<Chave,Valor>[]) new Object[capacidade];
+        this.heap = (Elemento<Chave,Valor>[]) new Elemento[capacidade];
         this.tamanho = 0;
         
     }
     @Override
     public void insere(Chave chave, Valor valor) {
-        
+        if(estaCheia()) throw new Error("Fila Cheia");
+        Elemento<Chave,Valor> novoElemento = new ElementoDaFila(chave,valor);
+        int indice = tamanho();
+        heap[indice] = novoElemento;
+        this.tamanho++;
+        while (indice!=0 && comparador.compare(heap[indice].getChave(),heap[pai(indice)].getChave())>1 ) {
+            trocar(pai(indice), indice);
+            indice = pai(indice);
+        }
+
     }
 
     @Override
@@ -76,4 +89,13 @@ public class FilaPrioridadeHeap<Chave, Valor> implements FilaPrioridade<Chave, V
     private int pai(int i){
         return i/2;
     }
+    private void trocar(int i,int j ){
+        Elemento<Chave,Valor> aux = new ElementoDaFila(heap[i].getChave(), heap[i].getValor());
+        heap[i] = heap[j];
+        heap[j] = aux;
+        //heap[i].
+        //heap[j] = aux;
+        
+    }
+    
 }
