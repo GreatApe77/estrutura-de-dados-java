@@ -56,14 +56,16 @@ public class FilaPrioridadeHeap<Chave, Valor> implements FilaPrioridade<Chave, V
 
     @Override
     public int tamanho() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'tamanho'");
+        return this.tamanho;
     }
 
     @Override
     public boolean estaVazia() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'estaVazia'");
+        return tamanho() ==0;
+    }
+
+    public boolean estaCheia() {
+        return this.heap.length==tamanho();
     }
 
 }
