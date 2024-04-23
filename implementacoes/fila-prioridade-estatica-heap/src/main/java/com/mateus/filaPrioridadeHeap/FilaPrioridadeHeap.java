@@ -38,8 +38,7 @@ public class FilaPrioridadeHeap<Chave, Valor> implements FilaPrioridade<Chave, V
     }
     @Override
     public void insere(Chave chave, Valor valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insere'");
+        
     }
 
     @Override
@@ -67,5 +66,14 @@ public class FilaPrioridadeHeap<Chave, Valor> implements FilaPrioridade<Chave, V
     public boolean estaCheia() {
         return this.heap.length==tamanho();
     }
-
+    //
+    private int  filhoEsquerdo(int i){
+        return 2*i;
+    }
+    private int filhoDireito(int i){
+        return 2*i+1;
+    }
+    private int pai(int i){
+        return i/2;
+    }
 }
