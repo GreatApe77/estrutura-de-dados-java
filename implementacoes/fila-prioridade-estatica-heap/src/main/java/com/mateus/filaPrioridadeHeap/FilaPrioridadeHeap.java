@@ -27,12 +27,12 @@ public class FilaPrioridadeHeap<Chave, Valor> implements FilaPrioridade<Chave, V
 
     private Comparator<Chave> comparador;
     protected int tamanho;
-    protected Valor[] heap;
+    protected Elemento<Chave,Valor>[] heap;
 
     @SuppressWarnings("unchecked")
     public FilaPrioridadeHeap(int capacidade){
         this.comparador = new ComparadorPadrao<>();
-        this.heap = (Valor[]) new Object[capacidade];
+        this.heap = (Elemento<Chave,Valor>[]) new Object[capacidade];
         this.tamanho = 0;
         
     }
@@ -44,8 +44,8 @@ public class FilaPrioridadeHeap<Chave, Valor> implements FilaPrioridade<Chave, V
 
     @Override
     public Elemento<Chave, Valor> frente() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'frente'");
+        if(estaVazia()) throw new Error("Fila Vazia");
+        return heap[0];
     }
 
     @Override
