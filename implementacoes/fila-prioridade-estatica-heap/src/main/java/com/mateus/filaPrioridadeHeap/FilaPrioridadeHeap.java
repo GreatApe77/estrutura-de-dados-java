@@ -84,11 +84,11 @@ public class FilaPrioridadeHeap<Chave, Valor> implements FilaPrioridade<Chave, V
         int posicaoFilhoEsquerdo = filhoEsquerdo(indice);
         int posicaoFilhoDireito = filhoDireito(indice);
         if (posicaoFilhoEsquerdo < tamanho()
-                && comparador.compare(heap[posicaoFilhoEsquerdo].getChave(), heap[maior].getChave()) > 0) {
+                && comparador.compare(heap[posicaoFilhoEsquerdo].getChave(), heap[maior].getChave()) >= 0) {
             maior = posicaoFilhoEsquerdo;
         }
         if (posicaoFilhoDireito < tamanho()
-                && comparador.compare(heap[posicaoFilhoDireito].getChave(), heap[maior].getChave()) > 0) {
+                && comparador.compare(heap[posicaoFilhoDireito].getChave(), heap[maior].getChave()) >= 0) {
             maior = posicaoFilhoDireito;
         }
 
