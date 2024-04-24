@@ -47,7 +47,8 @@ public class FilaPrioridadeHeap<Chave, Valor> implements FilaPrioridade<Chave, V
         int indice = tamanho();
         heap[indice] = novoElemento;
         this.tamanho++;
-        while (indice!=0 && comparador.compare(heap[indice].getChave(),heap[pai(indice)].getChave())>1 ) {
+        int condicao=comparador.compare(heap[indice].getChave(),heap[pai(indice)].getChave());
+        while (indice!=0 && condicao>=1 ) {
             trocar(pai(indice), indice);
             indice = pai(indice);
         }
@@ -97,5 +98,19 @@ public class FilaPrioridadeHeap<Chave, Valor> implements FilaPrioridade<Chave, V
         //heap[j] = aux;
         
     }
-    
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        s.append("[");
+        for (int i = 0; i < tamanho(); i++) {
+            if(i==tamanho()-1){
+                s.append(heap[i]);
+            }else{
+                s.append(heap[i]);
+                s.append(", ");
+            }
+        }
+        s.append("]");
+        return s.toString();
+    }
 }

@@ -19,7 +19,9 @@ public class App {
         fila.insere(50, "Jonas");
         fila.insere(49, "Carlin");
         fila.insere(1, "Mateus");
-        System.out.println(fila.frente().getValor());
-
+        fila.insere(50,"Rafael");
+        //System.out.println(fila);
+        
+        
     }
 }
