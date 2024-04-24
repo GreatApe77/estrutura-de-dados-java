@@ -15,13 +15,19 @@ public class App {
         System.out.println(comp.compare(70, 80));
         FilaPrioridadeHeap<Integer, String> fila = new FilaPrioridadeHeap<Integer, String>(30);
         fila.insere(50, "Marcos");
-        fila.insere(60, "Paulo");
+        fila.insere(60, "Paulo");//
         fila.insere(50, "Jonas");
-        fila.insere(49, "Carlin");
+        fila.insere(49, "Carlin");//
         fila.insere(1, "Mateus");
-        fila.insere(50,"Rafael");
-        //System.out.println(fila);
-        
-        
+        fila.insere(50, "Rafael");
+        fila.insere(999, "Maria");//
+        fila.insere(61, "Claudio");//
+        fila.insere(60, "Fernando");//
+        System.out.println(fila.remove());
+        System.out.println(fila.remove());
+        System.out.println(fila.remove());
+        System.out.println(fila.remove());
+        // System.out.println(fila.remove());
+
     }
 }
