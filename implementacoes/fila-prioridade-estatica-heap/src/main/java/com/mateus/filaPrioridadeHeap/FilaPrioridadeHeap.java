@@ -80,11 +80,11 @@ public class FilaPrioridadeHeap<Chave, Valor> implements FilaPrioridade<Chave, V
         int posicaoFilhoDireito = filhoDireito(indice);
 
         if (posicaoFilhoEsquerdo < tamanho() &&
-                comparador.compare(heap[posicaoFilhoEsquerdo].getChave(), heap[maior].getChave()) >= 0) {
+                comparador.compare(heap[posicaoFilhoEsquerdo].getChave(), heap[maior].getChave()) > 0) {
             maior = posicaoFilhoEsquerdo;
         }
         if (posicaoFilhoDireito < tamanho() &&
-                comparador.compare(heap[posicaoFilhoDireito].getChave(), heap[maior].getChave()) >= 0) {
+                comparador.compare(heap[posicaoFilhoDireito].getChave(), heap[maior].getChave()) > 0) {
             maior = posicaoFilhoDireito;
         }
 
@@ -110,15 +110,19 @@ public class FilaPrioridadeHeap<Chave, Valor> implements FilaPrioridade<Chave, V
 
     //
     private int filhoEsquerdo(int i) {
-        return 2 * i;
+        //return 2 * i;
+        
+        return 2 * i+1;
     }
 
     private int filhoDireito(int i) {
-        return 2 * i + 1;
+        //return 2 * i + 1;
+        return 2*i+2;
     }
 
     private int pai(int i) {
-        return i / 2;
+        //return i / 2;
+        return (i-1)/2;
     }
 
     private void trocar(int i, int j) {
