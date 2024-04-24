@@ -1,5 +1,7 @@
 package com.mateus;
 
+import java.util.Arrays;
+
 import com.mateus.filaPrioridadeHeap.ComparadorPadrao;
 import com.mateus.filaPrioridadeHeap.FilaPrioridadeHeap;
 
@@ -51,6 +53,43 @@ public class App {
          System.out.println(fila.remove());
          System.out.println(fila.remove());
 
-
+        Pessoa[] pessoas = new Pessoa[2];
+        pessoas[0] = new Pessoa("Geralt",60);
+        pessoas[1] = new Pessoa("Ciri",25);
+        swap(pessoas);
+        System.out.println(Arrays.toString(pessoas));
     }
+    public static void swap(Pessoa[] pessoas){
+        Pessoa temp = pessoas[0];
+        pessoas[0] = pessoas[1];
+        pessoas[1] = temp;
+    }
+}
+
+
+class Pessoa{
+    String nome;
+    int idade;
+
+    public Pessoa(String nome,int idade){
+        this.nome=nome;
+        this.idade = idade;
+    }
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public int getIdade() {
+        return idade;
+    }
+    public String getNome() {
+        return nome;
+    }
+    @Override
+    public String toString() {
+        return "Pessoa [nome=" + nome + ", idade=" + idade + "]";
+    }
+    
 }

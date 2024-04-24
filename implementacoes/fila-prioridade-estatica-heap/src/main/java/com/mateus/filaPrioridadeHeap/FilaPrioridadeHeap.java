@@ -63,32 +63,28 @@ public class FilaPrioridadeHeap<Chave, Valor> implements FilaPrioridade<Chave, V
         return heap[0];
     }
 
-    @Override
     public Elemento<Chave, Valor> remove() {
         if (estaVazia())
             throw new Error("Fila Vazia");
-        if (tamanho() == 1) {
-            this.tamanho--;
-            return heap[0];
-        }
-        Elemento<Chave, Valor> raiz = heap[0];
-        heap[0] = heap[tamanho() - 1]; // o ultimo vai para a raiz;
-        this.tamanho--;
-        maxHeapify(0);
-        return raiz;
 
+        Elemento<Chave, Valor> raiz = heap[0];
+        heap[0] = heap[tamanho() - 1]; // Movendo o último elemento para a raiz
+        this.tamanho--;
+        maxHeapify(0); // Ajuste do heap para baixo
+        return raiz;
     }
 
     private void maxHeapify(int indice) {
         int maior = indice;
         int posicaoFilhoEsquerdo = filhoEsquerdo(indice);
         int posicaoFilhoDireito = filhoDireito(indice);
-        if (posicaoFilhoEsquerdo < tamanho()
-                && comparador.compare(heap[posicaoFilhoEsquerdo].getChave(), heap[maior].getChave()) >= 0) {
+
+        if (posicaoFilhoEsquerdo < tamanho() &&
+                comparador.compare(heap[posicaoFilhoEsquerdo].getChave(), heap[maior].getChave()) >= 0) {
             maior = posicaoFilhoEsquerdo;
         }
-        if (posicaoFilhoDireito < tamanho()
-                && comparador.compare(heap[posicaoFilhoDireito].getChave(), heap[maior].getChave()) >= 0) {
+        if (posicaoFilhoDireito < tamanho() &&
+                comparador.compare(heap[posicaoFilhoDireito].getChave(), heap[maior].getChave()) >= 0) {
             maior = posicaoFilhoDireito;
         }
 
@@ -126,11 +122,15 @@ public class FilaPrioridadeHeap<Chave, Valor> implements FilaPrioridade<Chave, V
     }
 
     private void trocar(int i, int j) {
-        Elemento<Chave, Valor> aux = new ElementoDaFila(heap[i].getChave(), heap[i].getValor());
-        heap[i] = heap[j];
-        heap[j] = aux;
+        // Elemento<Chave, Valor> aux = new ElementoDaFila(heap[i].getChave(),
+        // heap[i].getValor());
+        // heap[i] = heap[j];
+        // heap[j] = aux;
         // heap[i].
         // heap[j] = aux;
+        Elemento<Chave, Valor> aux = heap[i];
+        heap[i] = heap[j];
+        heap[j] = aux;
 
     }
 
