@@ -13,18 +13,20 @@ public class Main {
         for (int i = 0; i < M; i++) {
             mapaDeIdExcluso[Integer.parseInt(linha2[i])] = true;
         }
-        String filaEmTexto = "";
+        StringBuilder filaEmTexto = new StringBuilder(N-M);
         //int numeroIteracoes = N-M;
         for (int i = 0; i < linha.length; i++) {
             if(mapaDeIdExcluso[Integer.parseInt(linha[i])]==false){
                 
                 
-                    filaEmTexto+=linha[i];
-                    filaEmTexto+=" ";
+                    //filaEmTexto+=linha[i];
+                    //filaEmTexto+=" ";
+                    filaEmTexto.append(linha[i]);
+                    filaEmTexto.append(" ");
                 
             }
         }
-        System.out.println(filaEmTexto.strip());
+        System.out.println(filaEmTexto.toString().strip());
         scanner.close();
         /* Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
