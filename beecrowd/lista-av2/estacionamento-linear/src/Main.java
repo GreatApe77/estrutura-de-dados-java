@@ -22,7 +22,7 @@ public class Main {
             String[] primeiraLinha = scanner.next().split(" ");
             int N = Integer.parseInt(primeiraLinha[0]);
             int K = Integer.parseInt(primeiraLinha[1]);
-            if (N == K)
+            if (N == 0 && K==0)
                 break;
             PilhaEstatica<Carro> estacionamento = new PilhaEstatica<Carro>(K);
             int horarioAtual = 0;
