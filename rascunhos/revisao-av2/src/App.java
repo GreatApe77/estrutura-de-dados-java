@@ -1,3 +1,4 @@
+import fila.FilaEstaticaCircular;
 import pilha.PilhaDinamica;
 import pilha.PilhaEstatica;
 
