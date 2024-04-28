@@ -26,7 +26,7 @@ public class PilhaEstatica<T> {
         if(estaVazia()) throw new Error("Fila esta vazia");
         return elementos[tamanho-1];
     }
-    public T desempliha(){
+    public T desempilha(){
         T frente = topo();
         tamanho--;
         return frente;
