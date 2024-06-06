@@ -1,10 +1,45 @@
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        System.out.println("Hello, World!");
+        // int[] elm = {5,2,7};
+        // ArvoreBinariaBusca<Integer> arvore = new ArvoreBinariaBusca<Integer>();
+        //// for (int i : elm) {
+        // arvore.insere(i);
+        // }
+        // arvore.imprimirPosOrdem();
+        // arvore.imprimePreOrdem();
+        // System.out.println();
+        // arvore.imprimirEmOrdem();
+        // System.out.println();
+        // arvore.imprimirPosOrdem();
+        Scanner s = new Scanner(System.in);
+        int C = s.nextInt();
+        for (int i = 0; i < C; i++) {
+            int n = s.nextInt();
+            s.nextLine();
+            String[] linha = s.nextLine().split(" ");
+            ArvoreBinariaBusca<Integer> arvore = new ArvoreBinariaBusca<Integer>();
+            for (int j = 0; j < n; j++) {
+                arvore.insere(Integer.parseInt(linha[j]));
+            }
+            System.out.println("Case " + (i + 1) + ": ");
+            System.out.print("Pre.: ");
+            arvore.imprimePreOrdem();
+            System.out.println();
+            System.out.print("In..: ");
+            arvore.imprimirEmOrdem();
+            System.out.println();
+            System.out.print("Post: ");
+            arvore.imprimirPosOrdem();
+            System.out.println();
+            System.out.println();
+        }
+        s.close();
     }
 }
+
 class ArvoreBinariaBusca<T extends Comparable<T>> {
     private TreeNode<T> raiz;
 
@@ -26,9 +61,11 @@ class ArvoreBinariaBusca<T extends Comparable<T>> {
     public void insere(T elemento) {
         this.raiz = insere(raiz, elemento);
     }
-    public T busca(T elemento){
+
+    public T busca(T elemento) {
         return busca(raiz, elemento);
     }
+
     private TreeNode<T> insere(TreeNode<T> noArvore, T elemento) {
         if (noArvore == null) {
             noArvore = new TreeNode<T>(elemento);
@@ -46,7 +83,7 @@ class ArvoreBinariaBusca<T extends Comparable<T>> {
         }
         return noArvore;
     }
-    
+
     private T busca(TreeNode<T> noArvore, T elemento) {
         if (noArvore == null) {
             return null;
@@ -57,43 +94,63 @@ class ArvoreBinariaBusca<T extends Comparable<T>> {
         }
         if (elemento.compareTo(noArvore.getElemento()) < 0) {
             return busca(noArvore.esquerdo, elemento);
-        }else{
+        } else {
 
             return busca(noArvore.direito, elemento);
         }
     }
-    public void imprimirEmOrdem(){
-        imprimirEmOrdem(raiz);
+
+    public void imprimirEmOrdem() {
+        StringBuilder s = new StringBuilder();
+        imprimirEmOrdem(raiz, s);
+        System.out.print(s.toString().trim());
     }
-    public void imprimirPosOrdem(){
-        imprimePosOrdem(raiz);
+
+    public void imprimirPosOrdem() {
+        StringBuilder s = new StringBuilder();
+
+        imprimePosOrdem(raiz, s);
+        System.out.print(s.toString().trim());
+
     }
-    public void imprimePreOrdem(){
-        imprimePreOrdem(raiz);
+
+    public void imprimePreOrdem() {
+        StringBuilder s = new StringBuilder();
+
+        imprimePreOrdem(raiz, s);
+        System.out.print(s.toString().trim());
+
     }
-    private void imprimirEmOrdem(TreeNode<T> noArvore){
-        if(noArvore==null){
+
+    private void imprimirEmOrdem(TreeNode<T> noArvore, StringBuilder s) {
+        if (noArvore == null) {
             return;
         }
-        this.imprimirEmOrdem(noArvore.esquerdo);
-        System.out.print(noArvore.getElemento().toString()+" ");
-        this.imprimirEmOrdem(noArvore.direito);
+        this.imprimirEmOrdem(noArvore.esquerdo, s);
+        s.append(noArvore.getElemento().toString());
+        s.append(" ");
+        this.imprimirEmOrdem(noArvore.direito, s);
     }
-    private void imprimePosOrdem(TreeNode<T> noArvore){
-        if(noArvore==null){
+
+    private void imprimePosOrdem(TreeNode<T> noArvore, StringBuilder s) {
+        if (noArvore == null) {
             return;
         }
-        this.imprimePosOrdem(noArvore.esquerdo);
-        this.imprimePosOrdem(noArvore.direito);
-        System.out.print(noArvore.getElemento().toString()+" ");
+        this.imprimePosOrdem(noArvore.esquerdo, s);
+        this.imprimePosOrdem(noArvore.direito, s);
+        s.append(noArvore.getElemento().toString());
+        s.append(" ");
     }
-    private void imprimePreOrdem(TreeNode<T> noArvore){
-        if (noArvore==null) {
+
+    private void imprimePreOrdem(TreeNode<T> noArvore, StringBuilder s) {
+
+        if (noArvore == null) {
             return;
         }
-        System.out.print(noArvore.getElemento().toString()+" ");
-        this.imprimirEmOrdem(noArvore.esquerdo);
-        this.imprimirEmOrdem(noArvore.direito);
+        s.append(noArvore.getElemento().toString());
+        s.append(" ");
+        this.imprimePreOrdem(noArvore.esquerdo, s);
+        this.imprimePreOrdem(noArvore.direito, s);
     }
 }
 
