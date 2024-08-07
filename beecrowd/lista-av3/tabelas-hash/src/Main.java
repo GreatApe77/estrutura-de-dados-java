@@ -15,7 +15,7 @@ public class Main {
             int quantidadeDeChaves = Integer.parseInt(linha1[1]);
             TabelaHash<Integer, Integer> tabela = new TabelaHash<Integer, Integer>(m);
             String[] listaDeChaves = scanner.next().split(" ");
-            for (int j = 0; j < listaDeChaves.length; j++) {
+            for (int j = 0; j < quantidadeDeChaves; j++) {
                 int chave = Integer.parseInt(listaDeChaves[j]);
                 tabela.insere(chave, chave);
             }
@@ -43,7 +43,10 @@ public class Main {
 
                 }
             }
-            System.out.println();
+            if(i!=N-1){
+
+                System.out.println();
+            }
         }
         scanner.close();
     }
