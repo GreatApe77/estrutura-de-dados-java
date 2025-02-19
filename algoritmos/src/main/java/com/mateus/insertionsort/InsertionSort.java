@@ -2,7 +2,6 @@ package com.mateus.insertionsort;
 
 public class InsertionSort {
     public static void insertionSort(int[] list ){
-        if(list.length<=1) return;
         for (int i = 1; i < list.length; i++) {
             int key = list[i];
             int j = i-1;
