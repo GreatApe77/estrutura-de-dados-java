@@ -1,11 +1,14 @@
 package com.mateus.oitodamas;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class OitoDamas {
     static int DAMA = 1;
     static int SEM_DAMA = 0;
 
     public static void main(String[] args) {
-        int n = 8;
+        int n = 30;
         int[][] tabuleiro = new int[n][n];
 
         // tabuleiro[2][1] = 1;
@@ -13,66 +16,110 @@ public class OitoDamas {
         // System.out.println(r);
         // _printarTabuleiro(tabuleiro);
 
-        oitoDamas(tabuleiro, 0);
+        oitoDamas(n);
+    }
+
+    public static void oitoDamas(int n) {
+
+        Map<Integer, Boolean> mapaLinhas = new HashMap<Integer, Boolean>(n);
+        Map<Integer, Boolean> mapaColunas = new HashMap<Integer, Boolean>(n);
+        Map<Integer, Boolean> mapaDPS = new HashMap<Integer, Boolean>(n);
+        Map<Integer, Boolean> mapaDSI = new HashMap<Integer, Boolean>(n);
+        int[][] tabuleiro = new int[n][n];
+
+        _oitoDamas(tabuleiro, 0, mapaLinhas, mapaColunas, mapaDPS, mapaDSI);
     }
 
     /**
      * 0 1 2 3 4 5 6 7
      * _________________
-     * 0 | | | | | | | | |
-     * 1 | | | | | | | | |
-     * 2 | |x| | | | | | |
-     * 3 | | | | | | | | |
-     * 4 | | | | | | | | |
-     * 5 | | | | | | | | |
-     * 6 | | | | | | | | |
-     * 7 | | | | | | | | |
-     * 
-     * 
+     * 0 | | | | | | | |d|
+     * 1 | | | | | | |d| |
+     * 2 | |x| | | |d| | |
+     * 3 | | | | |d| | | |
+     * 4 | | | |d| | | | |
+     * 5 | | |d| | | | | |
+     * 6 | |d| | | | | | |
+     * 7 |d| | | | | | | |
      * 
      */
-    public static boolean oitoDamas(int[][] tabuleiro, int coluna) {
+    public static boolean _oitoDamas(
+            int[][] tabuleiro,
+            int coluna,
+            Map<Integer, Boolean> mapaLinhas,
+            Map<Integer, Boolean> mapaColunas,
+            Map<Integer, Boolean> mapaDPS,
+            Map<Integer, Boolean> mapaDSI) {
         if (tabuleiro.length == coluna) {
             _printarTabuleiro(tabuleiro);
             return true;
         }
 
         for (int i = 0; i < tabuleiro.length; i++) {
-            if (_ehSeguro(tabuleiro, coluna, i)) {
+            int diagonalPrincipal = i - coluna + tabuleiro.length - 1;
+            int diagonalSecundaria = i + coluna;
+            if (_ehSeguro(
+                    coluna,
+                    i,
+                    diagonalPrincipal,
+                    diagonalSecundaria,
+                    mapaLinhas,
+                    mapaColunas,
+                    mapaDPS,
+                    mapaDSI)) {
 
                 tabuleiro[i][coluna] = DAMA;
-                if (oitoDamas(tabuleiro, coluna + 1)) {
+                // Adicionar as restricoes
+                mapaColunas.put(coluna, true);
+                mapaLinhas.put(i, true);
+                mapaDPS.put(diagonalPrincipal, true);
+                mapaDSI.put(diagonalSecundaria, true);
+                if (_oitoDamas(
+                        tabuleiro,
+                        coluna + 1,
+                        mapaLinhas,
+                        mapaColunas,
+                        mapaDPS,
+                        mapaDSI)) {
                     return true;
                 }
                 tabuleiro[i][coluna] = SEM_DAMA;
+                mapaColunas.put(coluna, false);
+                mapaLinhas.put(i, false);
+                mapaDPS.put(diagonalPrincipal, false);
+                mapaDSI.put(diagonalSecundaria, false);
             }
         }
         return false;
     }
 
-    private static boolean _ehSeguro(int[][] tabuleiro, int coluna, int linha) {
-        // analisar coluna
-        for (int i = linha; i >= 0; i--) {
-            if (tabuleiro[i][coluna] == DAMA) {
-                return false;
-            }
-        }
-        // analisar linha
-        for (int i = coluna; i >= 0; i--) {
-            if (tabuleiro[linha][i] == DAMA) {
-                return false;
-            }
-        }
+    private static boolean _ehSeguro(
+            int coluna,
+            int linha,
+            int diagonalPrincipal,
+            int diagonalSecundaria,
+            Map<Integer, Boolean> mapaLinhas,
+            Map<Integer, Boolean> mapaColunas,
+            Map<Integer, Boolean> mapaDPS,
+            Map<Integer, Boolean> mapaDSI) {
 
-        for (int i = linha - 1, j = coluna - 1; i >= 0 && j >= 0; i--, j--) {
-            if (tabuleiro[i][j] == DAMA)
-                return false;
+        Boolean linhaOcupada = mapaLinhas.get(linha);
+        if (linhaOcupada == null) {
+            linhaOcupada = false;
         }
-        for (int i = linha + 1, j = coluna - 1; i < tabuleiro.length && j >= 0; i++, j--) {
-            if (tabuleiro[i][j] == DAMA)
-                return false;
+        Boolean colunaOcupada = mapaColunas.get(coluna);
+        if (colunaOcupada == null) {
+            colunaOcupada = false;
         }
-        return true;
+        Boolean diagonalPrincipalOcupada = mapaDPS.get(diagonalPrincipal);
+        if (diagonalPrincipalOcupada == null) {
+            diagonalPrincipalOcupada = false;
+        }
+        Boolean diagonalSecundariaOcupada = mapaDSI.get(diagonalSecundaria);
+        if (diagonalSecundariaOcupada == null) {
+            diagonalSecundariaOcupada = false;
+        }
+        return !linhaOcupada && !colunaOcupada && !diagonalPrincipalOcupada && !diagonalSecundariaOcupada;
     }
 
     private static void _printarTabuleiro(int[][] tabuleiro) {
