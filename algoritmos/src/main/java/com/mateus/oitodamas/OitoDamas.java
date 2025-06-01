@@ -9,12 +9,6 @@ public class OitoDamas {
 
     public static void main(String[] args) {
         int n = 30;
-        int[][] tabuleiro = new int[n][n];
-
-        // tabuleiro[2][1] = 1;
-        // var r = _ehSeguro(tabuleiro, 2, 1);
-        // System.out.println(r);
-        // _printarTabuleiro(tabuleiro);
 
         oitoDamas(n);
     }
@@ -69,7 +63,6 @@ public class OitoDamas {
                     mapaDSI)) {
 
                 tabuleiro[i][coluna] = DAMA;
-                // Adicionar as restricoes
                 mapaColunas.put(coluna, true);
                 mapaLinhas.put(i, true);
                 mapaDPS.put(diagonalPrincipal, true);
