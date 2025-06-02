@@ -8,7 +8,7 @@ public class OitoDamas {
     static int SEM_DAMA = 0;
 
     public static void main(String[] args) {
-        int n = 30;
+        int n = 8;
 
         oitoDamas(n);
     }
@@ -76,6 +76,7 @@ public class OitoDamas {
                         mapaDSI)) {
                     return true;
                 }
+                System.out.println("BACKTRACKING EXECUTADO !");
                 tabuleiro[i][coluna] = SEM_DAMA;
                 mapaColunas.put(coluna, false);
                 mapaLinhas.put(i, false);
