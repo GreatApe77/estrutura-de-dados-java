@@ -76,7 +76,7 @@ public class OitoDamas {
                         mapaDSI)) {
                     return true;
                 }
-                System.out.println("BACKTRACKING EXECUTADO !");
+                System.out.println("BACKTRACKING EXECUTADO na linha " + i + ", coluna " + coluna);
                 tabuleiro[i][coluna] = SEM_DAMA;
                 mapaColunas.put(coluna, false);
                 mapaLinhas.put(i, false);
