@@ -7,32 +7,23 @@ import java.util.List;
 public class MochilaGulosa {
 
     public static void main(String[] args) {
-        Item item1 = new Item("Espada de Ferro", 10, 150);
-        Item item2 = new Item("Poção de Vida", 1, 50);
-        Item item3 = new Item("Armadura de Couro", 15, 200);
-        Item item4 = new Item("Elmo de Aço", 8, 120);
-        Item item5 = new Item("Anel Mágico", 1, 500);
-        Item item6 = new Item("Botas de Agilidade", 5, 300);
-        Item item7 = new Item("Cajado de Fogo", 12, 450);
-        Item item8 = new Item("Escudo de Madeira", 9, 100);
-        Item item9 = new Item("Livro de Feitiços", 6, 250);
-        Item item10 = new Item("Colar de Proteção", 2, 350);
-        Item item11 = new Item("Unha de urso", 1, 40);
         Item[] itens = {
-                item1,
-                item2,
-                item3,
-                item4,
-                item5,
-                item6,
-                item7,
-                item8,
-                item9,
-                item10,
-                item11
-
+                new Item("Espada de Ferro", 10, 150),
+                new Item("Poção de Vida", 1, 50),
+                new Item("Armadura de Couro", 15, 200),
+                new Item("Elmo de Aço", 8, 120),
+                new Item("Anel Mágico", 1, 500),
+                new Item("Botas de Agilidade", 5, 300),
+                new Item("Cajado de Fogo", 12, 450),
+                new Item("Escudo de Madeira", 9, 100),
+                new Item("Livro de Feitiços", 6, 250),
+                new Item("Colar de Proteção", 2, 350),
+                new Item("Unha de urso", 1, 40),
+                new Item("Dedo de gigante", 4, 220),
+                new Item("Armadura De Dragao", 8, 850)
+                
         };
-        var resultado = problemaMochilha(5, Arrays.asList(itens));
+        var resultado = problemaMochilha(11, Arrays.asList(itens));
         resultado.forEach(item -> System.out.println(item.getNome()));
     }
 
