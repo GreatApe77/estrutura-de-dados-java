@@ -21,7 +21,7 @@ public class MochilaGulosa {
                 new Item("Unha de urso", 1, 40),
                 new Item("Dedo de gigante", 4, 220),
                 new Item("Armadura De Dragao", 8, 850)
-                
+
         };
         var resultado = problemaMochilha(11, Arrays.asList(itens));
         resultado.forEach(item -> System.out.println(item.getNome()));
@@ -33,9 +33,13 @@ public class MochilaGulosa {
         List<Item> itensEscolhidos = new ArrayList<>();
         int somaPesos = 0;
         for (int i = 0; i < itensOrdenadosPorTaxa.size(); i++) {
-            if (somaPesos + itensOrdenadosPorTaxa.get(i).getPeso() <= capacidade) {
-                somaPesos += itensOrdenadosPorTaxa.get(i).getPeso();
-                itensEscolhidos.add(itensOrdenadosPorTaxa.get(i));
+            Item item = itensOrdenadosPorTaxa.get(i);
+            if (somaPesos + item.getPeso() <= capacidade) {
+                somaPesos += item.getPeso();
+                itensEscolhidos.add(item);
+                String mensagem = "==ESCOLHIDO ITEM==\nNome: " + item.getNome() + "\n" + "peso: " + item.getPeso()
+                        + "\n";
+                System.out.println(mensagem);
             }
         }
         return itensEscolhidos;
