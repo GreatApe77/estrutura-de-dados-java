@@ -14,8 +14,10 @@ public class KnightTour {
     public static void knightTour() {
 
         tabuleiro = new int[n][n];
-        tabuleiro[0][0] = 1;
-        _knightTour(0, 0, 1);
+        int linhaInicial= 0;
+        int colunaInicial = 0;
+        tabuleiro[linhaInicial][colunaInicial] = 1;
+        _knightTour(linhaInicial,colunaInicial, 1);
     }
 
     public static boolean _knightTour(int linha, int coluna, int totalMovimentos) {
@@ -23,7 +25,7 @@ public class KnightTour {
             printarTabuleiro();
             return true;
         }
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < 8; i++) {
             int linhaTentada = linha + dx[i];
             int colunaTentada = coluna + dy[i];
             if (ehValido(linhaTentada, colunaTentada, tabuleiro)) {
