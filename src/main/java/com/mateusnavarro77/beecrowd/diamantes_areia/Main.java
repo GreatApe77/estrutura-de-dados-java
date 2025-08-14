@@ -1,3 +1,5 @@
+package com.mateusnavarro77.beecrowd.diamantes_areia;
+
 import java.io.IOException;
 import java.util.Scanner;
 

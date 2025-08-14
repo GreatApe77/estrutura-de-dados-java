@@ -1,3 +1,5 @@
+package com.mateusnavarro77.beecrowd.buscando_novos_seguidores;
+
 import java.io.IOException;
 import java.util.Scanner;
 

@@ -1,3 +1,5 @@
+package com.mateusnavarro77.beecrowd.trilhos;
+
 import java.io.IOException;
 import java.util.EmptyStackException;
 import java.util.Scanner;

@@ -1,3 +1,5 @@
+package com.mateusnavarro77.beecrowd.arvore_binaria_de_busca;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -19,7 +21,7 @@ public class Main {
         int C = s.nextInt();
         for (int i = 0; i < C; i++) {
             int n = s.nextInt();
-            
+
             String[] linha = s.next().split(" ");
             ArvoreBinariaBusca<Integer> arvore = new ArvoreBinariaBusca<Integer>();
             for (int j = 0; j < n; j++) {
@@ -30,16 +32,16 @@ public class Main {
             arvore.imprimirEmOrdem();
             arvore.imprimirPosOrdem();
             System.out.println();
-            //System.out.print("Pre.: ");
-            //arvore.imprimePreOrdem();
-            //System.out.println();
-            //System.out.print("In..: ");
-            //arvore.imprimirEmOrdem();
-            //System.out.println();
-            //System.out.print("Post: ");
-            //arvore.imprimirPosOrdem();
-            //System.out.println();
-            
+            // System.out.print("Pre.: ");
+            // arvore.imprimePreOrdem();
+            // System.out.println();
+            // System.out.print("In..: ");
+            // arvore.imprimirEmOrdem();
+            // System.out.println();
+            // System.out.print("Post: ");
+            // arvore.imprimirPosOrdem();
+            // System.out.println();
+
         }
         s.close();
     }
@@ -108,16 +110,16 @@ class ArvoreBinariaBusca<T extends Comparable<T>> {
     public void imprimirEmOrdem() {
         StringBuilder s = new StringBuilder();
         imprimirEmOrdem(raiz, s);
-        //int length = s.toString().trim().length();
-        System.out.println("In..: "+s.toString().trim());
-        //System.out.println("TAMANHO: "+length);
+        // int length = s.toString().trim().length();
+        System.out.println("In..: " + s.toString().trim());
+        // System.out.println("TAMANHO: "+length);
     }
 
     public void imprimirPosOrdem() {
         StringBuilder s = new StringBuilder();
 
         imprimePosOrdem(raiz, s);
-        System.out.println("Post: "+s.toString().trim());
+        System.out.println("Post: " + s.toString().trim());
 
     }
 
@@ -125,7 +127,7 @@ class ArvoreBinariaBusca<T extends Comparable<T>> {
         StringBuilder s = new StringBuilder();
 
         imprimePreOrdem(raiz, s);
-        System.out.println("Pre.: "+s.toString().trim());
+        System.out.println("Pre.: " + s.toString().trim());
 
     }
 

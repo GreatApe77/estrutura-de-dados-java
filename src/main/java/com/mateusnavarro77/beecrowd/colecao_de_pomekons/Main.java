@@ -1,4 +1,5 @@
-package com.mateus;
+package com.mateusnavarro77.beecrowd.colecao_de_pomekons;
+
 
 import java.util.Scanner;
 
@@ -167,54 +168,53 @@ class Lista<T> {
     }
 }
 
-class ColecaoDePokemon {
-    private static final int MAXIMA_VARIEDADE_POKEMONS = 151;
-
-    public Lista<String> pokemons;
-
-    ColecaoDePokemon(String[] pokemonsIniciais) {
-        pokemons = new Lista<String>(pokemonsIniciais);
-    }
-
-    public static int getMaximaVariedadePokemons() {
-        return MAXIMA_VARIEDADE_POKEMONS;
-    }
-
-    public Lista<String> getListaSemRepeticao() {
-        Lista<String> listaSemDuplicatas = new Lista<String>();
-
-        _adicionarNovos(listaSemDuplicatas, 0);
-        return listaSemDuplicatas;
-    }
-
-    private void _adicionarNovos(Lista<String> listaSemDuplicatas, int indiceDePartida) {
-        if (indiceDePartida == this.pokemons.tamanho()) {
-            return;
-        }
-
-        String pokemon = this.pokemons.pesquisarPorIndice(indiceDePartida);
-        boolean existeNaLista = listaSemDuplicatas.contem(pokemon);
-        if (!existeNaLista) {
-
-            listaSemDuplicatas.adicionarElementoNoFinal(pokemon);
-            _adicionarNovos(listaSemDuplicatas, indiceDePartida + 1);
-        } else {
-
-            _adicionarNovos(listaSemDuplicatas, indiceDePartida + 1);
-        }
-    }
-
-    public int getQuantidadesDePokemonsRestantes() {
-        return getMaximaVariedadePokemons() - getListaSemRepeticao().tamanho();
-    }
-
-}
-
 /**
  * Hello world!
  *
  */
 public class Main {
+    static class ColecaoDePomekons {
+        private static final int MAXIMA_VARIEDADE_POKEMONS = 151;
+
+        public Lista<String> pokemons;
+
+        ColecaoDePomekons(String[] pokemonsIniciais) {
+            pokemons = new Lista<String>(pokemonsIniciais);
+        }
+
+        public static int getMaximaVariedadePokemons() {
+            return MAXIMA_VARIEDADE_POKEMONS;
+        }
+
+        public Lista<String> getListaSemRepeticao() {
+            Lista<String> listaSemDuplicatas = new Lista<String>();
+
+            _adicionarNovos(listaSemDuplicatas, 0);
+            return listaSemDuplicatas;
+        }
+
+        private void _adicionarNovos(Lista<String> listaSemDuplicatas, int indiceDePartida) {
+            if (indiceDePartida == this.pokemons.tamanho()) {
+                return;
+            }
+
+            String pokemon = this.pokemons.pesquisarPorIndice(indiceDePartida);
+            boolean existeNaLista = listaSemDuplicatas.contem(pokemon);
+            if (!existeNaLista) {
+
+                listaSemDuplicatas.adicionarElementoNoFinal(pokemon);
+                _adicionarNovos(listaSemDuplicatas, indiceDePartida + 1);
+            } else {
+
+                _adicionarNovos(listaSemDuplicatas, indiceDePartida + 1);
+            }
+        }
+
+        public int getQuantidadesDePokemonsRestantes() {
+            return getMaximaVariedadePokemons() - getListaSemRepeticao().tamanho();
+        }
+
+    }
 
     public static void printarFormatado(int quantidadePomekons) {
         System.out.println("Falta(m) " + quantidadePomekons + " pomekon(s).");
@@ -234,14 +234,14 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int N = scanner.nextInt();
         String[] pokemonsCapturados = new String[N];
-        entrarDadosRecursivos(0,scanner,pokemonsCapturados);
-        ColecaoDePokemon colecao = new ColecaoDePokemon(pokemonsCapturados);
+        entrarDadosRecursivos(0, scanner, pokemonsCapturados);
+        ColecaoDePomekons colecao = new ColecaoDePomekons(pokemonsCapturados);
         printarFormatado(colecao.getQuantidadesDePokemonsRestantes());
         // String[] pomeoknsCapturados = new String[] { "Charmander", "Caterpie",
         // "Pidgeot", "Rattata", "Zubat", "Zubat",
         // "Zubat" };
         // ColecaoDePokemon colecao = new ColecaoDePokemon(pomeoknsCapturados);
         // System.out.println(colecao.pokemons.toString());
-        //System.out.println(colecao.getQuantidadesDePokemonsRestantes());
+        // System.out.println(colecao.getQuantidadesDePokemonsRestantes());
     }
 }

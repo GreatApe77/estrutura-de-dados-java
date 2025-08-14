@@ -1,3 +1,5 @@
+package com.mateusnavarro77.beecrowd.problemas_com_calculadora;
+
 import java.io.IOException;
 import java.util.Scanner;
 

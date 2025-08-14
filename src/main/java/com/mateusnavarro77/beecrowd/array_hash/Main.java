@@ -1,3 +1,5 @@
+package com.mateusnavarro77.beecrowd.array_hash;
+
 import java.io.IOException;
 import java.util.Scanner;
 import java.lang.reflect.Array;

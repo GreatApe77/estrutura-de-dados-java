@@ -1,3 +1,5 @@
+package com.mateusnavarro77.beecrowd.preenchimento_de_vetor_iii;
+
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Scanner;

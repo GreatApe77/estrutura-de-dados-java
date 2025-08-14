@@ -1,3 +1,5 @@
+package com.mateusnavarro77.beecrowd.fila_copa;
+
 import java.io.IOException;
 import java.util.Scanner;
 

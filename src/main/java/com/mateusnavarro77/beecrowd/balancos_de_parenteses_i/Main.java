@@ -1,3 +1,5 @@
+package com.mateusnavarro77.beecrowd.balancos_de_parenteses_i;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

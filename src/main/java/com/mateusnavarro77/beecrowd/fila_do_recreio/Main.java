@@ -1,3 +1,5 @@
+package com.mateusnavarro77.beecrowd.fila_do_recreio;
+
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.Scanner;

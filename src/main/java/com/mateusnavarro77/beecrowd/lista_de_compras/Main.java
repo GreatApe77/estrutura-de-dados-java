@@ -1,3 +1,5 @@
+package com.mateusnavarro77.beecrowd.lista_de_compras;
+
 
 import java.util.Scanner;
 import java.io.IOException;

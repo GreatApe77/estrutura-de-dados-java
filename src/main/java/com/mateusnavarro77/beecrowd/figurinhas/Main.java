@@ -1,3 +1,5 @@
+package com.mateusnavarro77.beecrowd.figurinhas;
+
 import java.io.IOException;
 
 import java.util.Scanner;

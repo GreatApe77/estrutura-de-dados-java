@@ -1,3 +1,5 @@
+package com.mateusnavarro77.beecrowd.pares_e_impares;
+
 
 import java.util.Scanner;
 import java.io.IOException;

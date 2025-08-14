@@ -1,3 +1,5 @@
+package com.mateusnavarro77.beecrowd.estacionamento_linear;
+
 import java.util.Scanner;
 import java.io.IOException;
 

@@ -1,3 +1,5 @@
+package com.mateusnavarro77.beecrowd.jogando_cartas_fora;
+
 import java.io.IOException;
 import java.util.Scanner;
 

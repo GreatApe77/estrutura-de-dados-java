@@ -1,3 +1,5 @@
+package com.mateusnavarro77.beecrowd.lista_de_nomes;
+
 import java.io.IOException;
 
 import java.util.Scanner;
