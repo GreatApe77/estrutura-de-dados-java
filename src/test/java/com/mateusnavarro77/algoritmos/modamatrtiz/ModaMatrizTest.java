@@ -1,10 +1,8 @@
-package com.mateusnavarro77;
+package com.mateusnavarro77.algoritmos.modamatrtiz;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import com.mateusnavarro77.algoritmos.modamatrtiz.ModaMatriz;
 
 public class ModaMatrizTest {
     

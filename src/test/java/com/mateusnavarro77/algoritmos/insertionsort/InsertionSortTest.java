@@ -1,9 +1,7 @@
-package com.mateusnavarro77;
+package com.mateusnavarro77.algoritmos.insertionsort;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.mateusnavarro77.algoritmos.insertionsort.InsertionSort;
 
 public class InsertionSortTest {
     @Test

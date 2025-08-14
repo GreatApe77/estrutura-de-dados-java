@@ -1,10 +1,8 @@
-package com.mateusnavarro77;
+package com.mateusnavarro77.algoritmos.heapsort;
 
 import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Test;
-
-import com.mateusnavarro77.algoritmos.heapsort.HeapSort;
 
 public class HeapSortTest {
 
