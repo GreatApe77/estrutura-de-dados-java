@@ -2,7 +2,6 @@ package com.mateusnavarro77.algoritmos.modamatrtiz;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 public class ModaMatriz {
     public static int modaMatriz(int[][] matriz) {
@@ -16,7 +15,7 @@ public class ModaMatriz {
             }
         }
 
-        ArrayList<Integer> chaves =  new ArrayList<Integer>(inteiroParaFrequencia.keySet());
+        ArrayList<Integer> chaves = new ArrayList<Integer>(inteiroParaFrequencia.keySet());
         Integer maiorFrequencia = 0;
         Integer moda = chaves.get(0);
         for (int i = 0; i < chaves.size(); i++) {
