@@ -54,3 +54,9 @@ buildNumber.properties
 
 # IntelliJ
 .idea
+
+# Datasets
+/src/main/resources/datasets/
+
+
+avaliacoes
