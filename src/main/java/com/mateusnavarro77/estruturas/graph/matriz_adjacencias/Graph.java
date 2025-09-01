@@ -60,4 +60,10 @@ public class Graph implements IGraph {
         g.addEdge(1, 2);
         System.out.println(g.toMatrix());
     }
+
+    @Override
+    public int getAverageDegree() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAverageDegree'");
+    }
 }

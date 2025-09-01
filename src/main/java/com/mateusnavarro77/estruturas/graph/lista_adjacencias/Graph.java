@@ -42,4 +42,13 @@ public class Graph implements IGraph {
             throw new IllegalArgumentException();
     }
 
+    @Override
+    public int getAverageDegree() {
+        int sum = 0;
+        for (int i = 0; i < verticesAmount(); i++) {
+            sum += adj[i].size();
+        }
+        return sum / verticesAmount();
+    }
+
 }
