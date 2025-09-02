@@ -1,5 +1,8 @@
 package com.mateusnavarro77.estruturas.graph;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 public class GraphTest {
@@ -25,4 +28,7 @@ public class GraphTest {
         graph.addEdge(3, 7);
         System.out.println(graph.toString());
     }
+
+    
+
 }

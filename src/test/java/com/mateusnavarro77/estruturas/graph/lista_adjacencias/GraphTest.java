@@ -1,4 +1,4 @@
-package com.mateusnavarro77.estruturas.graph.matriz_adjacencias;
+package com.mateusnavarro77.estruturas.graph.lista_adjacencias;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -6,16 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 public class GraphTest {
-
-    @Test
-    public void shouldPrintArray() {
-        var g = new Graph(5);
-        g.addEdge(0, 3);
-        g.addEdge(0, 4);
-        g.addEdge(1, 2);
-        System.out.println(g.toMatrix());
-    }
-
+    
     @Test
     public void shouldTestIfHasEdge() {
         var g = new Graph(5);
@@ -27,6 +18,7 @@ public class GraphTest {
         assertTrue(hasEdge);
         assertTrue(hasEdge2);
     }
+
     @Test
     public void shouldReturnFalseIfThereIsNoEdge() {
         var g = new Graph(5);

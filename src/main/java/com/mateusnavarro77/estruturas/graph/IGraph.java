@@ -8,5 +8,6 @@ public interface IGraph {
     void addEdge(int v1, int v2);
 
     int getAverageDegree();
+    boolean hasEdge(int v1, int v2 );
 
 }

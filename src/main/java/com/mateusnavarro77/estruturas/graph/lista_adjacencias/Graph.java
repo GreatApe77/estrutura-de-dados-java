@@ -51,4 +51,9 @@ public class Graph implements IGraph {
         return sum / verticesAmount();
     }
 
+    @Override
+    public boolean hasEdge(int v1, int v2) {
+        return adj[v1].contains(v2);
+    }
+
 }

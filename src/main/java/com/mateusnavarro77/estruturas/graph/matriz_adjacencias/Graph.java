@@ -66,4 +66,9 @@ public class Graph implements IGraph {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getAverageDegree'");
     }
+
+    @Override
+    public boolean hasEdge(int v1, int v2) {
+        return adjMatrix[v1][v2] == 1;
+    }
 }
