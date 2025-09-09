@@ -9,7 +9,7 @@ public class Graph implements IGraph {
     private int edges;
     private LinkedList<Integer>[] adj;
 
-    Graph(int verticesAmount) {
+    public Graph(int verticesAmount) {
         this.vertices = verticesAmount;
         this.edges = 0;
         adj = new LinkedList[verticesAmount];
@@ -54,6 +54,10 @@ public class Graph implements IGraph {
     @Override
     public boolean hasEdge(int v1, int v2) {
         return adj[v1].contains(v2);
+    }
+
+    public LinkedList<Integer> adjacentsOf(int vertice){
+        return this.adj[vertice];
     }
 
 }
