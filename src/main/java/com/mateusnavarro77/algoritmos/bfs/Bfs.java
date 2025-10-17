@@ -50,7 +50,6 @@ public class Bfs {
     }
 
     public void execute(int startingVertex) {
-        source = startingVertex;
         _bfs(startingVertex);
 
     }
