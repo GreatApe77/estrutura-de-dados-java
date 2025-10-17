@@ -1,24 +1,36 @@
 package com.mateusnavarro77.algoritmos.bfs;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 import com.mateusnavarro77.estruturas.graph.lista_adjacencias.Graph;;
 
 public class Bfs {
     private boolean[] marked;
     private int[] distanceFromSource;
+    private int[] previous;
     private Queue<Integer> queue;
     private Graph originalGraph;
-    // private int layerCount = 0;
 
     public Bfs(Graph g) {
         this.marked = new boolean[g.verticesAmount()];
         this.distanceFromSource = new int[g.verticesAmount()];
         this.queue = new LinkedList<Integer>();
+        this.previous = new int[g.verticesAmount()];
+        Arrays.fill(this.previous, -1);
         this.originalGraph = g;
+    }
+
+    public List<Integer> getPreviousVisitationList() {
+        List<Integer> l = new ArrayList<Integer>(previous.length);
+        for (int i = 0; i < previous.length; i++) {
+            l.add(previous[i]);
+        }
+        return l;
     }
 
     public List<Integer> getDistanceFromSourceMap() {
@@ -38,8 +50,21 @@ public class Bfs {
     }
 
     public void execute(int startingVertex) {
+        source = startingVertex;
         _bfs(startingVertex);
-        System.out.println("Terminou");
+
+    }
+
+    public List<Integer> getShortestPathFromSourceToDest(int dest) {
+        List<Integer> path = new LinkedList<>();
+        path.add(dest);
+
+        int ancestor = previous[dest];
+        while (ancestor != -1) {
+            path.add(ancestor);
+            ancestor = previous[ancestor];
+        }
+        return path.reversed();
     }
 
     private void _bfs(int startingVertex) {
@@ -56,6 +81,7 @@ public class Bfs {
             for (int adjacent : originalGraph.adjacentsOf(current)) {
                 if (!marked[adjacent]) {
                     marked[adjacent] = true;
+                    previous[adjacent] = current;
                     queue.offer(adjacent);
                     // distanceFromSource[adjacent] = layerCount;
                 }
